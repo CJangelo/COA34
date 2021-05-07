@@ -24,16 +24,16 @@
 rm(list = ls())
 gc()
 
-#library(usethis)
-#usethis::use_vignette("Vignette_1")
+library(usethis)
+usethis::use_vignette("Vignette_Scatterplots")
 
 library(devtools)
 # devtools::build()
 devtools::install()
 devtools::document()
-# library(pkgdown)
+library(pkgdown)
 #usethis::use_pkgdown()
-# pkgdown::build_site()
+pkgdown::build_site()
 # Create the RMarkdown README file:
 # usethis::use_readme_rmd()
 # Be sure to knit the file when you edit it!
@@ -46,13 +46,13 @@ set.seed(5032021)
 
 
 
-rn <- c( "(Intercept)", "PGIS_bl", "ag" , "TimeTime_2" , "TimeTime_3",
-         "TimeTime_4" ,   "ag:TimeTime_2" ,"ag:TimeTime_3", "ag:TimeTime_4" )
-Beta <- matrix(0, nrow = 9, ncol = 1, dimnames = list(rn, 'param'))
-  Beta[grepl('Time_2', rownames(Beta)) & grepl('ag', rownames(Beta)), ] <-  0.25
-  Beta[grepl('Time_3', rownames(Beta)) & grepl('ag', rownames(Beta)), ] <-  0.5
-  Beta[grepl('Time_4', rownames(Beta)) & grepl('ag', rownames(Beta)), ] <-  1.0
-  Beta
+# rn <- c( "(Intercept)", "PGIS_bl", "ag" , "TimeTime_2" , "TimeTime_3",
+#          "TimeTime_4" ,   "ag:TimeTime_2" ,"ag:TimeTime_3", "ag:TimeTime_4" )
+# Beta <- matrix(0, nrow = 9, ncol = 1, dimnames = list(rn, 'param'))
+#   Beta[grepl('Time_2', rownames(Beta)) & grepl('ag', rownames(Beta)), ] <-  0.25
+#   Beta[grepl('Time_3', rownames(Beta)) & grepl('ag', rownames(Beta)), ] <-  0.5
+#   Beta[grepl('Time_4', rownames(Beta)) & grepl('ag', rownames(Beta)), ] <-  1.0
+#   Beta
 
 # Generate data
 sim.out <- COA34::sim_pro_dat(N=1e4,
@@ -62,9 +62,9 @@ sim.out <- COA34::sim_pro_dat(N=1e4,
                         cor.value = 0.8,
                         var.values = c(5))
 
-sim.out$out.clmm$Beta
+#sim.out$out.clmm$Beta
 dat <- sim.out$dat
-sim.out$Beta
+#sim.out$Beta
 
 xtabs(~ PGIS + Time, data = dat)
 xtabs(~ PGIS_delta + Time, data = dat)
@@ -75,7 +75,7 @@ aggregate(Y_comp ~ ag + Time, FUN = mean, data = dat)
 # aggregate(Y_comp ~ ag + Time, FUN = mean, data = dat)
 # aggregate(Y_comp ~ PGIS_bl + Time, FUN = mean, data = dat)
 cor(dat$PGIS_delta, dat$PGIS_bl)
-cor(dat$Y_comp_bl, dat$ag)
+#cor(dat$Y_comp_bl, dat$ag)
 # higher Y at baseline, more likely to be in improved group
 cor(dat$Y_comp, is.na(dat$Y_mar))
 # higher Y, more likely to drop out

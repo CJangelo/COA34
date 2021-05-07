@@ -34,7 +34,7 @@
 rm(list = ls())
 gc()
 
-library(devtools)
+#library(devtools)
 # devtools::install()
 
 library(ggplot2)
@@ -48,7 +48,7 @@ library(dplyr)
 # source("C:/Users/ciaconangelo/Documents/COA34/sandbox/test_hello_world.R")
 
 
-number.repl <- 30
+number.repl <- 100
 repl <- 4
 ag <- c('Improved_2+',  'Improved_1',  'Maintained',  'Deteriorated_1',  'Deteriorated_2+')
 comp.mean <- as.data.frame(matrix(ncol=length(ag),nrow=0, dimnames=list(NULL, ag)))
@@ -59,15 +59,14 @@ mar.mmrm <- as.data.frame(matrix(ncol=length(ag),nrow=0, dimnames=list(NULL, ag)
 
 for (repl in 1:number.repl){
 
-  set.seed(as.numeric(5062021 + repl))
+  set.seed(as.numeric(5072021 + repl))
 
 # Generate data
 ##sim.out <- COA34::sim_pro_dat(N=1000, polychor.value = 0)
-sim.out <- COA34::sim_pro_dat(N=1e3,
+sim.out <- COA34::sim_pro_dat(N=50,
                         polychor.value = 0.4,
                         corr = 'ar1',
                         cor.value = 0.8,
-                        #var.values = c(1, 1.33, 1.67, 2))
                         var.values = c(5))
 
 
@@ -78,7 +77,7 @@ dat <- sim.out$dat
 # Implement drop-out
 dat <- COA34::dropout(dat = dat,
                type_dropout  = c('mcar', 'mar', 'mnar'),
-               prop.miss = c(0, 0.17, 0.34, 0.50),
+               prop.miss = c(0, 0.1, 0.2, 0.3),
                stochastic.component = 0.2)
 
 # You already have the PGIS_bl and PGIS_delta in the generated data,

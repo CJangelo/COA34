@@ -3,5 +3,6 @@ pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   Vignette_eCDF_ePDF: Vignette_eCDF_ePDF.html
-last_built: 2021-05-07T20:14Z
+  Vignette_Scatterplots: Vignette_Scatterplots.html
+last_built: 2021-05-07T22:44Z
 

@@ -43,6 +43,7 @@ compute_anchor_group <- function(dat,
 
         makeNA <- which(!(agf %in% c('Improved_1', 'Maintained', 'Deteriorated_1')))
         agf[makeNA] <- NA
+        agf <- droplevels(agf)
 
     }
 
