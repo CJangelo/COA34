@@ -14,8 +14,7 @@ sim_pro_dat(
   polychor.struc = "ar1",
   polychor.value = 0.4,
   number.of.anchor.groups = 5,
-  Beta.PGIS.delta = 1,
-  Beta.PGIS.bl = 1,
+  Beta.PRO = NULL,
   corr = "ar1",
   cor.value = 0.8,
   var.values = 2,
@@ -39,10 +38,6 @@ that will be the final value of the interaction parameters, default is all(Beta 
 \item{polychor.struc}{anchor generation - Pass to \code{sim_dat_ord()}: options for correlation structure  c('ind', 'ar1', 'cs'), default is 'ar1'}
 
 \item{polychor.value}{anchor generation - Pass to \code{sim_dat_ord()}: numeric, the first corr in ar1, the corr in cs option}
-
-\item{Beta.PGIS.delta}{PRO data generation, the Beta value for the PGIS delta variable}
-
-\item{Beta.PGIS.bl}{PRO data generation, the Beta value for the PGIS baseline variable}
 
 \item{corr}{PRO data generation, options for correlation structure  c('ind', 'ar1', 'cs'), default is 'ar1'}
 

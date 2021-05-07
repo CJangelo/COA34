@@ -9,8 +9,6 @@
 #' @param thresholds anchor generation - Pass to `sim_dat_ord()`: the ordinal generation uses a probit approach, so these are the thresholds
 #' @param polychor.struc anchor generation - Pass to `sim_dat_ord()`: options for correlation structure  c('ind', 'ar1', 'cs'), default is 'ar1'
 #' @param polychor.value anchor generation - Pass to `sim_dat_ord()`: numeric, the first corr in ar1, the corr in cs option
-#' @param Beta.PGIS.delta PRO data generation, the Beta value for the PGIS delta variable
-#' @param Beta.PGIS.bl PRO data generation, the Beta value for the PGIS baseline variable
 #' @param corr PRO data generation, options for correlation structure  c('ind', 'ar1', 'cs'), default is 'ar1'
 #' @param cor.value PRO data generation, numeric, the first corr in ar1, the corr in cs option, default is 0.8
 #' @param var.values PRO data generation, numeric, if numeric vector, the var values in
@@ -37,8 +35,7 @@ sim_pro_dat <- function(N = 1000,
                         polychor.value = 0.4,
                         number.of.anchor.groups = 5,
                         #------- Generate PRO Score (Y_comp)
-                        Beta.PGIS.delta = 1,
-                        Beta.PGIS.bl = 1,
+                        Beta.PRO = NULL,
                         corr = 'ar1',
                         cor.value = 0.8,
                         var.values = 2,
@@ -60,8 +57,11 @@ sim_pro_dat <- function(N = 1000,
                  cor.value = polychor.value)
 
 
-  # Create the anchor groups:
+  # Time as an ordered factor:
 dat <- out$dat
+dat$Time <- factor(dat$Time)
+  # Create the anchor groups:
+#dat <- out$dat
 dat <- dat[, c('USUBJID',  'Time', 'Y_comp')]
 # dropping Group, was no Group effect here - later go back and do with txa!
 colnames(dat) <- c('USUBJID', 'Time', 'PGIS')
@@ -97,11 +97,6 @@ ag <- ifelse(av >= 2, 2,
 
     dat$ag <- as.vector(ag)
 
-# This isn't it
-# X <- model.matrix( ~ ag, data = dat)
-# Beta <- matrix(0, nrow = ncol(X), dimnames=list(colnames(X), 'param'))
-# Beta['ag', ] <- 1
-
 
 # 5.6.21: Looks good!
 # X <- model.matrix( ~ ag*Time, data = dat)
@@ -115,11 +110,26 @@ ag <- ifelse(av >= 2, 2,
 # this is required for the COA34 R package
 # Need the relationship between PGIS_bl and Time
 X <- model.matrix( ~ PGIS_bl + ag*Time, data = dat)
-Beta <- matrix(0, nrow = ncol(X), dimnames=list(colnames(X), 'param'))
-Beta['PGIS_bl', ] <- 1
-Beta[grepl('Time_2', rownames(Beta)) & grepl('ag', rownames(Beta)), ] <-  0.25
-Beta[grepl('Time_3', rownames(Beta)) & grepl('ag', rownames(Beta)), ] <-  0.5
-Beta[grepl('Time_4', rownames(Beta)) & grepl('ag', rownames(Beta)), ] <-  1.0
+
+if (!is.null(Beta.PRO)) {
+  #if (all(Beta.PRO == 0)) {
+ #     Beta <- matrix(0, nrow = ncol(X), dimnames=list(colnames(X), 'param'))
+ # } else {
+      Beta <- Beta.PRO
+  }
+#}
+
+if (is.null(Beta.PRO)) {
+
+  X <- model.matrix( ~ PGIS_bl + ag*Time, data = dat)
+  Beta <- matrix(0, nrow = ncol(X), dimnames=list(colnames(X), 'param'))
+  Beta['PGIS_bl', ] <- 0
+  Beta[grepl('Time_2', rownames(Beta)) & grepl('ag', rownames(Beta)), ] <-  0.25
+  Beta[grepl('Time_3', rownames(Beta)) & grepl('ag', rownames(Beta)), ] <-  0.5
+  Beta[grepl('Time_4', rownames(Beta)) & grepl('ag', rownames(Beta)), ] <-  1.0
+
+}
+
 
 
 
