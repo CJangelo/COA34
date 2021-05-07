@@ -87,6 +87,18 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/Vignette_eCDF_ePDF.html">Vignette_eCDF_ePDF</a>
+    </li>
+  </ul>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
@@ -118,6 +130,7 @@
   anchor.group <span class='op'>=</span> <span class='cn'>NULL</span>,
   time.var <span class='op'>=</span> <span class='cn'>NULL</span>,
   change.score <span class='op'>=</span> <span class='cn'>NULL</span>,
+  print.to.png <span class='op'>=</span> <span class='cn'>TRUE</span>,
   file.name <span class='op'>=</span> <span class='st'>"Example_eCDF_ePDF_ggplot2"</span>,
   shell.table <span class='op'>=</span> <span class='cn'>FALSE</span>
 <span class='op'>)</span></pre>
@@ -145,6 +158,10 @@ Default is 'both'</p></td>
     <tr>
       <th>change.score</th>
       <td><p>indicate the name of the PRO change score</p></td>
+    </tr>
+    <tr>
+      <th>print.to.png</th>
+      <td><p>logical, output the plots to a png file</p></td>
     </tr>
     <tr>
       <th>file.name</th>

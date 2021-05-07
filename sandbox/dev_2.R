@@ -13,15 +13,18 @@
 rm(list = ls())
 gc()
 
+#library(usethis)
+#usethis::use_vignette("Vignette_1")
+
 library(devtools)
 #devtools::build()
 devtools::install()
 devtools::document()
 library(pkgdown)
-usethis::use_pkgdown()
+#usethis::use_pkgdown()
 pkgdown::build_site()
 # Create the RMarkdown README file:
-usethis::use_readme_rmd()
+# usethis::use_readme_rmd()
 # Be sure to knit the file when you edit it!
 
 library(ggplot2)

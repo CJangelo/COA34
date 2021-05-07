@@ -138,6 +138,10 @@ table(dat$anchor.groups)
 tmp <- gsub(pattern = 'Improved_2+', replacement = paste0("Improved \u2265 2"), x = dat$anchor.groups )
 table(tmp)
 
+#dat$anchor.groups <- gsub(pattern = 'Improved_2+', replacement = paste0("Improved \u2265 2"), x = dat$anchor.groups )
+
+#dat$anchor.groups <- gsub(pattern = 'Deteriorated_2+', replacement = paste0("Deteriorated \u2265 2"), x = dat$anchor.groups )
+
 ```
 
 

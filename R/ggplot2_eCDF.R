@@ -9,6 +9,7 @@
 #' @param anchor.group variable of the anchor group you want used here
 #' @param time.var variable of the Time in the dataframe - PLEASE CHECK THAT THIS IS CORRECTLY ORDERED, default is Time
 #' @param change.score indicate the name of the PRO change score
+#' @param print.to.png logical, output the plots to a png file
 #' @param file.name pass the name of the png file to print out
 #' @param shell.table logical, if true the sample size will be "xx", can be used as shell tables
 #' @return Plot of eCDF using ggplot2 package
@@ -22,6 +23,7 @@ ggplot2_eCDF <- function(
                         anchor.group = NULL, #'anchor.groups',
                         time.var = NULL, # 'Time',
                         change.score = NULL, # 'Y_comp_delta',
+                        print.to.png = TRUE,
                         file.name = 'Example_eCDF_ePDF_ggplot2',
                         shell.table = FALSE
                         ){
@@ -88,17 +90,20 @@ p2 <- ggplot2::ggplot(dat.den, aes(x=density_x, y=density_y, group=anchor.groups
 
 
 # Push it to a file:
-png(file = paste0(file.name, '.png'), units="in", width=11, height=8.5, res=300)
+if (print.to.png) {
+  png(file = paste0(file.name, '.png'), units="in", width=11, height=8.5, res=300)
 
-if (output.plots == 'eCDF') p1
-if (output.plots == 'ePDF') p2
-if (output.plots == 'both') gridExtra::grid.arrange(p1, p2, ncol = 1)
-#grid_arrange_shared_legend(p1, p2) # shared legend
+    if (output.plots == 'eCDF') p1
+    if (output.plots == 'ePDF') p2
+    if (output.plots == 'both') gridExtra::grid.arrange(p1, p2, ncol = 1)
+    #grid_arrange_shared_legend(p1, p2) # shared legend
 
-dev.off()
+  dev.off()
 
+  print(paste0('Path of PNG file: ', getwd(), '/', file.name))
 
-print(paste0('Path of PNG file: ', getwd(), '/', file.name))
+} #end print conditional statement
+
 
 
   return(list('eCDF' = p1,

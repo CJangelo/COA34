@@ -13,7 +13,7 @@ gc()
 
 library(devtools)
 # devtools::build()
-# devtools::install()
+devtools::install()
 # devtools::document()
 
 library(ggplot2)
@@ -85,6 +85,7 @@ table(dat$anchor.groups)
 
 
 out <- ggplot2_eCDF(dat = dat,
+                    print.to.png = T,
                       anchor.group = 'anchor.groups',
                       time.var = 'Time',
                       change.score = 'Y_comp_delta')

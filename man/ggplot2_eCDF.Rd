@@ -10,6 +10,7 @@ ggplot2_eCDF(
   anchor.group = NULL,
   time.var = NULL,
   change.score = NULL,
+  print.to.png = TRUE,
   file.name = "Example_eCDF_ePDF_ggplot2",
   shell.table = FALSE
 )
@@ -25,6 +26,8 @@ Default is 'both'}
 \item{time.var}{variable of the Time in the dataframe - PLEASE CHECK THAT THIS IS CORRECTLY ORDERED, default is Time}
 
 \item{change.score}{indicate the name of the PRO change score}
+
+\item{print.to.png}{logical, output the plots to a png file}
 
 \item{file.name}{pass the name of the png file to print out}
 
