@@ -1,0 +1,11 @@
+#-------------------------------------------
+CHANGE LOG (BUGS AND OTHER ALTERATIONS)
+
+date: 4.30
+function: "compute_anchor_delta"
+function: "compute_change_score"
+change: in the merge function, using "all = T" rather than "all.x = T"
+reason: we want to keep all subject IDs
+THIS DOES NOT SOLVE THE PROBLEM - still need to ensure you have all subjects at all timepoints
+Enter NA yourself when doing data management
+Test this
