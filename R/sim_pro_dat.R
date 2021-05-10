@@ -226,6 +226,7 @@ dat <- out2$dat
 return(list('dat' = dat,
             'Beta' = Beta,
             'sigma' = sigma,
+            'cor.mat' = cor.mat,
             'out.clmm' = out,
             'out.val' = out2) )
 
