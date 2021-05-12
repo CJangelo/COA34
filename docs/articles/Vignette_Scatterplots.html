@@ -219,8 +219,8 @@
 <p>To be used for both dots and lines, and in legends.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">dat.plot</span><span class="op">$</span><span class="va">anchor.groups</span><span class="op">)</span>
-<span class="co">#&gt; [1] Maintained      Deteriorated_1  Improved_2+     Improved_1     </span>
-<span class="co">#&gt; [5] Deteriorated_2+</span>
+<span class="co">#&gt; [1] Maintained      Improved_1      Deteriorated_2+ Deteriorated_1 </span>
+<span class="co">#&gt; [5] Improved_2+    </span>
 <span class="co">#&gt; Levels: Improved_2+ Improved_1 Maintained Deteriorated_1 Deteriorated_2+</span>
 <span class="va">ag.cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'Deteriorated_2+'</span> <span class="op">=</span> <span class="st">"darkred"</span>,
              <span class="st">"Deteriorated_1"</span> <span class="op">=</span> <span class="st">"red"</span>,
@@ -325,8 +325,7 @@
         y <span class="op">=</span> <span class="st">'Score at follow-up'</span><span class="op">)</span> 
 
 
-<span class="va">p1</span>
-<span class="co">#&gt; Warning: Removed 4 rows containing missing values (geom_point).</span></code></pre></div>
+<span class="va">p1</span></code></pre></div>
 <p><img src="Vignette_Scatterplots_files/figure-html/dat_43-1.png" width="700"></p>
 </div>
 </div>
@@ -343,7 +342,7 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by First Last.</p>
+  <p>Developed by Charlie Iaconangelo.</p>
 </div>
 
 <div class="pkgdown">

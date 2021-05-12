@@ -146,17 +146,17 @@
 <span class="co">#&gt;  $ Time   : Factor w/ 4 levels "Time_1","Time_2",..: 1 2 3 4 1 2 3 4 1 2 ...</span>
 <span class="co">#&gt;  $ PGIS   : num  3 0 2 4 2 3 4 3 2 0 ...</span>
 <span class="co">#&gt;  $ ag     : num  0 -2 -1 1 0 1 2 1 0 -2 ...</span>
-<span class="co">#&gt;  $ XB     : num  0 -0.5 -0.5 1 0 0.25 1 1 0 -0.5 ...</span>
+<span class="co">#&gt;  $ XB     : num  0 0 -0.5 1 0 0 1 1 0 0 ...</span>
 <span class="co">#&gt;  $ error  : num  0.19438 -2.21402 0.00733 0.15674 -0.63976 ...</span>
-<span class="co">#&gt;  $ Y_comp : num  0.194 -2.714 -0.493 1.157 -0.64 ...</span>
+<span class="co">#&gt;  $ Y_comp : num  0.194 -2.214 -0.493 1.157 -0.64 ...</span>
 <span class="co">#&gt;  $ Val_1  : int  0 NA NA NA 1 NA NA NA 0 NA ...</span>
 <span class="co">#&gt;  $ Val_2  : num  0.21 NA NA NA -1.4 ...</span>
 <span class="co">#&gt;  $ Val_3  : num  0.448 NA NA NA 0.106 ...</span>
 <span class="co">#&gt;  $ Val_4  : num  -1.3166 NA NA NA 0.0947 ...</span>
 <span class="co">#&gt;  $ Val_5  : int  3 NA NA NA 0 NA NA NA 0 NA ...</span>
-<span class="co">#&gt;  $ Y_mcar : num  0.194 -2.714 -0.493 1.157 -0.64 ...</span>
-<span class="co">#&gt;  $ Y_mar  : num  0.194 -2.714 -0.493 1.157 -0.64 ...</span>
-<span class="co">#&gt;  $ Y_mnar : num  0.194 -2.714 -0.493 NA -0.64 ...</span>
+<span class="co">#&gt;  $ Y_mcar : num  0.194 -2.214 -0.493 1.157 -0.64 ...</span>
+<span class="co">#&gt;  $ Y_mar  : num  0.194 -2.214 -0.493 1.157 -0.64 ...</span>
+<span class="co">#&gt;  $ Y_mnar : num  0.194 -2.214 -0.493 NA -0.64 ...</span>
 <span class="co"># PGIS is ordinal; transform it for the purposes of correct correlation</span>
 <span class="co"># Leave it numeric to compute the PGIS_delta for the change scores later</span>
 <span class="va">dat.cor</span> <span class="op">&lt;-</span> <span class="va">dat</span>
@@ -200,17 +200,17 @@
 <span class="co">#&gt;  $ Time   : Factor w/ 4 levels "Time_1","Time_2",..: 1 2 3 4 1 2 3 4 1 2 ...</span>
 <span class="co">#&gt;  $ PGIS   : Factor w/ 5 levels "None","Mild",..: 4 1 3 5 3 4 5 4 3 1 ...</span>
 <span class="co">#&gt;  $ ag     : num  0 -2 -1 1 0 1 2 1 0 -2 ...</span>
-<span class="co">#&gt;  $ XB     : num  0 -0.5 -0.5 1 0 0.25 1 1 0 -0.5 ...</span>
+<span class="co">#&gt;  $ XB     : num  0 0 -0.5 1 0 0 1 1 0 0 ...</span>
 <span class="co">#&gt;  $ error  : num  0.19438 -2.21402 0.00733 0.15674 -0.63976 ...</span>
-<span class="co">#&gt;  $ Y_comp : num  0.194 -2.714 -0.493 1.157 -0.64 ...</span>
+<span class="co">#&gt;  $ Y_comp : num  0.194 -2.214 -0.493 1.157 -0.64 ...</span>
 <span class="co">#&gt;  $ Val_1  : Factor w/ 3 levels "0","1","2": 1 NA NA NA 2 NA NA NA 1 NA ...</span>
 <span class="co">#&gt;  $ Val_2  : num  0.21 NA NA NA -1.4 ...</span>
 <span class="co">#&gt;  $ Val_3  : num  0.448 NA NA NA 0.106 ...</span>
 <span class="co">#&gt;  $ Val_4  : num  -1.3166 NA NA NA 0.0947 ...</span>
 <span class="co">#&gt;  $ Val_5  : Factor w/ 5 levels "0","1","2","3",..: 4 NA NA NA 1 NA NA NA 1 NA ...</span>
-<span class="co">#&gt;  $ Y_mcar : num  0.194 -2.714 -0.493 1.157 -0.64 ...</span>
-<span class="co">#&gt;  $ Y_mar  : num  0.194 -2.714 -0.493 1.157 -0.64 ...</span>
-<span class="co">#&gt;  $ Y_mnar : num  0.194 -2.714 -0.493 NA -0.64 ...</span>
+<span class="co">#&gt;  $ Y_mcar : num  0.194 -2.214 -0.493 1.157 -0.64 ...</span>
+<span class="co">#&gt;  $ Y_mar  : num  0.194 -2.214 -0.493 1.157 -0.64 ...</span>
+<span class="co">#&gt;  $ Y_mnar : num  0.194 -2.214 -0.493 NA -0.64 ...</span>
 <span class="co"># 5 validator variables (Val_1, Val_2...Val_5)</span>
 <span class="co"># 4 PRO scores</span></code></pre></div>
 </div>
@@ -243,7 +243,7 @@
                             table.footnote <span class="op">=</span> <span class="st">'**All data simulated'</span>,
                             file.name <span class="op">=</span> <span class="st">'val_vig_t1'</span>, 
                             print.dir <span class="op">=</span> <span class="va">print.dir</span><span class="op">)</span></code></pre></div>
-<template id="cbb3516d-cefe-4fef-a1c8-57cacce668a1"><style>
+<template id="3b158a44-bade-4864-83b7-eef4d4ba5c9f"><style>
 .tabwid table{
   border-collapse:collapse;
   line-height:1;
@@ -279,194 +279,194 @@ background-color: transparent;
 }
 </style>
 <div class="tabwid">
-<style>.cl-00ab54d4{table-layout:auto;border-collapse:collapse;width:100%;}.cl-0092d4ae{font-family:'Arial';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-0092d4af{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-0093227e{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-0093227f{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-00948128{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-00948129{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-0094812a{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-0094812b{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-0094812c{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-0094812d{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-0094812e{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-0094812f{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-00948130{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-00948131{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-00948132{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-0094a810{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-0094a811{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-0094a812{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-0094a813{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-0094a814{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-0094a815{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-0094a816{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-0094a817{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-0094a818{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-0094a819{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-0094a81a{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-0094cf02{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-0094cf03{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-0094cf04{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-0094cf05{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-0094cf06{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-0094cf07{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-0094cf08{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-0094cf09{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-0094cf0a{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-0094cf0b{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-0094cf0c{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-0094f5fe{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-0094f5ff{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
-<table class="table cl-00ab54d4">
+<style>.cl-e4872afc{table-layout:auto;border-collapse:collapse;width:100%;}.cl-e478db6e{font-family:'Arial';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-e478db6f{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-e478db70{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-e478db71{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-e478db72{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e478db73{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e478db74{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e478db75{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e478db76{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e478db77{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e478db78{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e47b3da0{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e47b3da1{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e47b3da2{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e47b3da3{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e47b3da4{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e47b3da5{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e47b3da6{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e47b3da7{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e47b3da8{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e47b3da9{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e47b3daa{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e47b6d20{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e47b6d21{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e47b6d22{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e47b6d23{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e47b6d24{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e47b6d25{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e47b6d26{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e47b6d27{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e47b6d28{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e47b6d29{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e47b6d2a{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e47b9552{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e47b9553{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e47b9554{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e47b9555{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e47b9556{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e47b9557{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
+<table class="table cl-e4872afc">
 <thead>
-<tr style="overflow-wrap:break-word;"><td colspan="5" class="cl-0094cf09"><p class="cl-0093227e"><span class="cl-0092d4ae">Correlations - Vignette Illustration</span></p></td></tr>
+<tr style="overflow-wrap:break-word;"><td colspan="5" class="cl-e47b9552"><p class="cl-e478db70"><span class="cl-e478db6e">Correlations - Vignette Illustration</span></p></td></tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-0094cf0b"><p class="cl-0093227f"><span class="cl-0092d4ae">PRO Score</span></p></td>
-<td class="cl-0094f5ff"><p class="cl-0093227f"><span class="cl-0092d4ae">Validator Variable</span></p></td>
-<td class="cl-0094cf0a"><p class="cl-0093227f"><span class="cl-0092d4ae">Correlation Type</span></p></td>
-<td class="cl-0094f5fe"><p class="cl-0093227f"><span class="cl-0092d4ae">Sample Size</span></p></td>
-<td class="cl-0094cf0c"><p class="cl-0093227f"><span class="cl-0092d4ae">Correlation</span></p></td>
+<td class="cl-e47b9554"><p class="cl-e478db71"><span class="cl-e478db6e">PRO Score</span></p></td>
+<td class="cl-e47b9557"><p class="cl-e478db71"><span class="cl-e478db6e">Validator Variable</span></p></td>
+<td class="cl-e47b9553"><p class="cl-e478db71"><span class="cl-e478db6e">Correlation Type</span></p></td>
+<td class="cl-e47b9556"><p class="cl-e478db71"><span class="cl-e478db6e">Sample Size</span></p></td>
+<td class="cl-e47b9555"><p class="cl-e478db71"><span class="cl-e478db6e">Correlation</span></p></td>
 </tr>
 </thead>
 <tbody>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-00948129"><p class="cl-0093227f"><span class="cl-0092d4af">Y_comp</span></p></td>
-<td class="cl-0094812a"><p class="cl-0093227f"><span class="cl-0092d4af">PGIS</span></p></td>
-<td class="cl-00948128"><p class="cl-0093227f"><span class="cl-0092d4af">polyserial</span></p></td>
-<td class="cl-0094812b"><p class="cl-0093227f"><span class="cl-0092d4af">1000</span></p></td>
-<td class="cl-0094812c"><p class="cl-0093227f"><span class="cl-0092d4af">0.08</span></p></td>
+<td class="cl-e478db73"><p class="cl-e478db71"><span class="cl-e478db6f">Y_comp</span></p></td>
+<td class="cl-e478db74"><p class="cl-e478db71"><span class="cl-e478db6f">PGIS</span></p></td>
+<td class="cl-e478db72"><p class="cl-e478db71"><span class="cl-e478db6f">polyserial</span></p></td>
+<td class="cl-e478db75"><p class="cl-e478db71"><span class="cl-e478db6f">1000</span></p></td>
+<td class="cl-e478db76"><p class="cl-e478db71"><span class="cl-e478db6f">0.08</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-00948129"><p class="cl-0093227f"><span class="cl-0092d4af">Y_comp</span></p></td>
-<td class="cl-0094812a"><p class="cl-0093227f"><span class="cl-0092d4af">Val_1</span></p></td>
-<td class="cl-00948128"><p class="cl-0093227f"><span class="cl-0092d4af">polyserial</span></p></td>
-<td class="cl-0094812b"><p class="cl-0093227f"><span class="cl-0092d4af">1000</span></p></td>
-<td class="cl-0094812c"><p class="cl-0093227f"><span class="cl-0092d4af">0.51</span></p></td>
+<td class="cl-e478db73"><p class="cl-e478db71"><span class="cl-e478db6f">Y_comp</span></p></td>
+<td class="cl-e478db74"><p class="cl-e478db71"><span class="cl-e478db6f">Val_1</span></p></td>
+<td class="cl-e478db72"><p class="cl-e478db71"><span class="cl-e478db6f">polyserial</span></p></td>
+<td class="cl-e478db75"><p class="cl-e478db71"><span class="cl-e478db6f">1000</span></p></td>
+<td class="cl-e478db76"><p class="cl-e478db71"><span class="cl-e478db6f">0.51</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-00948131"><p class="cl-0093227f"><span class="cl-0092d4af">Y_comp</span></p></td>
-<td class="cl-0094812f"><p class="cl-0093227f"><span class="cl-0092d4af">Val_2</span></p></td>
-<td class="cl-0094812d"><p class="cl-0093227f"><span class="cl-0092d4af">Pearson</span></p></td>
-<td class="cl-00948130"><p class="cl-0093227f"><span class="cl-0092d4af">1000</span></p></td>
-<td class="cl-0094812e"><p class="cl-0093227f"><span class="cl-0092d4af">0.55</span></p></td>
+<td class="cl-e47b3da2"><p class="cl-e478db71"><span class="cl-e478db6f">Y_comp</span></p></td>
+<td class="cl-e47b3da0"><p class="cl-e478db71"><span class="cl-e478db6f">Val_2</span></p></td>
+<td class="cl-e478db77"><p class="cl-e478db71"><span class="cl-e478db6f">Pearson</span></p></td>
+<td class="cl-e47b3da1"><p class="cl-e478db71"><span class="cl-e478db6f">1000</span></p></td>
+<td class="cl-e478db78"><p class="cl-e478db71"><span class="cl-e478db6f">0.55</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-00948131"><p class="cl-0093227f"><span class="cl-0092d4af">Y_comp</span></p></td>
-<td class="cl-0094812f"><p class="cl-0093227f"><span class="cl-0092d4af">Val_3</span></p></td>
-<td class="cl-0094812d"><p class="cl-0093227f"><span class="cl-0092d4af">Pearson</span></p></td>
-<td class="cl-00948130"><p class="cl-0093227f"><span class="cl-0092d4af">1000</span></p></td>
-<td class="cl-0094812e"><p class="cl-0093227f"><span class="cl-0092d4af">0.81</span></p></td>
+<td class="cl-e47b3da2"><p class="cl-e478db71"><span class="cl-e478db6f">Y_comp</span></p></td>
+<td class="cl-e47b3da0"><p class="cl-e478db71"><span class="cl-e478db6f">Val_3</span></p></td>
+<td class="cl-e478db77"><p class="cl-e478db71"><span class="cl-e478db6f">Pearson</span></p></td>
+<td class="cl-e47b3da1"><p class="cl-e478db71"><span class="cl-e478db6f">1000</span></p></td>
+<td class="cl-e478db78"><p class="cl-e478db71"><span class="cl-e478db6f">0.81</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-00948132"><p class="cl-0093227f"><span class="cl-0092d4af">Y_comp</span></p></td>
-<td class="cl-0094a811"><p class="cl-0093227f"><span class="cl-0092d4af">Val_4</span></p></td>
-<td class="cl-0094a812"><p class="cl-0093227f"><span class="cl-0092d4af">Pearson</span></p></td>
-<td class="cl-0094a813"><p class="cl-0093227f"><span class="cl-0092d4af">1000</span></p></td>
-<td class="cl-0094a810"><p class="cl-0093227f"><span class="cl-0092d4af">0.22</span></p></td>
+<td class="cl-e47b3da3"><p class="cl-e478db71"><span class="cl-e478db6f">Y_comp</span></p></td>
+<td class="cl-e47b3da5"><p class="cl-e478db71"><span class="cl-e478db6f">Val_4</span></p></td>
+<td class="cl-e47b3da6"><p class="cl-e478db71"><span class="cl-e478db6f">Pearson</span></p></td>
+<td class="cl-e47b3da7"><p class="cl-e478db71"><span class="cl-e478db6f">1000</span></p></td>
+<td class="cl-e47b3da4"><p class="cl-e478db71"><span class="cl-e478db6f">0.22</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-00948129"><p class="cl-0093227f"><span class="cl-0092d4af">Y_comp</span></p></td>
-<td class="cl-0094812a"><p class="cl-0093227f"><span class="cl-0092d4af">Val_5</span></p></td>
-<td class="cl-00948128"><p class="cl-0093227f"><span class="cl-0092d4af">polyserial</span></p></td>
-<td class="cl-0094812b"><p class="cl-0093227f"><span class="cl-0092d4af">1000</span></p></td>
-<td class="cl-0094812c"><p class="cl-0093227f"><span class="cl-0092d4af">0.29</span></p></td>
+<td class="cl-e478db73"><p class="cl-e478db71"><span class="cl-e478db6f">Y_comp</span></p></td>
+<td class="cl-e478db74"><p class="cl-e478db71"><span class="cl-e478db6f">Val_5</span></p></td>
+<td class="cl-e478db72"><p class="cl-e478db71"><span class="cl-e478db6f">polyserial</span></p></td>
+<td class="cl-e478db75"><p class="cl-e478db71"><span class="cl-e478db6f">1000</span></p></td>
+<td class="cl-e478db76"><p class="cl-e478db71"><span class="cl-e478db6f">0.29</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-00948129"><p class="cl-0093227f"><span class="cl-0092d4af">Y_mcar</span></p></td>
-<td class="cl-0094812a"><p class="cl-0093227f"><span class="cl-0092d4af">PGIS</span></p></td>
-<td class="cl-00948128"><p class="cl-0093227f"><span class="cl-0092d4af">polyserial</span></p></td>
-<td class="cl-0094812b"><p class="cl-0093227f"><span class="cl-0092d4af">1000</span></p></td>
-<td class="cl-0094812c"><p class="cl-0093227f"><span class="cl-0092d4af">0.08</span></p></td>
+<td class="cl-e478db73"><p class="cl-e478db71"><span class="cl-e478db6f">Y_mcar</span></p></td>
+<td class="cl-e478db74"><p class="cl-e478db71"><span class="cl-e478db6f">PGIS</span></p></td>
+<td class="cl-e478db72"><p class="cl-e478db71"><span class="cl-e478db6f">polyserial</span></p></td>
+<td class="cl-e478db75"><p class="cl-e478db71"><span class="cl-e478db6f">1000</span></p></td>
+<td class="cl-e478db76"><p class="cl-e478db71"><span class="cl-e478db6f">0.08</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-00948129"><p class="cl-0093227f"><span class="cl-0092d4af">Y_mcar</span></p></td>
-<td class="cl-0094812a"><p class="cl-0093227f"><span class="cl-0092d4af">Val_1</span></p></td>
-<td class="cl-00948128"><p class="cl-0093227f"><span class="cl-0092d4af">polyserial</span></p></td>
-<td class="cl-0094812b"><p class="cl-0093227f"><span class="cl-0092d4af">1000</span></p></td>
-<td class="cl-0094812c"><p class="cl-0093227f"><span class="cl-0092d4af">0.51</span></p></td>
+<td class="cl-e478db73"><p class="cl-e478db71"><span class="cl-e478db6f">Y_mcar</span></p></td>
+<td class="cl-e478db74"><p class="cl-e478db71"><span class="cl-e478db6f">Val_1</span></p></td>
+<td class="cl-e478db72"><p class="cl-e478db71"><span class="cl-e478db6f">polyserial</span></p></td>
+<td class="cl-e478db75"><p class="cl-e478db71"><span class="cl-e478db6f">1000</span></p></td>
+<td class="cl-e478db76"><p class="cl-e478db71"><span class="cl-e478db6f">0.51</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-00948131"><p class="cl-0093227f"><span class="cl-0092d4af">Y_mcar</span></p></td>
-<td class="cl-0094812f"><p class="cl-0093227f"><span class="cl-0092d4af">Val_2</span></p></td>
-<td class="cl-0094812d"><p class="cl-0093227f"><span class="cl-0092d4af">Pearson</span></p></td>
-<td class="cl-00948130"><p class="cl-0093227f"><span class="cl-0092d4af">1000</span></p></td>
-<td class="cl-0094812e"><p class="cl-0093227f"><span class="cl-0092d4af">0.55</span></p></td>
+<td class="cl-e47b3da2"><p class="cl-e478db71"><span class="cl-e478db6f">Y_mcar</span></p></td>
+<td class="cl-e47b3da0"><p class="cl-e478db71"><span class="cl-e478db6f">Val_2</span></p></td>
+<td class="cl-e478db77"><p class="cl-e478db71"><span class="cl-e478db6f">Pearson</span></p></td>
+<td class="cl-e47b3da1"><p class="cl-e478db71"><span class="cl-e478db6f">1000</span></p></td>
+<td class="cl-e478db78"><p class="cl-e478db71"><span class="cl-e478db6f">0.55</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-00948131"><p class="cl-0093227f"><span class="cl-0092d4af">Y_mcar</span></p></td>
-<td class="cl-0094812f"><p class="cl-0093227f"><span class="cl-0092d4af">Val_3</span></p></td>
-<td class="cl-0094812d"><p class="cl-0093227f"><span class="cl-0092d4af">Pearson</span></p></td>
-<td class="cl-00948130"><p class="cl-0093227f"><span class="cl-0092d4af">1000</span></p></td>
-<td class="cl-0094812e"><p class="cl-0093227f"><span class="cl-0092d4af">0.81</span></p></td>
+<td class="cl-e47b3da2"><p class="cl-e478db71"><span class="cl-e478db6f">Y_mcar</span></p></td>
+<td class="cl-e47b3da0"><p class="cl-e478db71"><span class="cl-e478db6f">Val_3</span></p></td>
+<td class="cl-e478db77"><p class="cl-e478db71"><span class="cl-e478db6f">Pearson</span></p></td>
+<td class="cl-e47b3da1"><p class="cl-e478db71"><span class="cl-e478db6f">1000</span></p></td>
+<td class="cl-e478db78"><p class="cl-e478db71"><span class="cl-e478db6f">0.81</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-00948132"><p class="cl-0093227f"><span class="cl-0092d4af">Y_mcar</span></p></td>
-<td class="cl-0094a811"><p class="cl-0093227f"><span class="cl-0092d4af">Val_4</span></p></td>
-<td class="cl-0094a812"><p class="cl-0093227f"><span class="cl-0092d4af">Pearson</span></p></td>
-<td class="cl-0094a813"><p class="cl-0093227f"><span class="cl-0092d4af">1000</span></p></td>
-<td class="cl-0094a810"><p class="cl-0093227f"><span class="cl-0092d4af">0.22</span></p></td>
+<td class="cl-e47b3da3"><p class="cl-e478db71"><span class="cl-e478db6f">Y_mcar</span></p></td>
+<td class="cl-e47b3da5"><p class="cl-e478db71"><span class="cl-e478db6f">Val_4</span></p></td>
+<td class="cl-e47b3da6"><p class="cl-e478db71"><span class="cl-e478db6f">Pearson</span></p></td>
+<td class="cl-e47b3da7"><p class="cl-e478db71"><span class="cl-e478db6f">1000</span></p></td>
+<td class="cl-e47b3da4"><p class="cl-e478db71"><span class="cl-e478db6f">0.22</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-00948129"><p class="cl-0093227f"><span class="cl-0092d4af">Y_mcar</span></p></td>
-<td class="cl-0094812a"><p class="cl-0093227f"><span class="cl-0092d4af">Val_5</span></p></td>
-<td class="cl-00948128"><p class="cl-0093227f"><span class="cl-0092d4af">polyserial</span></p></td>
-<td class="cl-0094812b"><p class="cl-0093227f"><span class="cl-0092d4af">1000</span></p></td>
-<td class="cl-0094812c"><p class="cl-0093227f"><span class="cl-0092d4af">0.29</span></p></td>
+<td class="cl-e478db73"><p class="cl-e478db71"><span class="cl-e478db6f">Y_mcar</span></p></td>
+<td class="cl-e478db74"><p class="cl-e478db71"><span class="cl-e478db6f">Val_5</span></p></td>
+<td class="cl-e478db72"><p class="cl-e478db71"><span class="cl-e478db6f">polyserial</span></p></td>
+<td class="cl-e478db75"><p class="cl-e478db71"><span class="cl-e478db6f">1000</span></p></td>
+<td class="cl-e478db76"><p class="cl-e478db71"><span class="cl-e478db6f">0.29</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-00948129"><p class="cl-0093227f"><span class="cl-0092d4af">Y_mar</span></p></td>
-<td class="cl-0094812a"><p class="cl-0093227f"><span class="cl-0092d4af">PGIS</span></p></td>
-<td class="cl-00948128"><p class="cl-0093227f"><span class="cl-0092d4af">polyserial</span></p></td>
-<td class="cl-0094812b"><p class="cl-0093227f"><span class="cl-0092d4af">1000</span></p></td>
-<td class="cl-0094812c"><p class="cl-0093227f"><span class="cl-0092d4af">0.08</span></p></td>
+<td class="cl-e478db73"><p class="cl-e478db71"><span class="cl-e478db6f">Y_mar</span></p></td>
+<td class="cl-e478db74"><p class="cl-e478db71"><span class="cl-e478db6f">PGIS</span></p></td>
+<td class="cl-e478db72"><p class="cl-e478db71"><span class="cl-e478db6f">polyserial</span></p></td>
+<td class="cl-e478db75"><p class="cl-e478db71"><span class="cl-e478db6f">1000</span></p></td>
+<td class="cl-e478db76"><p class="cl-e478db71"><span class="cl-e478db6f">0.08</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-00948129"><p class="cl-0093227f"><span class="cl-0092d4af">Y_mar</span></p></td>
-<td class="cl-0094812a"><p class="cl-0093227f"><span class="cl-0092d4af">Val_1</span></p></td>
-<td class="cl-00948128"><p class="cl-0093227f"><span class="cl-0092d4af">polyserial</span></p></td>
-<td class="cl-0094812b"><p class="cl-0093227f"><span class="cl-0092d4af">1000</span></p></td>
-<td class="cl-0094812c"><p class="cl-0093227f"><span class="cl-0092d4af">0.51</span></p></td>
+<td class="cl-e478db73"><p class="cl-e478db71"><span class="cl-e478db6f">Y_mar</span></p></td>
+<td class="cl-e478db74"><p class="cl-e478db71"><span class="cl-e478db6f">Val_1</span></p></td>
+<td class="cl-e478db72"><p class="cl-e478db71"><span class="cl-e478db6f">polyserial</span></p></td>
+<td class="cl-e478db75"><p class="cl-e478db71"><span class="cl-e478db6f">1000</span></p></td>
+<td class="cl-e478db76"><p class="cl-e478db71"><span class="cl-e478db6f">0.51</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-00948131"><p class="cl-0093227f"><span class="cl-0092d4af">Y_mar</span></p></td>
-<td class="cl-0094812f"><p class="cl-0093227f"><span class="cl-0092d4af">Val_2</span></p></td>
-<td class="cl-0094812d"><p class="cl-0093227f"><span class="cl-0092d4af">Pearson</span></p></td>
-<td class="cl-00948130"><p class="cl-0093227f"><span class="cl-0092d4af">1000</span></p></td>
-<td class="cl-0094812e"><p class="cl-0093227f"><span class="cl-0092d4af">0.55</span></p></td>
+<td class="cl-e47b3da2"><p class="cl-e478db71"><span class="cl-e478db6f">Y_mar</span></p></td>
+<td class="cl-e47b3da0"><p class="cl-e478db71"><span class="cl-e478db6f">Val_2</span></p></td>
+<td class="cl-e478db77"><p class="cl-e478db71"><span class="cl-e478db6f">Pearson</span></p></td>
+<td class="cl-e47b3da1"><p class="cl-e478db71"><span class="cl-e478db6f">1000</span></p></td>
+<td class="cl-e478db78"><p class="cl-e478db71"><span class="cl-e478db6f">0.55</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-00948131"><p class="cl-0093227f"><span class="cl-0092d4af">Y_mar</span></p></td>
-<td class="cl-0094812f"><p class="cl-0093227f"><span class="cl-0092d4af">Val_3</span></p></td>
-<td class="cl-0094812d"><p class="cl-0093227f"><span class="cl-0092d4af">Pearson</span></p></td>
-<td class="cl-00948130"><p class="cl-0093227f"><span class="cl-0092d4af">1000</span></p></td>
-<td class="cl-0094812e"><p class="cl-0093227f"><span class="cl-0092d4af">0.81</span></p></td>
+<td class="cl-e47b3da2"><p class="cl-e478db71"><span class="cl-e478db6f">Y_mar</span></p></td>
+<td class="cl-e47b3da0"><p class="cl-e478db71"><span class="cl-e478db6f">Val_3</span></p></td>
+<td class="cl-e478db77"><p class="cl-e478db71"><span class="cl-e478db6f">Pearson</span></p></td>
+<td class="cl-e47b3da1"><p class="cl-e478db71"><span class="cl-e478db6f">1000</span></p></td>
+<td class="cl-e478db78"><p class="cl-e478db71"><span class="cl-e478db6f">0.81</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-00948132"><p class="cl-0093227f"><span class="cl-0092d4af">Y_mar</span></p></td>
-<td class="cl-0094a811"><p class="cl-0093227f"><span class="cl-0092d4af">Val_4</span></p></td>
-<td class="cl-0094a812"><p class="cl-0093227f"><span class="cl-0092d4af">Pearson</span></p></td>
-<td class="cl-0094a813"><p class="cl-0093227f"><span class="cl-0092d4af">1000</span></p></td>
-<td class="cl-0094a810"><p class="cl-0093227f"><span class="cl-0092d4af">0.22</span></p></td>
+<td class="cl-e47b3da3"><p class="cl-e478db71"><span class="cl-e478db6f">Y_mar</span></p></td>
+<td class="cl-e47b3da5"><p class="cl-e478db71"><span class="cl-e478db6f">Val_4</span></p></td>
+<td class="cl-e47b3da6"><p class="cl-e478db71"><span class="cl-e478db6f">Pearson</span></p></td>
+<td class="cl-e47b3da7"><p class="cl-e478db71"><span class="cl-e478db6f">1000</span></p></td>
+<td class="cl-e47b3da4"><p class="cl-e478db71"><span class="cl-e478db6f">0.22</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-00948129"><p class="cl-0093227f"><span class="cl-0092d4af">Y_mar</span></p></td>
-<td class="cl-0094812a"><p class="cl-0093227f"><span class="cl-0092d4af">Val_5</span></p></td>
-<td class="cl-00948128"><p class="cl-0093227f"><span class="cl-0092d4af">polyserial</span></p></td>
-<td class="cl-0094812b"><p class="cl-0093227f"><span class="cl-0092d4af">1000</span></p></td>
-<td class="cl-0094812c"><p class="cl-0093227f"><span class="cl-0092d4af">0.29</span></p></td>
+<td class="cl-e478db73"><p class="cl-e478db71"><span class="cl-e478db6f">Y_mar</span></p></td>
+<td class="cl-e478db74"><p class="cl-e478db71"><span class="cl-e478db6f">Val_5</span></p></td>
+<td class="cl-e478db72"><p class="cl-e478db71"><span class="cl-e478db6f">polyserial</span></p></td>
+<td class="cl-e478db75"><p class="cl-e478db71"><span class="cl-e478db6f">1000</span></p></td>
+<td class="cl-e478db76"><p class="cl-e478db71"><span class="cl-e478db6f">0.29</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-00948129"><p class="cl-0093227f"><span class="cl-0092d4af">Y_mnar</span></p></td>
-<td class="cl-0094812a"><p class="cl-0093227f"><span class="cl-0092d4af">PGIS</span></p></td>
-<td class="cl-00948128"><p class="cl-0093227f"><span class="cl-0092d4af">polyserial</span></p></td>
-<td class="cl-0094812b"><p class="cl-0093227f"><span class="cl-0092d4af">1000</span></p></td>
-<td class="cl-0094812c"><p class="cl-0093227f"><span class="cl-0092d4af">0.08</span></p></td>
+<td class="cl-e478db73"><p class="cl-e478db71"><span class="cl-e478db6f">Y_mnar</span></p></td>
+<td class="cl-e478db74"><p class="cl-e478db71"><span class="cl-e478db6f">PGIS</span></p></td>
+<td class="cl-e478db72"><p class="cl-e478db71"><span class="cl-e478db6f">polyserial</span></p></td>
+<td class="cl-e478db75"><p class="cl-e478db71"><span class="cl-e478db6f">1000</span></p></td>
+<td class="cl-e478db76"><p class="cl-e478db71"><span class="cl-e478db6f">0.08</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-00948129"><p class="cl-0093227f"><span class="cl-0092d4af">Y_mnar</span></p></td>
-<td class="cl-0094812a"><p class="cl-0093227f"><span class="cl-0092d4af">Val_1</span></p></td>
-<td class="cl-00948128"><p class="cl-0093227f"><span class="cl-0092d4af">polyserial</span></p></td>
-<td class="cl-0094812b"><p class="cl-0093227f"><span class="cl-0092d4af">1000</span></p></td>
-<td class="cl-0094812c"><p class="cl-0093227f"><span class="cl-0092d4af">0.51</span></p></td>
+<td class="cl-e478db73"><p class="cl-e478db71"><span class="cl-e478db6f">Y_mnar</span></p></td>
+<td class="cl-e478db74"><p class="cl-e478db71"><span class="cl-e478db6f">Val_1</span></p></td>
+<td class="cl-e478db72"><p class="cl-e478db71"><span class="cl-e478db6f">polyserial</span></p></td>
+<td class="cl-e478db75"><p class="cl-e478db71"><span class="cl-e478db6f">1000</span></p></td>
+<td class="cl-e478db76"><p class="cl-e478db71"><span class="cl-e478db6f">0.51</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-00948131"><p class="cl-0093227f"><span class="cl-0092d4af">Y_mnar</span></p></td>
-<td class="cl-0094812f"><p class="cl-0093227f"><span class="cl-0092d4af">Val_2</span></p></td>
-<td class="cl-0094812d"><p class="cl-0093227f"><span class="cl-0092d4af">Pearson</span></p></td>
-<td class="cl-00948130"><p class="cl-0093227f"><span class="cl-0092d4af">1000</span></p></td>
-<td class="cl-0094812e"><p class="cl-0093227f"><span class="cl-0092d4af">0.55</span></p></td>
+<td class="cl-e47b3da2"><p class="cl-e478db71"><span class="cl-e478db6f">Y_mnar</span></p></td>
+<td class="cl-e47b3da0"><p class="cl-e478db71"><span class="cl-e478db6f">Val_2</span></p></td>
+<td class="cl-e478db77"><p class="cl-e478db71"><span class="cl-e478db6f">Pearson</span></p></td>
+<td class="cl-e47b3da1"><p class="cl-e478db71"><span class="cl-e478db6f">1000</span></p></td>
+<td class="cl-e478db78"><p class="cl-e478db71"><span class="cl-e478db6f">0.55</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-00948131"><p class="cl-0093227f"><span class="cl-0092d4af">Y_mnar</span></p></td>
-<td class="cl-0094812f"><p class="cl-0093227f"><span class="cl-0092d4af">Val_3</span></p></td>
-<td class="cl-0094812d"><p class="cl-0093227f"><span class="cl-0092d4af">Pearson</span></p></td>
-<td class="cl-00948130"><p class="cl-0093227f"><span class="cl-0092d4af">1000</span></p></td>
-<td class="cl-0094812e"><p class="cl-0093227f"><span class="cl-0092d4af">0.81</span></p></td>
+<td class="cl-e47b3da2"><p class="cl-e478db71"><span class="cl-e478db6f">Y_mnar</span></p></td>
+<td class="cl-e47b3da0"><p class="cl-e478db71"><span class="cl-e478db6f">Val_3</span></p></td>
+<td class="cl-e478db77"><p class="cl-e478db71"><span class="cl-e478db6f">Pearson</span></p></td>
+<td class="cl-e47b3da1"><p class="cl-e478db71"><span class="cl-e478db6f">1000</span></p></td>
+<td class="cl-e478db78"><p class="cl-e478db71"><span class="cl-e478db6f">0.81</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-00948132"><p class="cl-0093227f"><span class="cl-0092d4af">Y_mnar</span></p></td>
-<td class="cl-0094a811"><p class="cl-0093227f"><span class="cl-0092d4af">Val_4</span></p></td>
-<td class="cl-0094a812"><p class="cl-0093227f"><span class="cl-0092d4af">Pearson</span></p></td>
-<td class="cl-0094a813"><p class="cl-0093227f"><span class="cl-0092d4af">1000</span></p></td>
-<td class="cl-0094a810"><p class="cl-0093227f"><span class="cl-0092d4af">0.22</span></p></td>
+<td class="cl-e47b3da3"><p class="cl-e478db71"><span class="cl-e478db6f">Y_mnar</span></p></td>
+<td class="cl-e47b3da5"><p class="cl-e478db71"><span class="cl-e478db6f">Val_4</span></p></td>
+<td class="cl-e47b3da6"><p class="cl-e478db71"><span class="cl-e478db6f">Pearson</span></p></td>
+<td class="cl-e47b3da7"><p class="cl-e478db71"><span class="cl-e478db6f">1000</span></p></td>
+<td class="cl-e47b3da4"><p class="cl-e478db71"><span class="cl-e478db6f">0.22</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-0094a817"><p class="cl-0093227f"><span class="cl-0092d4af">Y_mnar</span></p></td>
-<td class="cl-0094a816"><p class="cl-0093227f"><span class="cl-0092d4af">Val_5</span></p></td>
-<td class="cl-0094a815"><p class="cl-0093227f"><span class="cl-0092d4af">polyserial</span></p></td>
-<td class="cl-0094a818"><p class="cl-0093227f"><span class="cl-0092d4af">1000</span></p></td>
-<td class="cl-0094a814"><p class="cl-0093227f"><span class="cl-0092d4af">0.29</span></p></td>
+<td class="cl-e47b6d20"><p class="cl-e478db71"><span class="cl-e478db6f">Y_mnar</span></p></td>
+<td class="cl-e47b3daa"><p class="cl-e478db71"><span class="cl-e478db6f">Val_5</span></p></td>
+<td class="cl-e47b3da9"><p class="cl-e478db71"><span class="cl-e478db6f">polyserial</span></p></td>
+<td class="cl-e47b6d21"><p class="cl-e478db71"><span class="cl-e478db6f">1000</span></p></td>
+<td class="cl-e47b3da8"><p class="cl-e478db71"><span class="cl-e478db6f">0.29</span></p></td>
 </tr>
 </tbody>
-<tfoot><tr style="overflow-wrap:break-word;"><td colspan="5" class="cl-0094a819"><p class="cl-0093227e"><span class="cl-0092d4af">**All data simulated</span></p></td></tr></tfoot>
+<tfoot><tr style="overflow-wrap:break-word;"><td colspan="5" class="cl-e47b6d22"><p class="cl-e478db70"><span class="cl-e478db6f">**All data simulated</span></p></td></tr></tfoot>
 </table>
-</div></template><div class="flextable-shadow-host" id="6cdab273-8be0-453b-bfb1-c4aee70f06f9"></div>
+</div></template><div class="flextable-shadow-host" id="7a457f93-5672-4b8e-a8b8-ab61d5782bc1"></div>
 <script>
-var dest = document.getElementById("6cdab273-8be0-453b-bfb1-c4aee70f06f9");
-var template = document.getElementById("cbb3516d-cefe-4fef-a1c8-57cacce668a1");
+var dest = document.getElementById("7a457f93-5672-4b8e-a8b8-ab61d5782bc1");
+var template = document.getElementById("3b158a44-bade-4864-83b7-eef4d4ba5c9f");
 var caption = template.content.querySelector("caption");
 if(caption) {
   caption.style.cssText = "display:block;text-align:center;";
@@ -537,8 +537,8 @@ fantome.appendChild(templateContent);
 <span class="co">#&gt;   PRO Score Validator Variable Correlation Type Sample Size Correlation</span>
 <span class="co">#&gt; 1    Y_comp               PGIS       polyserial        1000   0.4283851</span>
 <span class="co">#&gt; 2    Y_mcar               PGIS       polyserial         502   0.4190047</span>
-<span class="co">#&gt; 3     Y_mar               PGIS       polyserial         502   0.4992243</span>
-<span class="co">#&gt; 4    Y_mnar               PGIS       polyserial         502   0.3452491</span></code></pre></div>
+<span class="co">#&gt; 3     Y_mar               PGIS       polyserial         502   0.4985464</span>
+<span class="co">#&gt; 4    Y_mnar               PGIS       polyserial         502   0.3539819</span></code></pre></div>
 </div>
   </div>
 
@@ -553,7 +553,7 @@ fantome.appendChild(templateContent);
 
 
       <footer><div class="copyright">
-  <p>Developed by First Last.</p>
+  <p>Developed by Charlie Iaconangelo.</p>
 </div>
 
 <div class="pkgdown">
