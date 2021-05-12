@@ -1,0 +1,52 @@
+---
+title: "Introduction"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Purpose
+
+Purpose of this R package is to streamline our standard psychometric analyses. 
+
+Please review: https://cjangelo.github.io/SPR/articles/Fundamentals.html
+
+
+## Data management
+
+The most important part of doing analyses in R, especially these psychometric analyses, is data management. All the functions do the work, you just have to keep track of your data management. You should constantly be using `str(dat)`, and `levels(dat$variable)`, etc. Keep a close eye on whether a variable is numeric or a factor. If it's a factor, check the levels and check the ordering. Do this often to avoid a problem - the function won't throw an error, you'll just get wrong results.
+
+**Be paranoid**.
+
+## Testing
+
+Please skim Chapter 12: https://r-pkgs.org/tests.html#tests
+
+We need to implement testing of this R package. 
+
+Please identify 3 instances where the R package does something unexpected. This can be mean:
+
+- throws an error when it shouldn't
+- returns results that are wrong, or unexpected
+
+Provide 3 full reproducible examples, in alignment with proper bug reports. Review this here if you're unsure what that means: https://github.com/rstudio/rstudio/wiki/Writing-Good-Bug-Reports 
+
+Good starting point would be to investigate how the functions handle missing data. 
+
+## More To Do
+
+- Simulate data with treatment effect
+- How does that impact estimates?
+- How do we handle confirmatory data?
+- How to pass additional footnotes to the tables?
+- Functions need to include more info in list of outputs, this info can be included as footnotes or the title in the table automatically
+

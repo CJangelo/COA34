@@ -1,5 +1,5 @@
 ---
-title: "Vignette_Scatterplots"
+title: "Meaningful Change with Scatterplots"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Vignette_Scatterplots}
@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Meaningful Change with Small Samples: Scatterplots 
+## Meaningful Change with Small Samples: Scatterplots 
 
 When eCDFs/ePDFs are not feasible to compute, use a scatterplot.
 Scatterplots can serve as supplemental information even when eCDFs are computed.

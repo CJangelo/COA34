@@ -1,5 +1,5 @@
 ---
-title: "Vignette_eCDF_ePDF"
+title: "Meaningful Change via eCDF and ePDF"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Vignette_eCDF_ePDF}
@@ -14,11 +14,14 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Custom eCDF and ePDF
+## Custom eCDF and ePDF
 
 Output eCDFs and ePDFs in alignment with FDA Guidance 3. 
 
-The plots that appear in the html look bad - they are fine when output to a .png file. 
+
+```{r output_dir, echo = F}
+print.dir = "C:/Users/ciaconangelo/OneDrive - OPEN Health/Documents/misc_R_table_output"
+```
 
 
 ## Required R packages
@@ -100,6 +103,7 @@ dat <- COA34::compute_anchor_group(dat = dat,
 
 ## Compute Thresholds
 
+This functions computes a table of all of the meaningful change thresholds. 
 
 ```{r thr}
 
@@ -108,11 +112,29 @@ thr <- COA34::compute_thresholds(dat = dat,
                                  time.var = 'Time',
                                  change.score = 'Y_comp_delta')
 
+
+```
+
+Output the table to include in the report: 
+
+```{r thr_out, eval = T}
+library(R2Word)
+
+R2Word::dump_df_mat_to_file(out = thr,
+                            table.title = 'Anchor Group Thresholds',
+                            NA.string = '-',
+                            decimals = c(2, 2, 0, 1),
+                            file.name = 'thr', 
+                            print.dir = print.dir)
+
+
+
 ```
 
 ## Compute Proportion Surpassing Threshold
 
-This function is a little more obscure. 
+This function computes the proportion of subjects surpassing a given threshold. So let's say you are looking to estimate meaningful improvement, using a 1-category change on the anchor as the criteria. In this case, you'd use the median PRO score of the anchor group "Improved 1 category" and compute the proportion of subjects with a PRO change score that was that or less (assuming that improvement is negative in PRO change scores).
+
 ```{r cap}
 
 cap <- COA34::compute_prop_surp(dat = dat,
@@ -121,6 +143,24 @@ cap <- COA34::compute_prop_surp(dat = dat,
                                 change.score = 'Y_comp_delta',
                                 threshold.label = 'Improved_1',
                                 mean.or.median = 'median')
+
+str(cap)
+
+```
+
+
+Output the table to include in your report:
+```{r cap_out, eval = T}
+library(R2Word)
+
+R2Word::dump_df_mat_to_file(out = cap$anchor.table,
+                            table.title = paste0('Proportion Achieving Meaningful Improvement in ', cap$change.score),
+                            NA.string = '-',
+                            table.footnote = cap$footnote.anchor.table,
+                            decimals = c(0, 0, 1),
+                            file.name = 'cap', 
+                            print.dir = print.dir)
+
 
 
 ```
