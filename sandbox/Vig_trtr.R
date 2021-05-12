@@ -15,11 +15,11 @@ gc()
 # devtools::install()
 # devtools::document()
 
-library(ggplot2)
-library(grid)
-library(gridExtra)
+# library(ggplot2)
+# library(grid)
+# library(gridExtra)
 library(COA34)
-library(psych)
+# library(psych)
 
 set.seed(5102021)
 
@@ -67,7 +67,9 @@ icc <- COA34::compute_icc21(dat = dat,
                             time.var = 'Time',
                             subject.id = 'USUBJID',
                             anchor = 'PGIS_delta',
-                            stable.score = 0)
+                            stable.score = 0,
+                            first.timepoint = 'Time_1',
+                            second.timepoint = 'Time_2')
 icc$icc.21
 str(icc$icc.21)
 
