@@ -6,7 +6,7 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-FDA COA Division Guidance 3 & 4 Analysis
+Psychometric analyses aligned with FDA COA Division Guidance 3 & 4.
 
 ## Installation
 
@@ -31,6 +31,4 @@ these functions.
 ## Example
 
 For concise examples of how the functions can help your workflow, see
-the Introductory Vignette
-(<https://cjangelo.github.io/COA34/articles/introduction.html>) under
-`Articles` at the top of this page.
+the `Articles` at the top of this page.
