@@ -10,7 +10,7 @@ ggplot2_eCDF(
   anchor.group = NULL,
   time.var = NULL,
   change.score = NULL,
-  print.to.png = TRUE,
+  print.to.png = FALSE,
   file.name = "Example_eCDF_ePDF_ggplot2",
   shell.table = FALSE
 )

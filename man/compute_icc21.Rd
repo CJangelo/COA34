@@ -10,7 +10,9 @@ compute_icc21(
   time.var = NULL,
   subject.id = NULL,
   anchor = NULL,
-  stable.score = NULL
+  stable.score = NULL,
+  first.timepoint = NULL,
+  second.timepoint = NULL
 )
 }
 \arguments{
@@ -30,6 +32,12 @@ For example, use \code{anchor = 'PGIS_delta'} and \code{stable.score = 0} to sel
 the subset of stable sujects.
 Another example would be \code{anchor = 'anchor.groups'}
 and \code{stable.score = 'Maintained'}.}
+
+\item{first.timepoint}{specify the first timepoint to be used in the TRTR
+computation; default is the first timepoint in your \code{time.var} variable}
+
+\item{second.timepoint}{specifiy the second timepoint to be used in the TRTR
+computation; default is the final timepoint in your \code{time.var} variable}
 }
 \value{
 returns a table \code{icc.21} with the values
