@@ -124,14 +124,19 @@ if(!(threshold.label %in% thr[  , 'Anchor Group', drop = T])) stop('`threshold.l
   tmp3 <- paste0('Threshold: ',  sprintf("%.2f", thr), ',')
 
   ecdf.caption <- paste0(c(tmp3, lab, tmp2), collapse = ' ')
-  ecdf.caption
+
+  foot.note <- sprintf("Threshold = %.2f, the %s of the %s anchor group",
+                       thr, mean.or.median, threshold.label)
 
 
   return(list('anchor.table' = out,
               'threshold.table' = threshold.table,
               'threshold.label' = threshold.label,
               'mean.or.median' = mean.or.median,
-              'ecdf.caption' = ecdf.caption
+              'threshold.value' = thr,
+              'change.score' = change.score,
+              'ecdf.caption' = ecdf.caption,
+              'footnote.anchor.table' = foot.note
               ))
 
 }

@@ -23,7 +23,7 @@ ggplot2_eCDF <- function(
                         anchor.group = NULL, #'anchor.groups',
                         time.var = NULL, # 'Time',
                         change.score = NULL, # 'Y_comp_delta',
-                        print.to.png = TRUE,
+                        print.to.png = FALSE,
                         file.name = 'Example_eCDF_ePDF_ggplot2',
                         shell.table = FALSE
                         ){
