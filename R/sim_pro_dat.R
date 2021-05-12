@@ -82,6 +82,7 @@ ag <- ifelse(av >= 2, 2,
                     ifelse(av == 0, 0,
                            ifelse(av == -1, -1,
                                   ifelse(av <= -2, -2, NA)))))
+}
 
 
   if (number.of.anchor.groups == 3) {
@@ -91,9 +92,10 @@ ag <- ifelse(av >= 2, 2,
                     ifelse(av <= -1, -1, NA)))
 
   }
-} else {
-  ag <- NA
-}
+
+    if (!(number.of.anchor.groups %in% c(3, 5))) {
+      ag <- NA
+      }
 
     dat$ag <- as.vector(ag)
 
@@ -124,9 +126,14 @@ if (is.null(Beta.PRO)) {
   X <- model.matrix( ~ PGIS_bl + ag*Time, data = dat)
   Beta <- matrix(0, nrow = ncol(X), dimnames=list(colnames(X), 'param'))
   Beta['PGIS_bl', ] <- 0
-  Beta[grepl('Time_2', rownames(Beta)) & grepl('ag', rownames(Beta)), ] <-  0.25
-  Beta[grepl('Time_3', rownames(Beta)) & grepl('ag', rownames(Beta)), ] <-  0.5
-  Beta[grepl('Time_4', rownames(Beta)) & grepl('ag', rownames(Beta)), ] <-  1.0
+  lo <- length(which(grepl('Time', rownames(Beta)) & grepl('ag', rownames(Beta))))
+
+  Beta[grepl('Time', rownames(Beta)) & grepl('ag', rownames(Beta)), ] <-
+    seq(0, 1, length.out = lo)
+
+  #Beta[grepl('Time_2', rownames(Beta)) & grepl('ag', rownames(Beta)), ] <-  0.25
+  #Beta[grepl('Time_3', rownames(Beta)) & grepl('ag', rownames(Beta)), ] <-  0.5
+  #Beta[grepl('Time_4', rownames(Beta)) & grepl('ag', rownames(Beta)), ] <-  1.0
 
 }
 
