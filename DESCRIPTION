@@ -18,7 +18,10 @@ Imports:
     MASS,
     psych,
     ggplot2,
-    gridExtra
+    grid,
+    gridExtra,
+    polycor, 
+    rcompanion
 Suggests: 
     knitr,
     rmarkdown
