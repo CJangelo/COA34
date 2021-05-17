@@ -163,3 +163,18 @@ R2Word::dump_df_mat_to_file(out = st,
                             print.dir = print.dir,
                             table.footnote = out$fn2.nh)
 ```
+
+
+###Boxplots of Known Groups
+
+```{r kg5}
+library(ggplot2)
+ggplot(data = dat[dat$Time=="Time_1",], aes(x = as.factor(Val_5), y = Y_comp))+
+  theme_minimal()+
+  geom_boxplot()+
+  stat_summary(fun=mean, geom="point", shape=4, size=4)+#add mean as Xs
+  labs(title = "Known Groups, Validator Variable 5",
+       x = "Validator Variable 5",
+       y = "PRO Score")
+
+```
