@@ -61,12 +61,10 @@ sim_pro_dat <- function(N = 1000,
 dat <- out$dat
 dat$Time <- factor(dat$Time)
   # Create the anchor groups:
-#dat <- out$dat
 dat <- dat[, c('USUBJID',  'Time', 'Y_comp')]
 # dropping Group, was no Group effect here - later go back and do with txa!
 colnames(dat) <- c('USUBJID', 'Time', 'PGIS')
-
-# FIX this part - notice this doesn't work if your subjects IDS are ordered this way
+# use merge to ensure subject IDs all aligned correctly:
 tmp1 <- dat[dat$Time == 'Time_1', c('USUBJID', 'PGIS')]
 colnames(tmp1) <- c('USUBJID', 'PGIS_bl')
 dat <- merge(x = dat, y = tmp1, by = 'USUBJID', all.x = T)
@@ -100,44 +98,26 @@ ag <- ifelse(av >= 2, 2,
     dat$ag <- as.vector(ag)
 
 
-# 5.6.21: Looks good!
-# X <- model.matrix( ~ ag*Time, data = dat)
-# Beta <- matrix(0, nrow = ncol(X), dimnames=list(colnames(X), 'param'))
-# Beta[grepl('Time_2', rownames(Beta)) & grepl('ag', rownames(Beta)), ] <-  0.25
-# Beta[grepl('Time_3', rownames(Beta)) & grepl('ag', rownames(Beta)), ] <-  0.5
-# Beta[grepl('Time_4', rownames(Beta)) & grepl('ag', rownames(Beta)), ] <-  1.0
 
-
-# 5.6.21 - this seems to work fine as well
-# this is required for the COA34 R package
-# Need the relationship between PGIS_bl and Time
-X <- model.matrix( ~ PGIS_bl + ag*Time, data = dat)
+# ----
+X <- model.matrix( ~ ag*Time, data = dat)
+ Beta <- matrix(0, nrow = ncol(X), dimnames=list(colnames(X), 'param'))
 
 if (!is.null(Beta.PRO)) {
-  #if (all(Beta.PRO == 0)) {
- #     Beta <- matrix(0, nrow = ncol(X), dimnames=list(colnames(X), 'param'))
- # } else {
+  if (any(Beta.PRO != 0)) {
+
       Beta <- Beta.PRO
   }
-#}
+} else {
 
-if (is.null(Beta.PRO)) {
-
-  X <- model.matrix( ~ PGIS_bl + ag*Time, data = dat)
-  Beta <- matrix(0, nrow = ncol(X), dimnames=list(colnames(X), 'param'))
-  Beta['PGIS_bl', ] <- 0
+  # if Beta.PRO is null, it should be = 1
   lo <- length(which(grepl('Time', rownames(Beta)) & grepl('ag', rownames(Beta))))
-
   Beta[grepl('Time', rownames(Beta)) & grepl('ag', rownames(Beta)), ] <-
-    seq(0, 1, length.out = lo)
-
-  #Beta[grepl('Time_2', rownames(Beta)) & grepl('ag', rownames(Beta)), ] <-  0.25
-  #Beta[grepl('Time_3', rownames(Beta)) & grepl('ag', rownames(Beta)), ] <-  0.5
-  #Beta[grepl('Time_4', rownames(Beta)) & grepl('ag', rownames(Beta)), ] <-  1.0
+    seq(0.25, 1, length.out = lo)
 
 }
 
-
+# -------
 
 
 # Matrix multiply:
