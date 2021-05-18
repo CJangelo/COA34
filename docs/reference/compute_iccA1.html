@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • COA34</title>
+<title>Test-Retest Reliability — compute_iccA1 • COA34</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,9 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Test-Retest Reliability — compute_iccA1" />
+<meta property="og:description" content="Uses the icc() function in the irr package to compute the ICC(A,1)
+on a stable subset of subjects." />
 
 
 
@@ -58,7 +60,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -130,132 +132,78 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Test-Retest Reliability</h1>
+    
+    <div class="hidden name"><code>compute_iccA1.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>Uses the <code>icc()</code> function in the <code>irr</code> package to compute the ICC(A,1)
+on a stable subset of subjects.</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>compute_iccA1</span><span class='op'>(</span>
+  <span class='va'>dat</span>,
+  PRO.score <span class='op'>=</span> <span class='cn'>NULL</span>,
+  time.var <span class='op'>=</span> <span class='cn'>NULL</span>,
+  subject.id <span class='op'>=</span> <span class='cn'>NULL</span>,
+  anchor <span class='op'>=</span> <span class='cn'>NULL</span>,
+  stable.score <span class='op'>=</span> <span class='cn'>NULL</span>,
+  first.timepoint <span class='op'>=</span> <span class='cn'>NULL</span>,
+  second.timepoint <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span></pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="compute_anchor_delta.html">compute_anchor_delta()</a></code> </p>
-        </td>
-        <td><p>Compute the Anchor Change Score</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="compute_anchor_group.html">compute_anchor_group()</a></code> </p>
-        </td>
-        <td><p>Compute the Anchor Group</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="compute_change_score.html">compute_change_score()</a></code> </p>
-        </td>
-        <td><p>Compute the PRO Change Score</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="compute_ecdf.html">compute_ecdf()</a></code> </p>
-        </td>
-        <td><p>Compute eCDF</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="compute_icc21.html">compute_icc21()</a></code> </p>
-        </td>
-        <td><p>Test-Retest Reliability</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="compute_iccA1.html">compute_iccA1()</a></code> </p>
-        </td>
-        <td><p>Test-Retest Reliability</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="compute_known_groups_validity.html">compute_known_groups_validity()</a></code> </p>
-        </td>
-        <td><p>Known-Groups Validity</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="compute_prop_surp.html">compute_prop_surp()</a></code> </p>
-        </td>
-        <td><p>Proportion of Subjects Surpassing the Threshold</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="compute_thresholds.html">compute_thresholds()</a></code> </p>
-        </td>
-        <td><p>Compute Thresholds</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="compute_validity.html">compute_validity()</a></code> </p>
-        </td>
-        <td><p>Concurrent Validity</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="dropout.html">dropout()</a></code> </p>
-        </td>
-        <td><p>Implement Drop-out Mechanism</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="ggplot2_eCDF.html">ggplot2_eCDF()</a></code> </p>
-        </td>
-        <td><p>Plot eCDF using <code>ggplot2</code></p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="grid_arrange_shared_legend.html">grid_arrange_shared_legend()</a></code> </p>
-        </td>
-        <td><p>Plots with shared legend eCDF using <code>ggplot2</code></p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="sim_dat_ord.html">sim_dat_ord()</a></code> </p>
-        </td>
-        <td><p>Simulate Longitudinal Ordinal Data</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="sim_pro_dat.html">sim_pro_dat()</a></code> </p>
-        </td>
-        <td><p>Simulate Longitudinal PRO Data with anchor and validator variables included</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="sim_val_var.html">sim_val_var()</a></code> </p>
-        </td>
-        <td><p>Simulate Longitudinal Ordinal Data</p></td>
-      </tr>
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>dat</th>
+      <td><p>dataframe with values</p></td>
+    </tr>
+    <tr>
+      <th>PRO.score</th>
+      <td><p>specify the COA/PRO score you want to compute ICC of.
+Can pass multiple scores, e.g. <code>PRO.score = c('Y_comp', 'Y_mcar', 'Y_mar')</code></p></td>
+    </tr>
+    <tr>
+      <th>time.var</th>
+      <td><p>the time variable, should be an ordered factor</p></td>
+    </tr>
+    <tr>
+      <th>subject.id</th>
+      <td><p>the subject ID, should be a character variable</p></td>
+    </tr>
+    <tr>
+      <th>anchor</th>
+      <td><p>this is the anchor used to condition on the stable subset of subjects</p></td>
+    </tr>
+    <tr>
+      <th>stable.score</th>
+      <td><p>this is the anchor score that indicates the subject is stable.
+For example, use <code>anchor = 'PGIS_delta'</code> and <code>stable.score = 0</code> to select
+the subset of stable sujects.
+Another example would be <code>anchor = 'anchor.groups'</code>
+and <code>stable.score = 'Maintained'</code>.</p></td>
+    </tr>
+    <tr>
+      <th>first.timepoint</th>
+      <td><p>specify the first timepoint to be used in the TRTR
+computation; default is the first timepoint in your <code>time.var</code> variable</p></td>
+    </tr>
+    <tr>
+      <th>second.timepoint</th>
+      <td><p>specifiy the second timepoint to be used in the TRTR
+computation; default is the final timepoint in your <code>time.var</code> variable</p></td>
+    </tr>
     </table>
-  </div>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>returns a table <code>icc.21</code> with the values</p>
+
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
