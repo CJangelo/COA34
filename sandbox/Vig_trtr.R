@@ -77,7 +77,7 @@ str(icc$icc.21)
 # Code below was/is basis for the `compute_icc21()` function
 # This can go in a Vignette for illustration and for flexbility
 #
-PRO.score <- c('Y_comp' ,'Y_mcar', 'Y_mar')
+PRO.score <- c('Y_comp') # ,'Y_mcar', 'Y_mar')
 score <- 'Y_comp'
 time.var <- 'Time'
 subject.id <- 'USUBJID'
@@ -116,6 +116,13 @@ library(psych)
 dat.icc <- dat.icc[complete.cases(dat.icc), ]
 N <- sum(complete.cases(dat.icc[,c('Y1', 'Y2')]))
 out <- psych::ICC(dat.icc[,c('Y1', 'Y2')], lmer = F)
+library(irr)
+out2 <- irr::icc(dat.icc[,c('Y1', 'Y2')],
+                 model = 'twoway',
+                 type = 'agreement',
+                 unit = 'single')
+out2
+str(out2)
 # documentation shows this aligns with Shrout & Fleiss 1979, but it's slow
 out <- as.data.frame(out$results)
 out[out$type == 'ICC2k', 'ICC']

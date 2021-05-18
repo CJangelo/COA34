@@ -34,6 +34,8 @@
 rm(list = ls())
 gc()
 
+#library(devtools)
+#devtools::install()
 
 library(ggplot2)
 library(grid)
@@ -47,44 +49,35 @@ library(dplyr)
 number.repl <- 100
 repl <- 4
 ag <- c('Improved_2+',  'Improved_1',  'Maintained',  'Deteriorated_1',  'Deteriorated_2+')
+#ag <- c('Improved',   'Maintained',  'Deteriorated')
 comp.mean <- as.data.frame(matrix(ncol=length(ag),nrow=0, dimnames=list(NULL, ag)))
 comp.mmrm <- as.data.frame(matrix(ncol=length(ag),nrow=0, dimnames=list(NULL, ag)))
 mar.mean <- as.data.frame(matrix(ncol=length(ag),nrow=0, dimnames=list(NULL, ag)))
 mar.mmrm <- as.data.frame(matrix(ncol=length(ag),nrow=0, dimnames=list(NULL, ag)))
 
+number.timepoints <- 7
 
 for (repl in 1:number.repl){
 
-  set.seed(as.numeric(5072021 + repl))
+  set.seed(as.numeric(5122021 + repl))
 
 # Generate data
-##sim.out <- COA34::sim_pro_dat(N=1000, polychor.value = 0)
-sim.out <- COA34::sim_pro_dat(N=50,
-                        polychor.value = 0.4,
-                        corr = 'ar1',
-                        cor.value = 0.8,
-                        var.values = c(5))
+sim.out <- COA34::sim_pro_dat(N=100,
+                              number.timepoints = number.timepoints,
+                              number.of.anchor.groups = 5,
+                              polychor.value = 0.4,
+                              corr = 'ar1',
+                              cor.value = 0.8,
+                              var.values = c(5))
 
-
-
-#sim.out <- sim_pro_dat2(N=1e4, polychor.value = 0.8)
 dat <- sim.out$dat
 
 # Implement drop-out
 dat <- COA34::dropout(dat = dat,
                type_dropout  = c('mcar', 'mar', 'mnar'),
-               prop.miss = c(0, 0.1, 0.2, 0.3),
+               prop.miss = seq(0.0, 0.3, length.out = number.timepoints),
                stochastic.component = 0.2)
 
-# You already have the PGIS_bl and PGIS_delta in the generated data,
-# you wouldn't have that in a real dataset, so drop that first
-dat <- dat[, !(colnames(dat) %in% c('PGIS_bl', 'PGIS_delta'))]
-
-# Compute PGIS delta
-dat <- COA34::compute_anchor_delta(dat = dat,
-                                   subject.id = 'USUBJID',
-                                   time.var = 'Time',
-                                   anchor = 'PGIS')
 # Compute PRO Score delta
 dat <- COA34::compute_change_score(dat = dat,
                                    subject.id = 'USUBJID',
@@ -99,15 +92,18 @@ dat <- COA34::compute_anchor_group(dat = dat,
 #-------------------------------------------------------------------------------
 
 
+
 #------------------------------------------------------------
 # Descriptive Statistics:
-out <- aggregate(Y_comp_delta ~ anchor.groups, function(x) mean(x, na.rm = T), data = dat[dat$Time == 'Time_4',], na.action = na.pass)
+out <- aggregate(Y_comp_delta ~ anchor.groups, function(x) mean(x, na.rm = T),
+                 data = dat[dat$Time == paste0('Time_', number.timepoints),], na.action = na.pass)
 tmp <- out$Y_comp_delta
 names(tmp) <- paste0(out$anchor.groups)
 comp.mean <- dplyr::bind_rows(comp.mean, tmp )
 
 
-out2 <- aggregate(Y_mar_delta ~  anchor.groups, function(x) mean(x, na.rm = T), data = dat[dat$Time == 'Time_4',], na.action = na.pass)
+out2 <- aggregate(Y_mar_delta ~  anchor.groups, function(x) mean(x, na.rm = T),
+                  data = dat[dat$Time == paste0('Time_', number.timepoints),], na.action = na.pass)
 tmp2 <- out2$Y_mar_delta
 names(tmp2) <- paste0(out2$anchor.groups)
 mar.mean <- dplyr::bind_rows(mar.mean, tmp2 )
@@ -115,14 +111,16 @@ mar.mean <- dplyr::bind_rows(mar.mean, tmp2 )
 
 
 # Complete
-  mod.gls1 <- gls(Y_comp_delta ~  PGIS_bl + anchor.groups*Time,
+  mod.gls1 <- gls(Y_comp_delta ~  anchor.groups*Time,
                   data = dat[dat$Time != 'Time_1',],
                   correlation = corSymm(form = ~ 1 | USUBJID),    #  unstructured correlation
                   weights = varIdent(form = ~ 1 | Time),          #  freely estimate variance at subsequent timepoints
-                  na.action = na.exclude)
-  out <- emmeans(mod.gls1, ~ anchor.groups | Time, mode = 'df.error')
+                  na.action = na.omit)
+  out <- emmeans::emmeans(mod.gls1, ~ anchor.groups | Time,
+                          data = getData(mod.gls1),
+                          mode = 'df.error')
   out <- as.data.frame(out)
-  out <- out[out$Time == 'Time_4', ]
+  out <- out[out$Time == paste0('Time_', number.timepoints), ]
   tmp <- out$emmean
   names(tmp) <- paste0(out$anchor.groups)
   comp.mmrm <- dplyr::bind_rows(comp.mmrm, tmp )
@@ -131,14 +129,16 @@ mar.mean <- dplyr::bind_rows(mar.mean, tmp2 )
 
 #
 # MAR
-  mod.gls2 <- gls(Y_mar_delta ~ PGIS_bl + anchor.groups*Time,
+  mod.gls2 <- gls(Y_mar_delta ~ anchor.groups*Time,
                   data = dat[dat$Time != 'Time_1',],
                   correlation = corSymm(form = ~ 1 | USUBJID),    #  unstructured correlation
                   weights = varIdent(form = ~ 1 | Time),          #  freely estimate variance at subsequent timepoints
-                  na.action = na.exclude)
-  out <- emmeans(mod.gls2, ~ anchor.groups | Time, mode = 'df.error')
+                  na.action = na.omit)
+  out <- emmeans::emmeans(mod.gls2, ~ anchor.groups | Time,
+                          data = getData(mod.gls2),
+                          mode = 'df.error')
   out <- as.data.frame(out)
-  out <- out[out$Time == 'Time_4', ]
+  out <- out[out$Time == paste0('Time_', number.timepoints), ]
   tmp <- out$emmean
   names(tmp) <- paste0(out$anchor.groups)
   mar.mmrm <- dplyr::bind_rows(mar.mmrm, tmp )

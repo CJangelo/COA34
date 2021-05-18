@@ -24,16 +24,16 @@
 rm(list = ls())
 gc()
 
-library(usethis)
-usethis::use_vignette("Vignette_Scatterplots")
+#library(usethis)
+#usethis::use_vignette("Vignette_Scatterplots")
 
-library(devtools)
+#library(devtools)
 # devtools::build()
-devtools::install()
-devtools::document()
-library(pkgdown)
+# devtools::install()
+# devtools::document()
+# library(pkgdown)
 #usethis::use_pkgdown()
-pkgdown::build_site()
+# pkgdown::build_site()
 # Create the RMarkdown README file:
 # usethis::use_readme_rmd()
 # Be sure to knit the file when you edit it!
@@ -56,11 +56,11 @@ set.seed(5032021)
 
 # Generate data
 sim.out <- COA34::sim_pro_dat(N=1e4,
-                        polychor.value = 0.4,
-                        corr = 'ar1',
-                        #Beta.PRO = Beta,
-                        cor.value = 0.8,
-                        var.values = c(5))
+                              number.timepoints = 7,
+                              polychor.value = 0.4,
+                              corr = 'ar1',
+                              cor.value = 0.8,
+                              var.values = c(5))
 
 #sim.out$out.clmm$Beta
 dat <- sim.out$dat
