@@ -150,6 +150,23 @@ out1$label <-
                               ifelse(out1$`Validator Variable` == 'Val_4', 'NSCLC-SAQ',
                                      ifelse(out1$`Validator Variable` == 'Val_5', 'SF-36, Physical Functioning',
                                             NA))))))
+out1$label2 <- 
+  paste(factor(out1$`Validator Variable`, 
+               levels =c('PGIS', 'Val_1','Val_2','Val_3','Val_4','Val_5') ,
+               labels = c('PGIS anchor', 'PGIC', 'SF-36', 'EQ-5D', 'NSCLC-SAQ',
+                          'SF-36, Physical Functioning' )))
+
+out1$label3 <- dplyr::recode(.x=out1$`Validator Variable`,
+                             'PGIS'= 'PGIS anchor',
+                             'Val_1'= 'PGIC',
+                             'Val_2'= 'SF-36',
+                             'Val_3'= 'EQ-5D',
+                             'Val_4'= 'NSCLC-SAQ',
+                             'Val_5'= 'SF-36, Physical Functioning')
+              
+all.equal(out1$label, out1$label2)
+all.equal(out1$label, out1$label3)
+
 
 library(ggrepel)
 p3 <- p1 + ggrepel::geom_text_repel(data = out1, aes(label = `label`),
