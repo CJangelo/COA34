@@ -1,0 +1,180 @@
+---
+  title: "Meaningful Change with Percentile Tables"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette_Meaningful_Change_Percentiles}
+%\VignetteEngine{knitr::rmarkdown}
+%\VignetteEncoding{UTF-8}
+---
+  
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Custom eCDF and ePDF
+
+Output tables of percentiles for change scores in alignment with FDA feedback. 
+
+
+```{r output_dir, echo = F}
+print.dir = "C:/Users/ciaconangelo/OneDrive - OPEN Health/Documents/misc_R_table_output"
+```
+
+
+## Required R packages
+```{r setup}
+
+library(COA34)
+# In addition, you'll need the following
+library(ggplot2)
+library(grid)
+library(gridExtra)
+
+```
+
+## Generate data
+```{r generate}
+
+sim.out <- COA34::sim_pro_dat(N=1e3,
+                              polychor.value = 0.4,
+                              corr = 'ar1',
+                              cor.value = 0.8,
+                              var.values = c(5))
+
+dat <- sim.out$dat
+
+
+# You already have the PGIS_bl and PGIS_delta in the generated data,
+# you wouldn't have that in a real dataset, so drop that first
+dat <- dat[, !(colnames(dat) %in% c('PGIS_bl', 'PGIS_delta'))]
+# This makes the resf of this more realistic
+
+```
+
+
+
+## Implement drop-out
+
+```{r missing}
+
+dat <- COA34::dropout(dat = dat,
+                      type_dropout  = c('mcar', 'mar', 'mnar'),
+                      prop.miss = 0.5,
+                      stochastic.component = 0.2)
+
+
+```
+
+
+## Compute PGIS delta
+
+```{r pgis_delta}
+dat <- COA34::compute_anchor_delta(dat = dat,
+                                   subject.id = 'USUBJID',
+                                   time.var = 'Time',
+                                   anchor = 'PGIS')
+
+```
+
+## Compute PRO Score delta
+
+```{r score_delta}
+dat <- COA34::compute_change_score(dat = dat,
+                                   subject.id = 'USUBJID',
+                                   time.var = 'Time',
+                                   score = c('Y_comp', 'Y_mcar', 'Y_mar', 'Y_mnar'))
+
+
+```
+
+
+## Compute anchor groups
+
+```{r anchor}
+dat <- COA34::compute_anchor_group(dat = dat,
+                                   anchor.variable = 'PGIS_delta',
+                                   number.of.anchor.groups = 5)
+
+
+```
+
+
+
+
+## Generate Percentile Tables
+
+
+### Easy Way - Use the function
+
+TODO: create function to automate table output 
+
+
+```{r perc_tab_funct_1, eval=FALSE}
+
+```
+
+
+
+## Customize the percentile tables
+You may want to create a custom table. In that case, let's give you a template to use.
+
+
+
+### Create the percentile tables 
+
+First, select an anchor group and timepoint.
+```{r perc_tab_custom_1}
+
+ag <- "Improved_2+"
+timepoint <- "Time_4"
+
+```
+
+Then, create the table:
+```{r perc_tab_custom_2}
+
+library(dplyr)
+
+tab <- dat %>%
+  mutate(PGIS_bl = factor(PGIS_bl))%>%
+  filter(anchor.groups=={{ag}}&Time=={{timepoint}})%>%
+  select( Y_comp_delta, PGIS_bl) %>%
+  tbl_summary(
+    by = PGIS_bl,
+    type =  Y_comp_delta ~ 'continuous2',
+    statistic = Y_comp_delta ~ c("{N_nonmiss}","{p10}","{p25}","{p50}","{p75}","{p90}"))%>%
+  modify_header(c(all_stat_cols() ~ "**{level}**"))%>%#remove Ns from header
+  modify_spanning_header(all_stat_cols() ~ "**Baseline PGIS**")%>%
+  add_overall(last=T, col_label = "Total")%>%
+  modify_footnote(update = everything() ~ NA)%>%#remove default footer
+  modify_table_body(~.x %>% 
+                      mutate(across(.fns = function(x) sub(x,pattern = "NA", replacement = "-"))))#replace "NA" in table with custom chr
+
+tab
+
+```
+
+You can customize this code to yield what you want. Google is your friend here. 
+
+### Output
+
+After you're done, it's easy to push these gtsummary objects to a file. First, convert to a flextable object, then output to word.
+
+TODO: upload my dump_flextable_to_file function to R2Word, if Charlie thinks that makes sense. alternative would be to modify dump_df_mat_to_file to accept flextables
+
+
+  
+```{r perc_tab_custom_3, eval = F}
+
+file.name <- 'Customized_percentile_table'
+
+dump_flextable_to_file(as_flextable(tab),
+                       table.title = "Distribution of Change Scores for Each Anchor Group, Stratified on Baseline PGIS",
+                       print.dir =print.dir, 
+                       file.name = file.name)
+
+
+```
