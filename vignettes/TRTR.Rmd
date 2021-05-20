@@ -151,6 +151,50 @@ R2Word::dump_df_mat_to_file(out = st,
 
 ```
 
+### Line Plots to visualize TRTR
+
+Two possible ways to visualize the data. The first is follow up plotted against baseline:
+
+```{r trtr_plot1}
+library(ggplot2)
+
+range <- range(dat$Y_comp[dat$Time%in%c("Time_1", "Time_2")])
+range <- c(floor(range[1]), ceiling(range[2]))
+
+ggplot(dat[dat$Time=="Time_2",], 
+       aes(x = Y_comp_bl, y = Y_comp)) +
+  geom_point(alpha = .5) +
+  theme_minimal() +
+  geom_abline()+
+  labs(title = "Time 2 vs Time 1 PRO Scores",
+       x = "Time 1", y = "Time 2")+
+  xlim(range)+ylim(range)
+
+
+```
+
+
+The second way to visualize is difference in score plotted against average score:
+
+```{r trtr_plot1}
+
+dels <- dat$Y_comp_delta[dat$Time=="Time_2"]
+
+ggplot(dat[dat$Time=="Time_2",], 
+       aes(x =(Y_comp_bl+ Y_comp)/2, y = Y_comp_delta)) +
+  geom_point(alpha = .5) +
+  theme_minimal() +
+  geom_abline(slope = 0)+
+  labs(title = "Change in Score vs Average Score \nfor PRO measure at Time 1 and Time 2",
+       x = "Average PRO Score", y = "Change in PRO Score")+
+  geom_hline(yintercept = qnorm(c(.025, .975), sd = sd(dels), mean = mean(dels)),
+              linetype = "dashed")#add 95% "limits of agreement"
+
+
+
+```
+
+
 ## MAR Drop-out
 
 The more interesting component of this is observing how non-random missingness impacts the ICC(2,1) values. Let's look at TRTR at timepoint 4, where there is 50% drop out. 
