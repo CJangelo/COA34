@@ -14,7 +14,7 @@ sim_pro_dat(
   polychor.struc = "ar1",
   polychor.value = 0.4,
   number.of.anchor.groups = 5,
-  Beta.PRO = NULL,
+  Beta.PRO = 0,
   corr = "ar1",
   cor.value = 0.8,
   var.values = 2,
