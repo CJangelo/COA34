@@ -88,7 +88,8 @@ for(gg in groups){
                    bw = 'SJ',
                    n = length(dat[, change.score, drop = T]),
                    from=min(dat[, change.score, drop = T], na.rm = T) - 1,
-                   to=max(dat[, change.score, drop = T], na.rm = T) + 1
+                   to=max(dat[, change.score, drop = T], na.rm = T) + 1,
+                   na.rm = T
                    )
 
       df.full[which(df.full$anchor.group == gg), 'density_x'] <- P$x

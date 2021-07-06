@@ -35,7 +35,7 @@ sim_pro_dat <- function(N = 1000,
                         polychor.value = 0.4,
                         number.of.anchor.groups = 5,
                         #------- Generate PRO Score (Y_comp)
-                        Beta.PRO = NULL,
+                        Beta.PRO = 0,
                         corr = 'ar1',
                         cor.value = 0.8,
                         var.values = 2,
@@ -100,22 +100,22 @@ ag <- ifelse(av >= 2, 2,
 
 
 # ----
-X <- model.matrix( ~ ag*Time, data = dat)
+X <- model.matrix( ~ PGIS, data = dat)
  Beta <- matrix(0, nrow = ncol(X), dimnames=list(colnames(X), 'param'))
 
-if (!is.null(Beta.PRO)) {
-  if (any(Beta.PRO != 0)) {
+ # if you pass a matrix, just use that:
+ if (length(Beta.PRO) > 1) {
+   Beta <- Beta.PRO
+ }
 
-      Beta <- Beta.PRO
-  }
-} else {
+ # if you pass a scalar, that's the coef of PGIS
+ if (length(Beta.PRO) ==  1) {
+   Beta['(Intercept)',] <- 2  # why 2? why not?
+   Beta['PGIS',] <- Beta.PRO
 
-  # if Beta.PRO is null, it should be = 1
-  lo <- length(which(grepl('Time', rownames(Beta)) & grepl('ag', rownames(Beta))))
-  Beta[grepl('Time', rownames(Beta)) & grepl('ag', rownames(Beta)), ] <-
-    seq(0.25, 1, length.out = lo)
+ }
 
-}
+
 
 # -------
 

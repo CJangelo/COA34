@@ -63,6 +63,7 @@ p1 <- ggplot2::ggplot(dat.den, aes(x=density_x, y=CDF, group=anchor.groups, colo
     geom_line() +
     theme_minimal() +
     theme(plot.title = element_text(hjust = 0.5)) +
+    scale_y_continuous(breaks = seq(0, 1, by = .1), limits = c(0, 1)) +
     labs( title = 'eCDF of Change in Score from Baseline',
           legend.title = 'Anchor Groups',
           #caption = cap$ecdf.caption,
@@ -70,7 +71,9 @@ p1 <- ggplot2::ggplot(dat.den, aes(x=density_x, y=CDF, group=anchor.groups, colo
           y = 'Cumulative proportion of patients',
           color = 'Anchor Groups') +
     scale_color_manual(labels = plot.legend,
-                     values = unique(dat.den$anchor.groups))
+                     values = unique(dat.den$anchor.groups)) +
+    geom_hline(yintercept = 0.50, linetype = 'dotted')
+
 
 
 p2 <- ggplot2::ggplot(dat.den, aes(x=density_x, y=density_y, group=anchor.groups, color=anchor.groups)) +

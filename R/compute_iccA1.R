@@ -91,7 +91,7 @@ for (score in PRO.score) {
 
 
 
-return(list('icc.21' = out,
+return(list('icc.A1' = out,
             'dat.icc' = dat.icc,
             'score' = score,
             'anchor' = anchor,
