@@ -1,6 +1,15 @@
 #-------------------------------------------
 CHANGE LOG (BUGS AND OTHER ALTERATIONS)
 
+
+date: 7.6.21
+function: compute_iccA1
+change: added this function due to FDA feedback 
+
+function: compute_ecdf
+change: updated it to handle missing data
+
+
 date: 4.30
 function: "compute_anchor_delta"
 function: "compute_change_score"
