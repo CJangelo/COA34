@@ -87,7 +87,7 @@
 
       
 
-      </header><script src="Vignette_Validity_files/header-attrs-2.8/header-attrs.js"></script><link href="Vignette_Validity_files/tabwid-1.0.0/tabwid.css" rel="stylesheet">
+      </header><script src="Vignette_Validity_files/header-attrs-2.9/header-attrs.js"></script><link href="Vignette_Validity_files/tabwid-1.0.0/tabwid.css" rel="stylesheet">
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
@@ -146,17 +146,17 @@
 <span class="co">#&gt;  $ Time   : Factor w/ 4 levels "Time_1","Time_2",..: 1 2 3 4 1 2 3 4 1 2 ...</span>
 <span class="co">#&gt;  $ PGIS   : num  3 0 2 4 2 3 4 3 2 0 ...</span>
 <span class="co">#&gt;  $ ag     : num  0 -2 -1 1 0 1 2 1 0 -2 ...</span>
-<span class="co">#&gt;  $ XB     : num  0 -0.5 -0.625 1 0 0.25 1.25 1 0 -0.5 ...</span>
+<span class="co">#&gt;  $ XB     : num  2 2 2 2 2 2 2 2 2 2 ...</span>
 <span class="co">#&gt;  $ error  : num  0.19438 -2.21402 0.00733 0.15674 -0.63976 ...</span>
-<span class="co">#&gt;  $ Y_comp : num  0.194 -2.714 -0.618 1.157 -0.64 ...</span>
+<span class="co">#&gt;  $ Y_comp : num  2.194 -0.214 2.007 2.157 1.36 ...</span>
 <span class="co">#&gt;  $ Val_1  : int  0 NA NA NA 1 NA NA NA 0 NA ...</span>
-<span class="co">#&gt;  $ Val_2  : num  0.21 NA NA NA -1.4 ...</span>
-<span class="co">#&gt;  $ Val_3  : num  0.448 NA NA NA 0.106 ...</span>
-<span class="co">#&gt;  $ Val_4  : num  -1.3166 NA NA NA 0.0947 ...</span>
+<span class="co">#&gt;  $ Val_2  : num  3.01 NA NA NA 1.4 ...</span>
+<span class="co">#&gt;  $ Val_3  : num  3.25 NA NA NA 2.91 ...</span>
+<span class="co">#&gt;  $ Val_4  : num  1.04 NA NA NA 2.45 ...</span>
 <span class="co">#&gt;  $ Val_5  : int  3 NA NA NA 0 NA NA NA 0 NA ...</span>
-<span class="co">#&gt;  $ Y_mcar : num  0.194 -2.714 -0.618 1.157 -0.64 ...</span>
-<span class="co">#&gt;  $ Y_mar  : num  0.194 -2.714 -0.618 1.157 -0.64 ...</span>
-<span class="co">#&gt;  $ Y_mnar : num  0.194 -2.714 -0.618 NA -0.64 ...</span>
+<span class="co">#&gt;  $ Y_mcar : num  2.194 -0.214 2.007 2.157 1.36 ...</span>
+<span class="co">#&gt;  $ Y_mar  : num  2.194 -0.214 2.007 2.157 1.36 ...</span>
+<span class="co">#&gt;  $ Y_mnar : num  2.194 -0.214 2.007 2.157 1.36 ...</span>
 <span class="co"># PGIS is ordinal; transform it for the purposes of correct correlation</span>
 <span class="co"># Leave it numeric to compute the PGIS_delta for the change scores later</span>
 <span class="va">dat.cor</span> <span class="op">&lt;-</span> <span class="va">dat</span>
@@ -200,17 +200,17 @@
 <span class="co">#&gt;  $ Time   : Factor w/ 4 levels "Time_1","Time_2",..: 1 2 3 4 1 2 3 4 1 2 ...</span>
 <span class="co">#&gt;  $ PGIS   : Factor w/ 5 levels "None","Mild",..: 4 1 3 5 3 4 5 4 3 1 ...</span>
 <span class="co">#&gt;  $ ag     : num  0 -2 -1 1 0 1 2 1 0 -2 ...</span>
-<span class="co">#&gt;  $ XB     : num  0 -0.5 -0.625 1 0 0.25 1.25 1 0 -0.5 ...</span>
+<span class="co">#&gt;  $ XB     : num  2 2 2 2 2 2 2 2 2 2 ...</span>
 <span class="co">#&gt;  $ error  : num  0.19438 -2.21402 0.00733 0.15674 -0.63976 ...</span>
-<span class="co">#&gt;  $ Y_comp : num  0.194 -2.714 -0.618 1.157 -0.64 ...</span>
+<span class="co">#&gt;  $ Y_comp : num  2.194 -0.214 2.007 2.157 1.36 ...</span>
 <span class="co">#&gt;  $ Val_1  : Factor w/ 3 levels "0","1","2": 1 NA NA NA 2 NA NA NA 1 NA ...</span>
-<span class="co">#&gt;  $ Val_2  : num  0.21 NA NA NA -1.4 ...</span>
-<span class="co">#&gt;  $ Val_3  : num  0.448 NA NA NA 0.106 ...</span>
-<span class="co">#&gt;  $ Val_4  : num  -1.3166 NA NA NA 0.0947 ...</span>
+<span class="co">#&gt;  $ Val_2  : num  3.01 NA NA NA 1.4 ...</span>
+<span class="co">#&gt;  $ Val_3  : num  3.25 NA NA NA 2.91 ...</span>
+<span class="co">#&gt;  $ Val_4  : num  1.04 NA NA NA 2.45 ...</span>
 <span class="co">#&gt;  $ Val_5  : Factor w/ 5 levels "0","1","2","3",..: 4 NA NA NA 1 NA NA NA 1 NA ...</span>
-<span class="co">#&gt;  $ Y_mcar : num  0.194 -2.714 -0.618 1.157 -0.64 ...</span>
-<span class="co">#&gt;  $ Y_mar  : num  0.194 -2.714 -0.618 1.157 -0.64 ...</span>
-<span class="co">#&gt;  $ Y_mnar : num  0.194 -2.714 -0.618 NA -0.64 ...</span>
+<span class="co">#&gt;  $ Y_mcar : num  2.194 -0.214 2.007 2.157 1.36 ...</span>
+<span class="co">#&gt;  $ Y_mar  : num  2.194 -0.214 2.007 2.157 1.36 ...</span>
+<span class="co">#&gt;  $ Y_mnar : num  2.194 -0.214 2.007 2.157 1.36 ...</span>
 <span class="co"># 5 validator variables (Val_1, Val_2...Val_5)</span>
 <span class="co"># 4 PRO scores</span></code></pre></div>
 </div>
@@ -218,6 +218,8 @@
 <h2 class="hasAnchor">
 <a href="#compute-correlations-of-multiple-scores" class="anchor"></a>Compute Correlations of Multiple Scores</h2>
 <p>Use the function to create a large table of the correlations you need.</p>
+<p>Note that the correlations are computed using baseline data, with no missingness. Thus, all of the different types of drop-out will have the exact same values. This table is, of course, just to illustrate the functionality.</p>
+<p>If this isn’t exactly what you’re looking for, try the <code>hetcor()</code> function in the <code>polycor</code> R package.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">out</span> <span class="op">&lt;-</span> <span class="fu">COA34</span><span class="fu">::</span><span class="fu"><a href="../reference/compute_validity.html">compute_validity</a></span><span class="op">(</span>dat <span class="op">=</span> <span class="va">dat.cor</span>,
                                time.var <span class="op">=</span> <span class="st">'Time'</span>,
@@ -236,7 +238,6 @@
 <span class="co">#&gt; Val_5   0.3  0.15  0.18  0.24  0.06  1.00</span>
 
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">R2Word</span><span class="op">)</span>
-<span class="co">#&gt; Warning: package 'R2Word' was built under R version 4.0.5</span>
 
 <span class="fu">R2Word</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/R2Word/man/dump_df_mat_to_file.html">dump_df_mat_to_file</a></span><span class="op">(</span>out <span class="op">=</span> <span class="va">out</span>,
                             decimals <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2</span><span class="op">)</span>, 
@@ -244,7 +245,7 @@
                             table.footnote <span class="op">=</span> <span class="st">'**All data simulated'</span>,
                             file.name <span class="op">=</span> <span class="st">'val_vig_t1'</span>, 
                             print.dir <span class="op">=</span> <span class="va">print.dir</span><span class="op">)</span></code></pre></div>
-<template id="ff9395c5-8f6f-4e0c-b498-8abfa8c18da0"><style>
+<template id="f1019b1c-e3ae-47f8-ae4c-851a9c131758"><style>
 .tabwid table{
   border-collapse:collapse;
   line-height:1;
@@ -280,194 +281,194 @@ background-color: transparent;
 }
 </style>
 <div class="tabwid">
-<style>.cl-2042fe56{table-layout:auto;border-collapse:collapse;width:100%;}.cl-2038a528{font-family:'Arial';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-2038a529{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-2038a52a{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2038a52b{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-20391a12{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20391a13{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20391a14{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20391a15{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20391a16{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20391a17{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20391a18{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20391a19{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20391a1a{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20391a1b{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20391a1c{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20394104{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20394105{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20394106{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20394107{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20394108{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20394109{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2039410a{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2039410b{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2039410c{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2039410d{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2039410e{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-203967f6{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-203967f7{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-203967f8{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-203967f9{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-203967fa{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-203967fb{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-203967fc{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-203967fd{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-203967fe{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-203967ff{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20396800{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20398efc{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20398efd{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
-<table class="table cl-2042fe56">
+<style>.cl-db0a3c6a{table-layout:auto;border-collapse:collapse;width:100%;}.cl-dafef828{font-family:'Arial';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-dafef829{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-daff1f24{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-daff1f25{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-daff93fa{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-daff93fb{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-daff93fc{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-daff93fd{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-daff93fe{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-daff93ff{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-daff9400{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-daff9401{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-daff9402{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-daff9403{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-daff9404{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-daffbaec{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-daffbaed{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-daffbaee{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-daffbaef{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-daffbaf0{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-daffbaf1{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-daffbaf2{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-daffbaf3{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-daffbaf4{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-daffbaf5{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-daffbaf6{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-daffe1de{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-daffe1df{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-daffe1e0{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-daffe1e1{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-daffe1e2{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-daffe1e3{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-daffe1e4{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-daffe1e5{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-daffe1e6{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-daffe1e7{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-daffe1e8{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-db0008d0{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-db0008d1{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
+<table class="table cl-db0a3c6a">
 <thead>
-<tr style="overflow-wrap:break-word;"><td colspan="5" class="cl-203967fd"><p class="cl-2038a52a"><span class="cl-2038a528">Correlations - Vignette Illustration</span></p></td></tr>
+<tr style="overflow-wrap:break-word;"><td colspan="5" class="cl-daffe1e5"><p class="cl-daff1f24"><span class="cl-dafef828">Correlations - Vignette Illustration</span></p></td></tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-203967ff"><p class="cl-2038a52b"><span class="cl-2038a528">PRO Score</span></p></td>
-<td class="cl-20398efd"><p class="cl-2038a52b"><span class="cl-2038a528">Validator Variable</span></p></td>
-<td class="cl-203967fe"><p class="cl-2038a52b"><span class="cl-2038a528">Correlation Type</span></p></td>
-<td class="cl-20398efc"><p class="cl-2038a52b"><span class="cl-2038a528">Sample Size</span></p></td>
-<td class="cl-20396800"><p class="cl-2038a52b"><span class="cl-2038a528">Correlation</span></p></td>
+<td class="cl-daffe1e7"><p class="cl-daff1f25"><span class="cl-dafef828">PRO Score</span></p></td>
+<td class="cl-db0008d1"><p class="cl-daff1f25"><span class="cl-dafef828">Validator Variable</span></p></td>
+<td class="cl-daffe1e6"><p class="cl-daff1f25"><span class="cl-dafef828">Correlation Type</span></p></td>
+<td class="cl-db0008d0"><p class="cl-daff1f25"><span class="cl-dafef828">Sample Size</span></p></td>
+<td class="cl-daffe1e8"><p class="cl-daff1f25"><span class="cl-dafef828">Correlation</span></p></td>
 </tr>
 </thead>
 <tbody>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-20391a13"><p class="cl-2038a52b"><span class="cl-2038a529">Y_comp</span></p></td>
-<td class="cl-20391a14"><p class="cl-2038a52b"><span class="cl-2038a529">PGIS</span></p></td>
-<td class="cl-20391a12"><p class="cl-2038a52b"><span class="cl-2038a529">polyserial</span></p></td>
-<td class="cl-20391a15"><p class="cl-2038a52b"><span class="cl-2038a529">1000</span></p></td>
-<td class="cl-20391a16"><p class="cl-2038a52b"><span class="cl-2038a529">0.08</span></p></td>
+<td class="cl-daff93fb"><p class="cl-daff1f25"><span class="cl-dafef829">Y_comp</span></p></td>
+<td class="cl-daff93fc"><p class="cl-daff1f25"><span class="cl-dafef829">PGIS</span></p></td>
+<td class="cl-daff93fa"><p class="cl-daff1f25"><span class="cl-dafef829">polyserial</span></p></td>
+<td class="cl-daff93fd"><p class="cl-daff1f25"><span class="cl-dafef829">1000</span></p></td>
+<td class="cl-daff93fe"><p class="cl-daff1f25"><span class="cl-dafef829">0.08</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-20391a13"><p class="cl-2038a52b"><span class="cl-2038a529">Y_comp</span></p></td>
-<td class="cl-20391a14"><p class="cl-2038a52b"><span class="cl-2038a529">Val_1</span></p></td>
-<td class="cl-20391a12"><p class="cl-2038a52b"><span class="cl-2038a529">polyserial</span></p></td>
-<td class="cl-20391a15"><p class="cl-2038a52b"><span class="cl-2038a529">1000</span></p></td>
-<td class="cl-20391a16"><p class="cl-2038a52b"><span class="cl-2038a529">0.51</span></p></td>
+<td class="cl-daff93fb"><p class="cl-daff1f25"><span class="cl-dafef829">Y_comp</span></p></td>
+<td class="cl-daff93fc"><p class="cl-daff1f25"><span class="cl-dafef829">Val_1</span></p></td>
+<td class="cl-daff93fa"><p class="cl-daff1f25"><span class="cl-dafef829">polyserial</span></p></td>
+<td class="cl-daff93fd"><p class="cl-daff1f25"><span class="cl-dafef829">1000</span></p></td>
+<td class="cl-daff93fe"><p class="cl-daff1f25"><span class="cl-dafef829">0.51</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-20391a1b"><p class="cl-2038a52b"><span class="cl-2038a529">Y_comp</span></p></td>
-<td class="cl-20391a19"><p class="cl-2038a52b"><span class="cl-2038a529">Val_2</span></p></td>
-<td class="cl-20391a17"><p class="cl-2038a52b"><span class="cl-2038a529">Pearson</span></p></td>
-<td class="cl-20391a1a"><p class="cl-2038a52b"><span class="cl-2038a529">1000</span></p></td>
-<td class="cl-20391a18"><p class="cl-2038a52b"><span class="cl-2038a529">0.55</span></p></td>
+<td class="cl-daff9403"><p class="cl-daff1f25"><span class="cl-dafef829">Y_comp</span></p></td>
+<td class="cl-daff9401"><p class="cl-daff1f25"><span class="cl-dafef829">Val_2</span></p></td>
+<td class="cl-daff93ff"><p class="cl-daff1f25"><span class="cl-dafef829">Pearson</span></p></td>
+<td class="cl-daff9402"><p class="cl-daff1f25"><span class="cl-dafef829">1000</span></p></td>
+<td class="cl-daff9400"><p class="cl-daff1f25"><span class="cl-dafef829">0.55</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-20391a1b"><p class="cl-2038a52b"><span class="cl-2038a529">Y_comp</span></p></td>
-<td class="cl-20391a19"><p class="cl-2038a52b"><span class="cl-2038a529">Val_3</span></p></td>
-<td class="cl-20391a17"><p class="cl-2038a52b"><span class="cl-2038a529">Pearson</span></p></td>
-<td class="cl-20391a1a"><p class="cl-2038a52b"><span class="cl-2038a529">1000</span></p></td>
-<td class="cl-20391a18"><p class="cl-2038a52b"><span class="cl-2038a529">0.81</span></p></td>
+<td class="cl-daff9403"><p class="cl-daff1f25"><span class="cl-dafef829">Y_comp</span></p></td>
+<td class="cl-daff9401"><p class="cl-daff1f25"><span class="cl-dafef829">Val_3</span></p></td>
+<td class="cl-daff93ff"><p class="cl-daff1f25"><span class="cl-dafef829">Pearson</span></p></td>
+<td class="cl-daff9402"><p class="cl-daff1f25"><span class="cl-dafef829">1000</span></p></td>
+<td class="cl-daff9400"><p class="cl-daff1f25"><span class="cl-dafef829">0.81</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-20391a1c"><p class="cl-2038a52b"><span class="cl-2038a529">Y_comp</span></p></td>
-<td class="cl-20394105"><p class="cl-2038a52b"><span class="cl-2038a529">Val_4</span></p></td>
-<td class="cl-20394106"><p class="cl-2038a52b"><span class="cl-2038a529">Pearson</span></p></td>
-<td class="cl-20394107"><p class="cl-2038a52b"><span class="cl-2038a529">1000</span></p></td>
-<td class="cl-20394104"><p class="cl-2038a52b"><span class="cl-2038a529">0.22</span></p></td>
+<td class="cl-daff9404"><p class="cl-daff1f25"><span class="cl-dafef829">Y_comp</span></p></td>
+<td class="cl-daffbaed"><p class="cl-daff1f25"><span class="cl-dafef829">Val_4</span></p></td>
+<td class="cl-daffbaee"><p class="cl-daff1f25"><span class="cl-dafef829">Pearson</span></p></td>
+<td class="cl-daffbaef"><p class="cl-daff1f25"><span class="cl-dafef829">1000</span></p></td>
+<td class="cl-daffbaec"><p class="cl-daff1f25"><span class="cl-dafef829">0.22</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-20391a13"><p class="cl-2038a52b"><span class="cl-2038a529">Y_comp</span></p></td>
-<td class="cl-20391a14"><p class="cl-2038a52b"><span class="cl-2038a529">Val_5</span></p></td>
-<td class="cl-20391a12"><p class="cl-2038a52b"><span class="cl-2038a529">polyserial</span></p></td>
-<td class="cl-20391a15"><p class="cl-2038a52b"><span class="cl-2038a529">1000</span></p></td>
-<td class="cl-20391a16"><p class="cl-2038a52b"><span class="cl-2038a529">0.29</span></p></td>
+<td class="cl-daff93fb"><p class="cl-daff1f25"><span class="cl-dafef829">Y_comp</span></p></td>
+<td class="cl-daff93fc"><p class="cl-daff1f25"><span class="cl-dafef829">Val_5</span></p></td>
+<td class="cl-daff93fa"><p class="cl-daff1f25"><span class="cl-dafef829">polyserial</span></p></td>
+<td class="cl-daff93fd"><p class="cl-daff1f25"><span class="cl-dafef829">1000</span></p></td>
+<td class="cl-daff93fe"><p class="cl-daff1f25"><span class="cl-dafef829">0.29</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-20391a13"><p class="cl-2038a52b"><span class="cl-2038a529">Y_mcar</span></p></td>
-<td class="cl-20391a14"><p class="cl-2038a52b"><span class="cl-2038a529">PGIS</span></p></td>
-<td class="cl-20391a12"><p class="cl-2038a52b"><span class="cl-2038a529">polyserial</span></p></td>
-<td class="cl-20391a15"><p class="cl-2038a52b"><span class="cl-2038a529">1000</span></p></td>
-<td class="cl-20391a16"><p class="cl-2038a52b"><span class="cl-2038a529">0.08</span></p></td>
+<td class="cl-daff93fb"><p class="cl-daff1f25"><span class="cl-dafef829">Y_mcar</span></p></td>
+<td class="cl-daff93fc"><p class="cl-daff1f25"><span class="cl-dafef829">PGIS</span></p></td>
+<td class="cl-daff93fa"><p class="cl-daff1f25"><span class="cl-dafef829">polyserial</span></p></td>
+<td class="cl-daff93fd"><p class="cl-daff1f25"><span class="cl-dafef829">1000</span></p></td>
+<td class="cl-daff93fe"><p class="cl-daff1f25"><span class="cl-dafef829">0.08</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-20391a13"><p class="cl-2038a52b"><span class="cl-2038a529">Y_mcar</span></p></td>
-<td class="cl-20391a14"><p class="cl-2038a52b"><span class="cl-2038a529">Val_1</span></p></td>
-<td class="cl-20391a12"><p class="cl-2038a52b"><span class="cl-2038a529">polyserial</span></p></td>
-<td class="cl-20391a15"><p class="cl-2038a52b"><span class="cl-2038a529">1000</span></p></td>
-<td class="cl-20391a16"><p class="cl-2038a52b"><span class="cl-2038a529">0.51</span></p></td>
+<td class="cl-daff93fb"><p class="cl-daff1f25"><span class="cl-dafef829">Y_mcar</span></p></td>
+<td class="cl-daff93fc"><p class="cl-daff1f25"><span class="cl-dafef829">Val_1</span></p></td>
+<td class="cl-daff93fa"><p class="cl-daff1f25"><span class="cl-dafef829">polyserial</span></p></td>
+<td class="cl-daff93fd"><p class="cl-daff1f25"><span class="cl-dafef829">1000</span></p></td>
+<td class="cl-daff93fe"><p class="cl-daff1f25"><span class="cl-dafef829">0.51</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-20391a1b"><p class="cl-2038a52b"><span class="cl-2038a529">Y_mcar</span></p></td>
-<td class="cl-20391a19"><p class="cl-2038a52b"><span class="cl-2038a529">Val_2</span></p></td>
-<td class="cl-20391a17"><p class="cl-2038a52b"><span class="cl-2038a529">Pearson</span></p></td>
-<td class="cl-20391a1a"><p class="cl-2038a52b"><span class="cl-2038a529">1000</span></p></td>
-<td class="cl-20391a18"><p class="cl-2038a52b"><span class="cl-2038a529">0.55</span></p></td>
+<td class="cl-daff9403"><p class="cl-daff1f25"><span class="cl-dafef829">Y_mcar</span></p></td>
+<td class="cl-daff9401"><p class="cl-daff1f25"><span class="cl-dafef829">Val_2</span></p></td>
+<td class="cl-daff93ff"><p class="cl-daff1f25"><span class="cl-dafef829">Pearson</span></p></td>
+<td class="cl-daff9402"><p class="cl-daff1f25"><span class="cl-dafef829">1000</span></p></td>
+<td class="cl-daff9400"><p class="cl-daff1f25"><span class="cl-dafef829">0.55</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-20391a1b"><p class="cl-2038a52b"><span class="cl-2038a529">Y_mcar</span></p></td>
-<td class="cl-20391a19"><p class="cl-2038a52b"><span class="cl-2038a529">Val_3</span></p></td>
-<td class="cl-20391a17"><p class="cl-2038a52b"><span class="cl-2038a529">Pearson</span></p></td>
-<td class="cl-20391a1a"><p class="cl-2038a52b"><span class="cl-2038a529">1000</span></p></td>
-<td class="cl-20391a18"><p class="cl-2038a52b"><span class="cl-2038a529">0.81</span></p></td>
+<td class="cl-daff9403"><p class="cl-daff1f25"><span class="cl-dafef829">Y_mcar</span></p></td>
+<td class="cl-daff9401"><p class="cl-daff1f25"><span class="cl-dafef829">Val_3</span></p></td>
+<td class="cl-daff93ff"><p class="cl-daff1f25"><span class="cl-dafef829">Pearson</span></p></td>
+<td class="cl-daff9402"><p class="cl-daff1f25"><span class="cl-dafef829">1000</span></p></td>
+<td class="cl-daff9400"><p class="cl-daff1f25"><span class="cl-dafef829">0.81</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-20391a1c"><p class="cl-2038a52b"><span class="cl-2038a529">Y_mcar</span></p></td>
-<td class="cl-20394105"><p class="cl-2038a52b"><span class="cl-2038a529">Val_4</span></p></td>
-<td class="cl-20394106"><p class="cl-2038a52b"><span class="cl-2038a529">Pearson</span></p></td>
-<td class="cl-20394107"><p class="cl-2038a52b"><span class="cl-2038a529">1000</span></p></td>
-<td class="cl-20394104"><p class="cl-2038a52b"><span class="cl-2038a529">0.22</span></p></td>
+<td class="cl-daff9404"><p class="cl-daff1f25"><span class="cl-dafef829">Y_mcar</span></p></td>
+<td class="cl-daffbaed"><p class="cl-daff1f25"><span class="cl-dafef829">Val_4</span></p></td>
+<td class="cl-daffbaee"><p class="cl-daff1f25"><span class="cl-dafef829">Pearson</span></p></td>
+<td class="cl-daffbaef"><p class="cl-daff1f25"><span class="cl-dafef829">1000</span></p></td>
+<td class="cl-daffbaec"><p class="cl-daff1f25"><span class="cl-dafef829">0.22</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-20391a13"><p class="cl-2038a52b"><span class="cl-2038a529">Y_mcar</span></p></td>
-<td class="cl-20391a14"><p class="cl-2038a52b"><span class="cl-2038a529">Val_5</span></p></td>
-<td class="cl-20391a12"><p class="cl-2038a52b"><span class="cl-2038a529">polyserial</span></p></td>
-<td class="cl-20391a15"><p class="cl-2038a52b"><span class="cl-2038a529">1000</span></p></td>
-<td class="cl-20391a16"><p class="cl-2038a52b"><span class="cl-2038a529">0.29</span></p></td>
+<td class="cl-daff93fb"><p class="cl-daff1f25"><span class="cl-dafef829">Y_mcar</span></p></td>
+<td class="cl-daff93fc"><p class="cl-daff1f25"><span class="cl-dafef829">Val_5</span></p></td>
+<td class="cl-daff93fa"><p class="cl-daff1f25"><span class="cl-dafef829">polyserial</span></p></td>
+<td class="cl-daff93fd"><p class="cl-daff1f25"><span class="cl-dafef829">1000</span></p></td>
+<td class="cl-daff93fe"><p class="cl-daff1f25"><span class="cl-dafef829">0.29</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-20391a13"><p class="cl-2038a52b"><span class="cl-2038a529">Y_mar</span></p></td>
-<td class="cl-20391a14"><p class="cl-2038a52b"><span class="cl-2038a529">PGIS</span></p></td>
-<td class="cl-20391a12"><p class="cl-2038a52b"><span class="cl-2038a529">polyserial</span></p></td>
-<td class="cl-20391a15"><p class="cl-2038a52b"><span class="cl-2038a529">1000</span></p></td>
-<td class="cl-20391a16"><p class="cl-2038a52b"><span class="cl-2038a529">0.08</span></p></td>
+<td class="cl-daff93fb"><p class="cl-daff1f25"><span class="cl-dafef829">Y_mar</span></p></td>
+<td class="cl-daff93fc"><p class="cl-daff1f25"><span class="cl-dafef829">PGIS</span></p></td>
+<td class="cl-daff93fa"><p class="cl-daff1f25"><span class="cl-dafef829">polyserial</span></p></td>
+<td class="cl-daff93fd"><p class="cl-daff1f25"><span class="cl-dafef829">1000</span></p></td>
+<td class="cl-daff93fe"><p class="cl-daff1f25"><span class="cl-dafef829">0.08</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-20391a13"><p class="cl-2038a52b"><span class="cl-2038a529">Y_mar</span></p></td>
-<td class="cl-20391a14"><p class="cl-2038a52b"><span class="cl-2038a529">Val_1</span></p></td>
-<td class="cl-20391a12"><p class="cl-2038a52b"><span class="cl-2038a529">polyserial</span></p></td>
-<td class="cl-20391a15"><p class="cl-2038a52b"><span class="cl-2038a529">1000</span></p></td>
-<td class="cl-20391a16"><p class="cl-2038a52b"><span class="cl-2038a529">0.51</span></p></td>
+<td class="cl-daff93fb"><p class="cl-daff1f25"><span class="cl-dafef829">Y_mar</span></p></td>
+<td class="cl-daff93fc"><p class="cl-daff1f25"><span class="cl-dafef829">Val_1</span></p></td>
+<td class="cl-daff93fa"><p class="cl-daff1f25"><span class="cl-dafef829">polyserial</span></p></td>
+<td class="cl-daff93fd"><p class="cl-daff1f25"><span class="cl-dafef829">1000</span></p></td>
+<td class="cl-daff93fe"><p class="cl-daff1f25"><span class="cl-dafef829">0.51</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-20391a1b"><p class="cl-2038a52b"><span class="cl-2038a529">Y_mar</span></p></td>
-<td class="cl-20391a19"><p class="cl-2038a52b"><span class="cl-2038a529">Val_2</span></p></td>
-<td class="cl-20391a17"><p class="cl-2038a52b"><span class="cl-2038a529">Pearson</span></p></td>
-<td class="cl-20391a1a"><p class="cl-2038a52b"><span class="cl-2038a529">1000</span></p></td>
-<td class="cl-20391a18"><p class="cl-2038a52b"><span class="cl-2038a529">0.55</span></p></td>
+<td class="cl-daff9403"><p class="cl-daff1f25"><span class="cl-dafef829">Y_mar</span></p></td>
+<td class="cl-daff9401"><p class="cl-daff1f25"><span class="cl-dafef829">Val_2</span></p></td>
+<td class="cl-daff93ff"><p class="cl-daff1f25"><span class="cl-dafef829">Pearson</span></p></td>
+<td class="cl-daff9402"><p class="cl-daff1f25"><span class="cl-dafef829">1000</span></p></td>
+<td class="cl-daff9400"><p class="cl-daff1f25"><span class="cl-dafef829">0.55</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-20391a1b"><p class="cl-2038a52b"><span class="cl-2038a529">Y_mar</span></p></td>
-<td class="cl-20391a19"><p class="cl-2038a52b"><span class="cl-2038a529">Val_3</span></p></td>
-<td class="cl-20391a17"><p class="cl-2038a52b"><span class="cl-2038a529">Pearson</span></p></td>
-<td class="cl-20391a1a"><p class="cl-2038a52b"><span class="cl-2038a529">1000</span></p></td>
-<td class="cl-20391a18"><p class="cl-2038a52b"><span class="cl-2038a529">0.81</span></p></td>
+<td class="cl-daff9403"><p class="cl-daff1f25"><span class="cl-dafef829">Y_mar</span></p></td>
+<td class="cl-daff9401"><p class="cl-daff1f25"><span class="cl-dafef829">Val_3</span></p></td>
+<td class="cl-daff93ff"><p class="cl-daff1f25"><span class="cl-dafef829">Pearson</span></p></td>
+<td class="cl-daff9402"><p class="cl-daff1f25"><span class="cl-dafef829">1000</span></p></td>
+<td class="cl-daff9400"><p class="cl-daff1f25"><span class="cl-dafef829">0.81</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-20391a1c"><p class="cl-2038a52b"><span class="cl-2038a529">Y_mar</span></p></td>
-<td class="cl-20394105"><p class="cl-2038a52b"><span class="cl-2038a529">Val_4</span></p></td>
-<td class="cl-20394106"><p class="cl-2038a52b"><span class="cl-2038a529">Pearson</span></p></td>
-<td class="cl-20394107"><p class="cl-2038a52b"><span class="cl-2038a529">1000</span></p></td>
-<td class="cl-20394104"><p class="cl-2038a52b"><span class="cl-2038a529">0.22</span></p></td>
+<td class="cl-daff9404"><p class="cl-daff1f25"><span class="cl-dafef829">Y_mar</span></p></td>
+<td class="cl-daffbaed"><p class="cl-daff1f25"><span class="cl-dafef829">Val_4</span></p></td>
+<td class="cl-daffbaee"><p class="cl-daff1f25"><span class="cl-dafef829">Pearson</span></p></td>
+<td class="cl-daffbaef"><p class="cl-daff1f25"><span class="cl-dafef829">1000</span></p></td>
+<td class="cl-daffbaec"><p class="cl-daff1f25"><span class="cl-dafef829">0.22</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-20391a13"><p class="cl-2038a52b"><span class="cl-2038a529">Y_mar</span></p></td>
-<td class="cl-20391a14"><p class="cl-2038a52b"><span class="cl-2038a529">Val_5</span></p></td>
-<td class="cl-20391a12"><p class="cl-2038a52b"><span class="cl-2038a529">polyserial</span></p></td>
-<td class="cl-20391a15"><p class="cl-2038a52b"><span class="cl-2038a529">1000</span></p></td>
-<td class="cl-20391a16"><p class="cl-2038a52b"><span class="cl-2038a529">0.29</span></p></td>
+<td class="cl-daff93fb"><p class="cl-daff1f25"><span class="cl-dafef829">Y_mar</span></p></td>
+<td class="cl-daff93fc"><p class="cl-daff1f25"><span class="cl-dafef829">Val_5</span></p></td>
+<td class="cl-daff93fa"><p class="cl-daff1f25"><span class="cl-dafef829">polyserial</span></p></td>
+<td class="cl-daff93fd"><p class="cl-daff1f25"><span class="cl-dafef829">1000</span></p></td>
+<td class="cl-daff93fe"><p class="cl-daff1f25"><span class="cl-dafef829">0.29</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-20391a13"><p class="cl-2038a52b"><span class="cl-2038a529">Y_mnar</span></p></td>
-<td class="cl-20391a14"><p class="cl-2038a52b"><span class="cl-2038a529">PGIS</span></p></td>
-<td class="cl-20391a12"><p class="cl-2038a52b"><span class="cl-2038a529">polyserial</span></p></td>
-<td class="cl-20391a15"><p class="cl-2038a52b"><span class="cl-2038a529">1000</span></p></td>
-<td class="cl-20391a16"><p class="cl-2038a52b"><span class="cl-2038a529">0.08</span></p></td>
+<td class="cl-daff93fb"><p class="cl-daff1f25"><span class="cl-dafef829">Y_mnar</span></p></td>
+<td class="cl-daff93fc"><p class="cl-daff1f25"><span class="cl-dafef829">PGIS</span></p></td>
+<td class="cl-daff93fa"><p class="cl-daff1f25"><span class="cl-dafef829">polyserial</span></p></td>
+<td class="cl-daff93fd"><p class="cl-daff1f25"><span class="cl-dafef829">1000</span></p></td>
+<td class="cl-daff93fe"><p class="cl-daff1f25"><span class="cl-dafef829">0.08</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-20391a13"><p class="cl-2038a52b"><span class="cl-2038a529">Y_mnar</span></p></td>
-<td class="cl-20391a14"><p class="cl-2038a52b"><span class="cl-2038a529">Val_1</span></p></td>
-<td class="cl-20391a12"><p class="cl-2038a52b"><span class="cl-2038a529">polyserial</span></p></td>
-<td class="cl-20391a15"><p class="cl-2038a52b"><span class="cl-2038a529">1000</span></p></td>
-<td class="cl-20391a16"><p class="cl-2038a52b"><span class="cl-2038a529">0.51</span></p></td>
+<td class="cl-daff93fb"><p class="cl-daff1f25"><span class="cl-dafef829">Y_mnar</span></p></td>
+<td class="cl-daff93fc"><p class="cl-daff1f25"><span class="cl-dafef829">Val_1</span></p></td>
+<td class="cl-daff93fa"><p class="cl-daff1f25"><span class="cl-dafef829">polyserial</span></p></td>
+<td class="cl-daff93fd"><p class="cl-daff1f25"><span class="cl-dafef829">1000</span></p></td>
+<td class="cl-daff93fe"><p class="cl-daff1f25"><span class="cl-dafef829">0.51</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-20391a1b"><p class="cl-2038a52b"><span class="cl-2038a529">Y_mnar</span></p></td>
-<td class="cl-20391a19"><p class="cl-2038a52b"><span class="cl-2038a529">Val_2</span></p></td>
-<td class="cl-20391a17"><p class="cl-2038a52b"><span class="cl-2038a529">Pearson</span></p></td>
-<td class="cl-20391a1a"><p class="cl-2038a52b"><span class="cl-2038a529">1000</span></p></td>
-<td class="cl-20391a18"><p class="cl-2038a52b"><span class="cl-2038a529">0.55</span></p></td>
+<td class="cl-daff9403"><p class="cl-daff1f25"><span class="cl-dafef829">Y_mnar</span></p></td>
+<td class="cl-daff9401"><p class="cl-daff1f25"><span class="cl-dafef829">Val_2</span></p></td>
+<td class="cl-daff93ff"><p class="cl-daff1f25"><span class="cl-dafef829">Pearson</span></p></td>
+<td class="cl-daff9402"><p class="cl-daff1f25"><span class="cl-dafef829">1000</span></p></td>
+<td class="cl-daff9400"><p class="cl-daff1f25"><span class="cl-dafef829">0.55</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-20391a1b"><p class="cl-2038a52b"><span class="cl-2038a529">Y_mnar</span></p></td>
-<td class="cl-20391a19"><p class="cl-2038a52b"><span class="cl-2038a529">Val_3</span></p></td>
-<td class="cl-20391a17"><p class="cl-2038a52b"><span class="cl-2038a529">Pearson</span></p></td>
-<td class="cl-20391a1a"><p class="cl-2038a52b"><span class="cl-2038a529">1000</span></p></td>
-<td class="cl-20391a18"><p class="cl-2038a52b"><span class="cl-2038a529">0.81</span></p></td>
+<td class="cl-daff9403"><p class="cl-daff1f25"><span class="cl-dafef829">Y_mnar</span></p></td>
+<td class="cl-daff9401"><p class="cl-daff1f25"><span class="cl-dafef829">Val_3</span></p></td>
+<td class="cl-daff93ff"><p class="cl-daff1f25"><span class="cl-dafef829">Pearson</span></p></td>
+<td class="cl-daff9402"><p class="cl-daff1f25"><span class="cl-dafef829">1000</span></p></td>
+<td class="cl-daff9400"><p class="cl-daff1f25"><span class="cl-dafef829">0.81</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-20391a1c"><p class="cl-2038a52b"><span class="cl-2038a529">Y_mnar</span></p></td>
-<td class="cl-20394105"><p class="cl-2038a52b"><span class="cl-2038a529">Val_4</span></p></td>
-<td class="cl-20394106"><p class="cl-2038a52b"><span class="cl-2038a529">Pearson</span></p></td>
-<td class="cl-20394107"><p class="cl-2038a52b"><span class="cl-2038a529">1000</span></p></td>
-<td class="cl-20394104"><p class="cl-2038a52b"><span class="cl-2038a529">0.22</span></p></td>
+<td class="cl-daff9404"><p class="cl-daff1f25"><span class="cl-dafef829">Y_mnar</span></p></td>
+<td class="cl-daffbaed"><p class="cl-daff1f25"><span class="cl-dafef829">Val_4</span></p></td>
+<td class="cl-daffbaee"><p class="cl-daff1f25"><span class="cl-dafef829">Pearson</span></p></td>
+<td class="cl-daffbaef"><p class="cl-daff1f25"><span class="cl-dafef829">1000</span></p></td>
+<td class="cl-daffbaec"><p class="cl-daff1f25"><span class="cl-dafef829">0.22</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-2039410b"><p class="cl-2038a52b"><span class="cl-2038a529">Y_mnar</span></p></td>
-<td class="cl-2039410a"><p class="cl-2038a52b"><span class="cl-2038a529">Val_5</span></p></td>
-<td class="cl-20394109"><p class="cl-2038a52b"><span class="cl-2038a529">polyserial</span></p></td>
-<td class="cl-2039410c"><p class="cl-2038a52b"><span class="cl-2038a529">1000</span></p></td>
-<td class="cl-20394108"><p class="cl-2038a52b"><span class="cl-2038a529">0.29</span></p></td>
+<td class="cl-daffbaf3"><p class="cl-daff1f25"><span class="cl-dafef829">Y_mnar</span></p></td>
+<td class="cl-daffbaf2"><p class="cl-daff1f25"><span class="cl-dafef829">Val_5</span></p></td>
+<td class="cl-daffbaf1"><p class="cl-daff1f25"><span class="cl-dafef829">polyserial</span></p></td>
+<td class="cl-daffbaf4"><p class="cl-daff1f25"><span class="cl-dafef829">1000</span></p></td>
+<td class="cl-daffbaf0"><p class="cl-daff1f25"><span class="cl-dafef829">0.29</span></p></td>
 </tr>
 </tbody>
-<tfoot><tr style="overflow-wrap:break-word;"><td colspan="5" class="cl-2039410d"><p class="cl-2038a52a"><span class="cl-2038a529">**All data simulated</span></p></td></tr></tfoot>
+<tfoot><tr style="overflow-wrap:break-word;"><td colspan="5" class="cl-daffbaf5"><p class="cl-daff1f24"><span class="cl-dafef829">**All data simulated</span></p></td></tr></tfoot>
 </table>
-</div></template><div class="flextable-shadow-host" id="a9dbea2c-572d-4a6d-860f-21cf3f4d7373"></div>
+</div></template><div class="flextable-shadow-host" id="36d739fe-053b-4b3f-b9fa-287905c9c51b"></div>
 <script>
-var dest = document.getElementById("a9dbea2c-572d-4a6d-860f-21cf3f4d7373");
-var template = document.getElementById("ff9395c5-8f6f-4e0c-b498-8abfa8c18da0");
+var dest = document.getElementById("36d739fe-053b-4b3f-b9fa-287905c9c51b");
+var template = document.getElementById("f1019b1c-e3ae-47f8-ae4c-851a9c131758");
 var caption = template.content.querySelector("caption");
 if(caption) {
   caption.style.cssText = "display:block;text-align:center;";
@@ -494,7 +495,6 @@ fantome.appendChild(templateContent);
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Scatterplot of Correlations:</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
-<span class="co">#&gt; Warning: package 'ggplot2' was built under R version 4.0.5</span>
 <span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">out1</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">`Validator Variable`</span>, y <span class="op">=</span> <span class="va">Correlation</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
@@ -502,7 +502,6 @@ fantome.appendChild(templateContent);
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>lim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>, breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span>
 
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/slowkow/ggrepel">ggrepel</a></span><span class="op">)</span>
-<span class="co">#&gt; Warning: package 'ggrepel' was built under R version 4.0.5</span>
 <span class="va">p2</span> <span class="op">&lt;-</span> <span class="va">p1</span> <span class="op">+</span> <span class="fu">ggrepel</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html">geom_text_repel</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">`Validator Variable`</span><span class="op">)</span>,
               size <span class="op">=</span> <span class="fl">3.5</span><span class="op">)</span>
 <span class="va">p2</span></code></pre></div>
@@ -538,10 +537,10 @@ fantome.appendChild(templateContent);
 
 <span class="va">out2</span>
 <span class="co">#&gt;   PRO Score Validator Variable Correlation Type Sample Size Correlation</span>
-<span class="co">#&gt; 1    Y_comp               PGIS       polyserial        1000   0.4283851</span>
-<span class="co">#&gt; 2    Y_mcar               PGIS       polyserial         502   0.4190047</span>
-<span class="co">#&gt; 3     Y_mar               PGIS       polyserial         502   0.4936734</span>
-<span class="co">#&gt; 4    Y_mnar               PGIS       polyserial         502   0.3465295</span></code></pre></div>
+<span class="co">#&gt; 1    Y_comp               PGIS       polyserial        1000  0.04147309</span>
+<span class="co">#&gt; 2    Y_mcar               PGIS       polyserial         502  0.03166433</span>
+<span class="co">#&gt; 3     Y_mar               PGIS       polyserial         502  0.09004046</span>
+<span class="co">#&gt; 4    Y_mnar               PGIS       polyserial         502  0.09433895</span></code></pre></div>
 </div>
   </div>
 
