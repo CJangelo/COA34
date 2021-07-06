@@ -283,6 +283,7 @@ You may want to create a custom plot. There may be one or two scores that are th
     geom_line() +
     theme_minimal() +
     theme(plot.title = element_text(hjust = 0.5)) +
+    scale_y_continuous(breaks = seq(0, 1, by = .1), limits = c(0, 1)) +
     labs( title = 'Empirical Cumulative Distribution of Change in Score from Baseline',
           legend.title = 'Anchor Groups',
           caption = cap$ecdf.caption,
@@ -290,7 +291,9 @@ You may want to create a custom plot. There may be one or two scores that are th
           y = 'Cumulative proportion of patients',
           color = 'Anchor Groups') +
     scale_color_manual(labels = plot.legend,
-                     values = unique(dat.den$anchor.groups))
+                     values = unique(dat.den$anchor.groups)) +
+    geom_hline(yintercept = 0.50, linetype = 'dotted') 
+
 
   p1
 

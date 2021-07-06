@@ -91,6 +91,12 @@ str(dat.cor)
 
 Use the function to create a large table of the correlations you need. 
 
+Note that the correlations are computed using baseline data, with no missingness.
+Thus, all of the different types of drop-out will have the exact same values. This table is, of course, just to illustrate the functionality. 
+
+If this isn't exactly what you're looking for, try the `hetcor()` function in the `polycor` R package. 
+
+
 ```{r val1}
 out <- COA34::compute_validity(dat = dat.cor,
                                time.var = 'Time',

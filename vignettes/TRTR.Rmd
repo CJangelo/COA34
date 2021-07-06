@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 ## Illustration of Test-Retest Reliability
 
 ## To Do: 
-Figure out why MAR drop-out torpedoes the ICC(2,1) values!
+Figure out why MAR drop-out torpedoes the ICC values
 
 ```{r output_dir, echo = F}
 print.dir = "C:/Users/ciaconangelo/OneDrive - OPEN Health/Documents/misc_R_table_output"
@@ -94,7 +94,13 @@ dat <- COA34::compute_change_score(dat = dat,
 Use the function to compute the ICC(2,1). Note that this is just a wrapper for the `psych` R package `icc` function. This computes the table and outputs the relevant information. 
 
 ```{r trtr1}
-# Test Retest Reliability
+# Test Retest Reliability - ICC(2,1)
+# Note that this has recently been "deprecated" by the FDA
+# They are recommending to use ICC(A,1)
+# https://link.springer.com/article/10.1007/s11136-018-2076-0
+# Link to the article
+
+#---
 icc <- COA34::compute_icc21(dat = dat,
                             PRO.score = c('Y_comp', 'Y_mcar', 'Y_mar', 'Y_mnar'),
                             time.var = 'Time',
@@ -104,6 +110,15 @@ icc <- COA34::compute_icc21(dat = dat,
                             first.timepoint = 'Time_1', 
                             second.timepoint = 'Time_2')
 
+#---
+icc <- COA34::compute_iccA1(dat = dat,
+                            PRO.score = c('Y_comp', 'Y_mcar', 'Y_mar', 'Y_mnar'),
+                            time.var = 'Time',
+                            subject.id = 'USUBJID',
+                            anchor = 'PGIS_delta',
+                            stable.score = 0, 
+                            first.timepoint = 'Time_1', 
+                            second.timepoint = 'Time_2')
 ```
 
 Print the table out:
@@ -111,11 +126,11 @@ Print the table out:
 ```{r trtr2}
 library(R2Word)
 
-R2Word::dump_df_mat_to_file(out = icc$icc.21,
+R2Word::dump_df_mat_to_file(out = icc$icc.A1,
                             decimals = c(2, 0, 0), 
-                            table.title = 'ICC(2,1) - Vignette Illustration', 
+                            table.title = 'ICC(A,1) - Vignette Illustration', 
                             table.footnote = '**All data simulated',
-                            file.name = 'trtr_vig_icc21', 
+                            file.name = 'trtr_vig_iccA1', 
                             print.dir = print.dir)
 
 
@@ -138,13 +153,13 @@ If you're putting together shell tables, use the function `shell_table`, specify
 
 ```{r trtr3}
 
-st <- R2Word::shell_table(out = icc$icc.21, decimals = c(2, 0), cols = c(2, 3))
+st <- R2Word::shell_table(out = icc$icc.A1, decimals = c(2, 0), cols = c(2, 3))
                            
 R2Word::dump_df_mat_to_file(out = st,
                             decimals = 0, 
-                            table.title = 'ICC(2,1) - Vignette Illustration', 
+                            table.title = 'ICC(A,1) - Vignette Illustration', 
                             table.footnote = '**All data simulated',
-                            file.name = 'trtr_vig_icc21_shell_tables', 
+                            file.name = 'trtr_vig_iccA1_shell_tables', 
                             print.dir = print.dir)
 
 
@@ -153,11 +168,11 @@ R2Word::dump_df_mat_to_file(out = st,
 
 ## MAR Drop-out
 
-The more interesting component of this is observing how non-random missingness impacts the ICC(2,1) values. Let's look at TRTR at timepoint 4, where there is 50% drop out. 
+The more interesting component of this is observing how non-random missingness impacts the ICC(A,1) values. Let's look at TRTR at timepoint 4, where there is 50% drop out. 
 
 ```{r trtr4}
 # Test Retest Reliability
-icc <- COA34::compute_icc21(dat = dat,
+icc <- COA34::compute_iccA1(dat = dat,
                             PRO.score = c('Y_comp', 'Y_mcar', 'Y_mar', 'Y_mnar'),
                             time.var = 'Time',
                             subject.id = 'USUBJID',
@@ -168,11 +183,11 @@ icc <- COA34::compute_icc21(dat = dat,
 
 sim.out$cor.mat
 
-R2Word::dump_df_mat_to_file(out = icc$icc.21,
+R2Word::dump_df_mat_to_file(out = icc$icc.A1,
                             decimals = c(2, 0, 0), 
-                            table.title = 'Timepoint 4, ICC(2,1) - Vignette Illustration', 
+                            table.title = 'Timepoint 4, ICC(A,1) - Vignette Illustration', 
                             table.footnote = '**All data simulated',
-                            file.name = 'trtr_vig_icc21_t4', 
+                            file.name = 'trtr_vig_iccA1_t4', 
                             print.dir = print.dir)
 
 

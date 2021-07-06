@@ -17,11 +17,12 @@ knitr::opts_chunk$set(
 
 ## Functions to Compute Item Response Distributions
 
-TODO: 
+The purpose of this is to show some basic functionality using base R functions. Additional illustrations are available here:  https://cjangelo.github.io/R2Word/articles/introduction.html
 
-1. add in the `gtsummary` R package
-2. add examples with the `rtables` R package 
-3. add examples of scatterplots & histograms of scores - google is your friend here
+These sources are common tables that are rendered as output. 
+
+A much more sophisticated collection of functions and examples is available in the `gtsummary` R package.
+
 
 
 
