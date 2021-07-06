@@ -21,7 +21,8 @@ Imports:
     grid,
     gridExtra,
     polycor, 
-    rcompanion
+    rcompanion,
+    irr 
 Suggests: 
     knitr,
     rmarkdown
