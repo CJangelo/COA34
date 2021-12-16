@@ -14,7 +14,8 @@ compute_thresholds <- function(dat = NULL,
                                anchor.group = NULL,
                                time.var = NULL,
                                timepoint = NULL,
-                               change.score = NULL
+                               change.score = NULL,
+                               subject.id = 'USUBJID'
                         ){
 
 
@@ -34,13 +35,15 @@ compute_thresholds <- function(dat = NULL,
 
 
   dat <- dat[which(dat[ , time.var] == final.timepoint), ]
-  N <- length(unique(dat$USUBJID))
+  #N <- length(unique(dat$USUBJID))
+  N <- length(unique(dat[ , subject.id, drop = T]))
 
   # Create table:
   tf <- as.formula(paste0(change.score, '~', anchor.group))
   out <- aggregate(tf,
                    function(x) c('mean' = mean(x, na.rm = T),
-                                 'median' = median(x, na.rm = T),
+                                # 'median' = median(x, na.rm = T),
+                                 'median' = quantile(x, probs = 0.5, type = 3, na.rm = T),
                                  'n' = sum(!is.na(x)),
                                  'percent' = 100*sum(!is.na(x))/N),
                    data = dat,

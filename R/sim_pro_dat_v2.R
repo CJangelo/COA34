@@ -1,4 +1,6 @@
-#' DEPRECATED: Simulate Longitudinal PRO Data with anchor and validator variables included
+#' Simulate Longitudinal PRO Data with anchor and validator variables included
+#'
+#' This version 2 was updated based on MWPC MMRM simulations
 #'
 #' @param number.anchor.categories anchor generation - Pass to `sim_dat_ord()`: the number of PGIS anchor categories to be generated,
 #' this is passed to the `number.groups` in the `sim_dat_ord` function
@@ -24,7 +26,8 @@
 #' @export
 #'
 #'
-sim_pro_dat <- function(N = 1000,
+
+sim_pro_dat_v2 <- function(N = 1000,
                         number.timepoints = 4,
                         #--------Pass to sim_dat_ord()
                         number.anchor.categories = 4,
@@ -35,7 +38,7 @@ sim_pro_dat <- function(N = 1000,
                         polychor.value = 0.4,
                         number.of.anchor.groups = 5,
                         #------- Generate PRO Score (Y_comp)
-                        Beta.PRO = 0,
+                        Beta.PRO = NULL,
                         corr = 'ar1',
                         cor.value = 0.8,
                         var.values = 2,
@@ -47,7 +50,7 @@ sim_pro_dat <- function(N = 1000,
 
 
   # Simulate CLMM data
-  out <- sim_dat_ord(N = N,
+  out <- MWPC::sim_dat_ord(N = N,
                  number.groups = number.anchor.categories,
                  number.timepoints = number.timepoints,
                  reg.formula = formula( ~ Time + Group + Time*Group),
@@ -100,22 +103,27 @@ ag <- ifelse(av >= 2, 2,
 
 
 # ----
-X <- model.matrix( ~ PGIS, data = dat)
+# test
+X <- model.matrix( ~ PGIS_bl + ag*Time, data = dat)
+#X <- model.matrix( ~ ag*Time, data = dat)
  Beta <- matrix(0, nrow = ncol(X), dimnames=list(colnames(X), 'param'))
 
- # if you pass a matrix, just use that:
- if (length(Beta.PRO) > 1) {
-   Beta <- Beta.PRO
- }
+if (!is.null(Beta.PRO)) {
+  if (any(Beta.PRO != 0)) {
 
- # if you pass a scalar, that's the coef of PGIS
- if (length(Beta.PRO) ==  1) {
-   Beta['(Intercept)',] <- 2  # why 2? why not?
-   Beta['PGIS',] <- Beta.PRO
+      Beta <- Beta.PRO
+  }
+} else {
 
- }
+  # if Beta.PRO is null, it should be = 1
+  lo <- length(which(grepl('Time', rownames(Beta)) & grepl('ag', rownames(Beta))))
+  Beta[grepl('Time', rownames(Beta)) & grepl('ag', rownames(Beta)), ] <-
+    seq(0.25, 1, length.out = lo)
+  # test
+  Beta['PGIS_bl',] <- 1
+  Beta['(Intercept)',] <- 1
 
-
+}
 
 # -------
 
@@ -201,7 +209,7 @@ dat$XB <- as.vector(XB)
 # Validator Variables
 #source("C:/Users/ciaconangelo/Documents/RESEARCH_NEW_LAPTOP/R_CODE_Long_Mixed_Models/sim_val_var.R")
 
- out2 <- sim_val_var(dat = dat,
+ out2 <- MWPC::sim_val_var(dat = dat,
                     n.val = n.val,
                     n.cat = n.cat,
                     cor.val.ref = cor.val.ref  )

@@ -1,4 +1,4 @@
-#' Plot eCDF using `ggplot2`
+#' DEPRECATED: Plot eCDF using `ggplot2`
 #'
 #' Plot the eCDF consistent with FDA COA Guidance 3, using `ggplot2` R package
 #'

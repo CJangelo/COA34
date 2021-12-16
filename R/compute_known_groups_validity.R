@@ -106,7 +106,8 @@ if (is.numeric(dat[,y, drop = T])) {
   out <- do.call(data.frame, stats::aggregate(as.formula(paste0(y, '~', x)),
         FUN = function(x) c(sum(!is.na(x)),
                             mean(x, na.rm = T),
-                            median(x, na.rm = T)),
+                            #median(x, na.rm = T)),
+                            quantile(x, probs = 0.5, type = 3, na.rm = T)),
         data = dat, na.action = na.pass))
 
     out <- data.frame(y, x, out)

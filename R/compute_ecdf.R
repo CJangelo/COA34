@@ -1,6 +1,10 @@
 #' Compute eCDF
 #'
-#' Compute cumulative density of change score for eCDF plot
+#' Compute cumulative density of change score for eCDF plot. This is the true
+#' empirical density, using the stats::ecdf function: https://github.com/SurajGupta/r-source/blob/master/src/library/stats/R/ecdf.R
+#' which uses the stats::approxfun function
+#'
+#'
 #'
 #' @param dat pass the dataframe, must contain the anchor group and the change score
 #' @param anchor.group indicate the name of the anchor group
@@ -10,6 +14,9 @@
 #' @param change.score indicate the name of the PRO change score
 #' @return character vector
 #' @export
+
+
+
 
 
 
@@ -43,66 +50,27 @@ compute_ecdf <- function(
   dat <- dat[, c(anchor.group, change.score), drop = F]
 
   # Initalize:
-  #dat$CDF <- NA
   dat$density_x <- NA
-  dat$density_y <- NA
-  # dat$lower_ci <- NA
-  # dat$upper_ci <- NA
+  dat$CDF <- NA
+
+  for( ag in unique(dat[, anchor.group]) ) {
+    ii <- dat[,anchor.group] == ag
+    den.x <- dat[ii, change.score]
+    Fn <- stats::ecdf(den.x) # this should automatically handle missing
+    den.y <- Fn(den.x)
+    dat[ii, 'density_x'] <- den.x
+    dat[ii, 'CDF'] <- den.y
+  }
 
   # VERY IMPORTANT STEP:
   # Order the delta values WITHIN each group
-  owg <- with(dat, order( get(anchor.group), get(change.score)))
-  dat <- dat[owg, ]
+  #owg <- with(dat, order( get(anchor.group), get(change.score)))
+  #dat <- dat[owg, ]
   #this will order the delta values from least to greatest stratified on the anchor group
 
-  #loop this over the groups:
-  groups <- dat[, anchor.group, drop = T]
-  groups <- unique(groups)
-
-  # Initialize full data frame:
-  # Expanded idea - make sure all anchor groups have eCDF values
-  # across entire range of PRO scores
-  N <- length(dat[, change.score, drop = T])
-  df.full <- data.frame(#'CDF' = rep(NA, each = N*length(groups)),
-                        'density_x' = rep(NA, each = N*length(groups)),
-                        'density_y' = rep(NA, each = N*length(groups)),
-                        'CDF' = rep(NA, each = N*length(groups))
-                        )
-  df.full[, anchor.group] <- rep(groups, each = N)
 
 
-for(gg in groups){
-
-
-     # pull change scores in group
-      dd <- which(dat[, anchor.group, drop = T] == gg)
-      dn <- dat[dd, change.score, drop = T]
-
-
-      # Density
-      # Computed using dn, only change scores from that anchor group
-      # However, the density out is computed using the full range of scores
-      # This will yield a better looking eCDF (well, that and the kernel smoothing)
-      P <- density(dn,
-                   kernel='gaussian',
-                   bw = 'SJ',
-                   n = length(dat[, change.score, drop = T]),
-                   from=min(dat[, change.score, drop = T], na.rm = T) - 1,
-                   to=max(dat[, change.score, drop = T], na.rm = T) + 1,
-                   na.rm = T
-                   )
-
-      df.full[which(df.full$anchor.group == gg), 'density_x'] <- P$x
-      df.full[which(df.full$anchor.group == gg), 'density_y'] <- P$y
-
-      # Test:
-      df.full[which(df.full$anchor.group == gg), 'CDF'] <- cumsum(P$y)/sum(P$y)
-
-
-}# end loop over anchor groups
-
-
-  return(df.full)
+  return(dat)
 
 
 }
