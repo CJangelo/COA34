@@ -24,9 +24,8 @@ library(devtools)
 devtools::install_github("CJangelo/COA34")
 ```
 
-This package probability won’t be released to CRAN, but this github
-repository will be updated due to how frequently me and my team use
-these functions.
+This package won’t be released to CRAN, but this github repository will
+be updated due to how frequently me and my team use these functions.
 
 ## Example
 
