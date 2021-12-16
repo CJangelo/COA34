@@ -1,0 +1,274 @@
+---
+title: "Meaningful Change with Scatterplots"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette_Scatterplots}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+### This to be updated, currently used as R code dumping ground
+
+
+## Meaningful Change with Small Samples: Scatterplots 
+
+When eCDFs/ePDFs are not feasible to compute, use a scatterplot.
+Scatterplots can serve as supplemental information even when eCDFs are computed.
+
+
+Criteria: When odds ratios in the eCDF approach zero or infinity, it makes more sense to use the scatterplots. In practice, a rule of thumb could be n=5 required in each anchor group for the eCDF to be interpretable. 
+
+
+TODO: work on developing this criteria further. 
+
+## Required R packages
+```{r setup}
+
+library(COA34)
+# In addition, you'll need the following
+library(ggplot2)
+library(grid)
+library(gridExtra)
+
+```
+
+
+## Generate data
+```{r generate}
+
+sim.out <- COA34::sim_pro_dat(N=1e3,
+                        polychor.value = 0.4,
+                        corr = 'ar1',
+                        cor.value = 0.8,
+                        var.values = c(5))
+
+dat <- sim.out$dat
+
+
+# You already have the PGIS_bl and PGIS_delta in the generated data,
+# you wouldn't have that in a real dataset, so drop that first
+dat <- dat[, !(colnames(dat) %in% c('PGIS_bl', 'PGIS_delta'))]
+# This makes the resf of this more realistic
+
+```
+
+## Implement drop-out
+
+```{r missing}
+
+dat <- COA34::dropout(dat = dat,
+               type_dropout  = c('mcar', 'mar', 'mnar'),
+               prop.miss = 0.5,
+               stochastic.component = 0.2)
+
+
+```
+
+
+## Compute PGIS delta
+
+```{r pgis_delta}
+dat <- COA34::compute_anchor_delta(dat = dat,
+                                   subject.id = 'USUBJID',
+                                   time.var = 'Time',
+                                   anchor = 'PGIS')
+
+```
+
+## Compute PRO Score delta
+
+```{r score_delta}
+dat <- COA34::compute_change_score(dat = dat,
+                                   subject.id = 'USUBJID',
+                                   time.var = 'Time',
+                                   score = c('Y_comp', 'Y_mcar', 'Y_mar', 'Y_mnar'))
+
+
+```
+
+
+## Compute anchor groups
+
+```{r anchor}
+dat <- COA34::compute_anchor_group(dat = dat,
+                                   anchor.variable = 'PGIS_delta')
+
+
+```
+
+## Compute Thresholds
+
+
+```{r thr}
+
+thr <- COA34::compute_thresholds(dat = dat,
+                                 anchor.group = 'anchor.groups',
+                                 time.var = 'Time',
+                                 change.score = 'Y_comp_delta')
+
+```
+
+## Compute Proportion Surpassing Threshold
+
+This function is a little more obscure. 
+```{r cap, eval = F}
+
+cap <- COA34::compute_prop_surp(dat = dat,
+                                anchor.group = 'anchor.groups',
+                                time.var = 'Time',
+                                change.score = 'Y_comp_delta',
+                                threshold.label = 'Improved_1',
+                                mean.or.median = 'median')
+
+
+```
+
+# Scatterplots with Anchor-based Meaningful Change
+
+First, adjust the dataframe. The `ggplot2` package is well-suited to long datasets, 
+which is the way you should be structuring your data. However, in this case
+we have to adjust that. 
+
+```{r dat_prep}
+dat.plot <- dat
+t4 <- which(dat.plot[ , 'Time'] == 'Time_4')
+dat4 <- dat[t4, c('USUBJID', 'Y_comp')]
+colnames(dat4) <- c('USUBJID', 'Y_comp_4')
+dat.plot <- merge(x = dat.plot, y = dat4, by = 'USUBJID', all = T)
+
+```
+
+Next is to create the x and y limits on the plot. The limits should be
+symmetric. Note that real data would likely range from 0 to 100. 
+
+```{r dat_lim}
+xlim.max <- round(max(abs(dat.plot$Y_comp)))
+use.range <- c(-1*xlim.max, xlim.max)
+
+```
+
+## Prepare Labels for Plot
+
+### Anchor Group Colors
+To be used for both dots and lines, and in legends.
+
+```{r dat_1}
+unique(dat.plot$anchor.groups)
+ag.cols <- c('Deteriorated_2+' = "darkred",
+             "Deteriorated_1" = "red",
+             'Maintained' = 'blue',
+             'Improved_1' = 'green',
+             'Improved_2+' = 'darkgreen')
+```
+
+### Anchor Group Names - Modify to Include Math Symbols
+```{r dat_11}
+
+ag.names <- c('Deteriorated_2+' = '\u2265 2 category deterioration', 
+               "Deteriorated_1" = "1 category deterioration",
+               'Maintained' = 'Maintained category',
+               'Improved_1' = '1 category improvement',
+               'Improved_2+' = '\u2265 2 category improvement')#"\u2265" is ≥
+```
+
+### Threshold Linetypes 
+```{r dat_12}
+stat.lty <- c("Mean" = "longdash", "Median" = "dotted")
+```
+
+
+### Anchor Group Labels for Legend
+```{r dat_13}
+ag.data <- merge(cbind(ag.cols),cbind(ag.names), by = 0)
+  colnames(ag.data) <- sub("Row.names", "Anchor Group", colnames(ag.data))
+ag.data <- merge(thr, ag.data, by = "Anchor Group")
+ag.data$ag.legend <- paste0(ag.data$ag.names, " (N=",ag.data$N,")")
+```
+
+This will be merged into a dataframe that contains the threshold values. This
+dataframe will then be used in the plot. 
+
+## Dataframe of Thresholds
+
+```{r dat_2}
+# Line Plotting data:
+line_data <- tidyr::pivot_longer(ag.data,cols = c("Mean", "Median"),names_to = "stat")
+line_data$label <- 
+  sprintf(paste0(line_data$ag.names,": ",line_data$stat, "=%.2f"),line_data$value)
+#TODO: make label a factor to control order in legend
+#line_data$label <- factor(line_data$label,
+#                           levels = c("≥ 2 category improvement: Mean=-2.28",
+#                                      "≥ 2 category improvement: Median=-2.51"))
+line_data$linetype <- 
+  as.character(factor(line_data$stat,levels=names(stat.lty),labels=stat.lty))
+line_data$slope <- 1
+line_data$size <- .5#default line size=.5
+
+#add reference line manually
+refline <- data.frame("label" = "No Change", "stat" = "", "value" = 0,
+                      "ag.cols" = "black", "linetype" = "solid","slope" = 1,"size"=1)
+line_data <- merge(line_data, refline, all= T)
+```
+
+
+### Select which thresholds (lines) to plot:
+
+Plot just one threshold line, the median of the "Improved one category" and the median of the "Deteriorated one category" anchor groups:
+
+```{r dat_41}
+plot.groups <- c("Improved_1",  "Deteriorated_1")#which anchor groups to include
+plot.stats <- c("Median")#which stats to include (Mean and/or Median)
+plot_line_data <- line_data[(line_data$'Anchor Group'%in%plot.groups&
+                              line_data$stat%in%plot.stats ) |
+                              line_data$label=="No Change",]
+```
+
+All of the thresholds:
+```{r dat_42}
+plot_line_data <- line_data # all of the lines
+```
+
+## Plot Data using ggplot2 package
+
+```{r dat_43}
+
+# Plot:
+p1 <- ggplot(dat.plot, aes(x=Y_comp_bl, y=Y_comp_4, fill = anchor.groups)) +
+  theme_minimal() +
+  geom_point(shape = 21,size=3, color = "white") + #shape=21 allows a fill, color=white makes no outline
+  geom_abline( aes(slope = slope, intercept = value,
+                   linetype = label, color=label, size = label),
+               data = plot_line_data) +#use data in plot_line_data to get lines
+  
+  #Line settings: (note 'name' arg is the same for all)
+  scale_linetype_manual(
+    name = "Threshold",values = setNames(plot_line_data$linetype, plot_line_data$label)) +
+  scale_color_manual(
+    name = "Threshold",values= setNames(plot_line_data$ag.cols, plot_line_data$label))+
+  scale_size_manual(
+    name = "Threshold",values= setNames(plot_line_data$size, plot_line_data$label))+
+  
+  #Point settings:
+  scale_fill_manual(
+    name = "Anchor Groups", values = ag.cols, 
+    labels = setNames(ag.data$ag.legend, ag.data$`Anchor Group`))+
+  
+  scale_x_continuous( breaks = use.range[1]:use.range[2], limits = use.range) +
+  scale_y_continuous( breaks = use.range[1]:use.range[2], limits = use.range) +
+  labs( title = 'Baseline & Follow-up Scores by Anchor Group',
+        x = 'Score at baseline',
+        y = 'Score at follow-up') 
+
+
+p1
+
+
+
+```

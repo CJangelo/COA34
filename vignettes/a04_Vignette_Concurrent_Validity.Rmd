@@ -1,0 +1,236 @@
+---
+title: "Concurrent Validity"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette_Concurrent_Validity}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+## Illustration of Concurrent Validity
+
+Here we are using the `polycor` R package to compute the correlations. The COA34 functions are just wrappers for that R package functions that prepare the output. I think the scatter plot of the correlations was well-received, worth including that. 
+
+
+
+```{r output_dir, echo = F}
+print.dir = "C:/Users/ciaconangelo/OneDrive - OPEN Health/Documents/misc_R_table_output"
+```
+
+### Required R packages
+```{r setup}
+
+library(COA34)
+# In addition, you'll need the following
+library(ggplot2)
+library(grid)
+library(gridExtra)
+
+```
+
+
+### Generate data
+```{r generate}
+
+  set.seed(12162021)
+
+  sim.out <- COA34::sim_pro_dat_v2(N=1000,
+                            number.timepoints = 3,
+                            Beta.PRO = NULL,
+                            number.of.anchor.groups = 5,
+                            polychor.value = 0.7,
+                            corr = 'ar1',
+                            cor.value = 0.8,
+                            #var.values = c(7.136))
+                            var.values = c(2))
+  dat <- sim.out$dat
+
+ 
+
+```
+
+
+### Implement drop-out
+
+```{r missing}
+
+dat <- COA34::dropout(dat = dat,
+               type_dropout  = c('mcar', 'mar', 'mnar'),
+               prop.miss = 0.5,
+               stochastic.component = 0.2)
+
+
+```
+
+
+### Simulate Items
+```{r generate items, eval=T}
+
+ # Simulate IRT items
+ # use the scores generated as the theta in the IRT model 
+  sim.out2 <- COA34::sim_irt_item(dat = dat, J = 5, K = 4, latent.variable = 'Y_comp')
+    str(sim.out2)
+    dat <- sim.out2$dat
+
+# Score the PRO - just take a simple sum score here:
+  dat$PRO.score <- apply(dat[, grep('Item', colnames(dat))], 1, sum)
+  
+# Create the same PRO score, but with MAR drop-out:
+  dat$PRO.score_mar <- dat$PRO.score
+  dat$PRO.score_mar[is.na(dat$Y_mar)] <- NA
+# Note that you've just set the PRO score to missing wherever the Y_mar variable is missing
+  
+# Now for the other missing types:
+    dat$PRO.score_mcar <- dat$PRO.score_mnar <- dat$PRO.score
+    dat$PRO.score_mcar[is.na(dat$Y_mcar)] <- NA
+    dat$PRO.score_mnar[is.na(dat$Y_mnar)] <- NA
+
+  aggregate(cbind(PRO.score, PRO.score_mcar, PRO.score_mar, PRO.score_mnar) ~ Time,
+                  function(x) mean(x, na.rm = T), 
+                  data = dat, 
+                  na.action = na.pass)
+
+
+```
+
+
+
+## Managing Variables
+I can't overemphasize how important it is to keep an eye on your variables. 
+The functions will do all the work, you just have to carefully manage your data. 
+
+```{r data_mgmt}
+str(dat)
+# PGIS is ordinal; transform it for the purposes of correct correlation
+# Leave it numeric to compute the PGIS_delta for the change scores later
+dat.cor <- dat
+dat.cor$PGIS <-
+  factor(dat.cor$PGIS,
+         levels = c(0, 1, 2, 3, 4),
+         labels = c('None', 'Mild', 'Moderate', 'Severe', 'Very Severe'))
+table(dat.cor$PGIS, useNA = 'always')
+xtabs(~ dat.cor$PGIS + dat$PGIS)
+
+# Validator Variables 1 and 5 are supposed to be
+# ordered categorical variables
+dat.cor$Val_1 <- factor(dat.cor$Val_1)
+table(dat.cor$Val_1, useNA = 'always')
+# only collected at baseline, hence the NAs
+
+dat.cor$Val_5 <- factor(dat.cor$Val_5)
+table(dat.cor$Val_5, useNA = 'always')
+# Only collected at baseline, hence the NAs
+
+# Check data:
+str(dat.cor)
+# 5 validator variables (Val_1, Val_2...Val_5)
+# 4 PRO scores
+
+```
+
+
+## Compute Correlations of Multiple Scores
+
+Use the function to create a large table of the correlations you need. 
+
+Note that the correlations are computed using baseline data, with no missingness.
+Thus, all of the different types of drop-out will have the exact same values. This table is, of course, just to illustrate the functionality. 
+
+If this isn't exactly what you're looking for, try the `hetcor()` function in the `polycor` R package. 
+
+
+```{r val1}
+out <- COA34::compute_validity(dat = dat.cor,
+                               time.var = 'Time',
+                               PRO.score = c('PRO.score', 
+                                             'PRO.score_mcar',
+                                             'PRO.score_mar', 
+                                             'PRO.score_mnar'),
+                               val.var = c('PGIS', paste0('Val_', 1:5))
+                               )
+
+# Compare output to generating values:
+sim.out$out.val$cor.mat.ref
+
+library(R2Word)
+
+R2Word::dump_df_mat_to_file(out = out,
+                            decimals = c(0, 2), 
+                            table.title = 'Correlations - Vignette Illustration', 
+                            table.footnote = '**All data simulated',
+                            file.name = 'val_vig_t1', 
+                            print.dir = print.dir)
+```
+
+
+## Scatterplots of Correlations
+
+Let's compute for a single score and create a scatterplot. This visualization has been well-received, make use of it. 
+```{r val2}
+out1 <- COA34::compute_validity(dat = dat.cor,
+                               time.var = 'Time',
+                               PRO.score = 'PRO.score',
+                               val.var = c('PGIS', paste0('Val_', 1:5))
+                               )
+
+
+```
+
+We have the output values, let's make the scatterplot:
+
+```{r val3}
+# Scatterplot of Correlations:
+library(ggplot2)
+p1 <- ggplot(out1, aes(x = `Validator Variable`, y = Correlation)) +
+  geom_point() +
+  theme_minimal() +
+  theme(axis.text.x=element_blank()) +
+  scale_y_continuous(lim = c(0,1), breaks = seq(0, 1, by = 0.1))
+
+library(ggrepel)
+p2 <- p1 + ggrepel::geom_text_repel(aes(label = `Validator Variable`),
+              size = 3.5)
+p2
+
+# How to customize the labels
+out1$label <-
+  ifelse(out1$`Validator Variable` == 'PGIS', 'PGIS anchor',
+         ifelse(out1$`Validator Variable` == 'Val_1', 'PGIC',
+                ifelse(out1$`Validator Variable` == 'Val_2', 'SF-36', 
+                       ifelse(out1$`Validator Variable` == 'Val_3', 'EQ-5D',
+                              ifelse(out1$`Validator Variable` == 'Val_4', 'NSCLC-SAQ',
+                                     ifelse(out1$`Validator Variable` == 'Val_5', 'SF-36, Physical Functioning',
+                                            NA))))))
+
+library(ggrepel)
+p3 <- p1 + ggrepel::geom_text_repel(data = out1, aes(label = `label`),
+              size = 3.5)
+p3
+
+```
+
+
+
+## Note on timepoints
+The compute_validity() function will automatically select the baseline timepoint. 
+If you want to use a different timepoint, you'll have to pass a dataframe with only that data! Quick example:
+
+```{r time}
+out2 <- COA34::compute_validity(dat = dat.cor[dat.cor$Time == 'Time_3', ],
+                               time.var = 'Time',
+                               PRO.score = c('PRO.score', 
+                                             'PRO.score_mcar',
+                                             'PRO.score_mar', 
+                                             'PRO.score_mnar'),
+                               val.var = c('PGIS'))
+                               
+out2
+```

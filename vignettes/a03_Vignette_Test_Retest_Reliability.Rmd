@@ -1,0 +1,211 @@
+---
+title: "Test-Retest Reliability"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette_Test_Retest_Reliability}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+## Evaluate Test-Retest Reliability
+
+Recently, the FDA has recommended ICC(A,1). 
+Refer to this article: https://link.springer.com/article/10.1007/s11136-018-2076-0
+
+<br>
+
+`COA34::compute_iccA1` is just a wrapper for the `icc` function in the `irr` R package. This R function just makes it easier to compute the values and output the tables. The underlying code is available here: https://github.com/cran/irr/blob/master/R/icc.R
+
+### TODO
+
+1. Figure out what the generating value is - is it the residual correlation? Sim study needed!
+
+2. Explore further how MAR/MNAR drop-out severely attenuates the ICC(A,1) value
+
+
+
+
+
+```{r output_dir, echo = F}
+print.dir = "C:/Users/ciaconangelo/OneDrive - OPEN Health/Documents/misc_R_table_output"
+```
+
+### Required R packages
+```{r setup}
+
+library(COA34)
+# In addition, you'll need the following
+library(ggplot2)
+library(grid)
+library(gridExtra)
+
+```
+
+
+### Generate data
+```{r generate}
+
+  set.seed(12162021)
+
+  sim.out <- COA34::sim_pro_dat_v2(N=1000,
+                            number.timepoints = 3,
+                            Beta.PRO = NULL,
+                            number.of.anchor.groups = 5,
+                            polychor.value = 0.7,
+                            corr = 'ar1',
+                            cor.value = 0.8,
+                            #var.values = c(7.136))
+                            var.values = c(2))
+  dat <- sim.out$dat
+
+ 
+
+```
+
+
+### Implement drop-out
+
+```{r missing}
+
+dat <- COA34::dropout(dat = dat,
+               type_dropout  = c('mcar', 'mar', 'mnar'),
+               prop.miss = 0.5,
+               stochastic.component = 0.2)
+
+
+```
+
+
+### Simulate Items
+```{r generate items, eval=T}
+
+ # Simulate IRT items
+ # use the scores generated as the theta in the IRT model 
+  sim.out2 <- COA34::sim_irt_item(dat = dat, J = 5, K = 4, latent.variable = 'Y_comp')
+    str(sim.out2)
+    dat <- sim.out2$dat
+
+# Score the PRO - just take a simple sum score here:
+  dat$PRO.score <- apply(dat[, grep('Item', colnames(dat))], 1, sum)
+  
+# Create the same PRO score, but with MAR drop-out:
+  dat$PRO.score_mar <- dat$PRO.score
+  dat$PRO.score_mar[is.na(dat$Y_mar)] <- NA
+# Note that you've just set the PRO score to missing wherever the Y_mar variable is missing
+  
+# Now for the other missing types:
+    dat$PRO.score_mcar <- dat$PRO.score_mnar <- dat$PRO.score
+    dat$PRO.score_mcar[is.na(dat$Y_mcar)] <- NA
+    dat$PRO.score_mnar[is.na(dat$Y_mnar)] <- NA
+
+  aggregate(cbind(PRO.score, PRO.score_mcar, PRO.score_mar, PRO.score_mnar) ~ Time,
+                  function(x) mean(x, na.rm = T), 
+                  data = dat, 
+                  na.action = na.pass)
+
+
+```
+
+
+### Compute PGIS delta
+
+```{r pgis_delta}
+
+# You already have the PGIS_bl and PGIS_delta in the generated data,
+# you wouldn't have that in a real dataset, so drop that first
+dat <- dat[, !(colnames(dat) %in% c('PGIS_bl', 'PGIS_delta'))]
+# This makes this more realistic
+# use the function below:
+
+dat <- COA34::compute_anchor_delta(dat = dat,
+                                   subject.id = 'USUBJID',
+                                   time.var = 'Time',
+                                   anchor = 'PGIS')
+
+```
+
+
+
+### Compute PRO Score delta
+
+```{r score_delta}
+dat <- COA34::compute_change_score(dat = dat,
+                                   subject.id = 'USUBJID',
+                                   time.var = 'Time',
+                                   score = c('PRO.score', 'PRO.score_mcar', 
+                                             'PRO.score_mar', 'PRO.score_mnar'))
+
+# The function creates variables with the same name plus "_delta":
+str(dat)
+
+```
+
+
+## Compute Test-Retest Reliability
+
+Compute the ICC(A,1) values and output them to a table:
+
+```{r trtr1}
+
+icc <- COA34::compute_iccA1(dat = dat,
+                            PRO.score = c('PRO.score', 
+                                          'PRO.score_mcar', 
+                                          'PRO.score_mar', 
+                                          'PRO.score_mnar'),
+                            time.var = 'Time',
+                            subject.id = 'USUBJID',
+                            anchor = 'PGIS_delta',
+                            stable.score = 0, 
+                            first.timepoint = 'Time_1', 
+                            second.timepoint = 'Time_2')
+```
+
+Print the table out:
+
+```{r trtr2}
+library(R2Word)
+
+R2Word::dump_df_mat_to_file(out = icc$icc.A1,
+                            decimals = c(2, 0, 0), 
+                            table.title = 'ICC(A,1) - Vignette Illustration', 
+                            table.footnote = '**All data simulated',
+                            file.name = 'trtr_vig_iccA1', 
+                            print.dir = print.dir)
+
+
+```
+
+### Shell Tables
+If you're putting together shell tables, use the function `shell_table`, specifying that you want columns 2 and 3 to be converted to x instead of the numeric values. 
+
+
+```{r trtr3}
+
+st <- R2Word::shell_table(out = icc$icc.A1, decimals = c(2, 0), cols = c(2, 3))
+                           
+R2Word::dump_df_mat_to_file(out = st,
+                            decimals = 0, 
+                            table.title = 'ICC(A,1) - Vignette Illustration', 
+                            table.footnote = '**All data simulated',
+                            file.name = 'trtr_vig_iccA1_shell_tables', 
+                            print.dir = print.dir)
+```
+
+
+## TODO: What is the generating value of ICC(A,1)?
+
+Is it the correlation between the two timepoints? That is equal to 0.80. 
+
+```{r gen_param}
+
+sim.out$cor.mat
+
+```

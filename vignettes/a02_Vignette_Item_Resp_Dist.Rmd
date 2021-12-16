@@ -1,0 +1,158 @@
+---
+title: "Item Response Distribution"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette_Item_Resp_Dist}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+## Functions to Compute Item Response Distributions
+
+The purpose of this is to show some basic functionality using base R functions. Additional illustrations are available here:  https://cjangelo.github.io/R2Word/articles/introduction.html
+
+These sources are common tables that are rendered as output. 
+
+A much more sophisticated collection of functions and examples is available in the `gtsummary` R package.
+
+
+
+
+```{r output_dir, echo = F}
+print.dir = "C:/Users/ciaconangelo/OneDrive - OPEN Health/Documents/misc_R_table_output"
+```
+
+
+## Required R packages
+```{r setup}
+library(COA34)
+library(R2Word)
+```
+
+
+
+### Generate data
+```{r generate}
+
+  set.seed(12162021)
+
+  sim.out <- COA34::sim_pro_dat_v2(N=1000,
+                            number.timepoints = 3,
+                            Beta.PRO = NULL,
+                            number.of.anchor.groups = 5,
+                            polychor.value = 0.7,
+                            corr = 'ar1',
+                            cor.value = 0.8,
+                            #var.values = c(7.136))
+                            var.values = c(2))
+  dat <- sim.out$dat
+```
+
+
+### Implement drop-out
+
+```{r missing}
+
+dat <- COA34::dropout(dat = dat,
+               type_dropout  = c('mcar', 'mar', 'mnar'),
+               prop.miss = 0.5,
+               stochastic.component = 0.2)
+```
+
+
+### Simulate Items
+```{r generate items, eval=T}
+
+ # Simulate IRT items
+ # use the scores generated as the theta in the IRT model 
+  sim.out2 <- COA34::sim_irt_item(dat = dat, J = 5, K = 4, latent.variable = 'Y_comp')
+    str(sim.out2)
+    dat <- sim.out2$dat
+
+# Score the PRO - just take a simple sum score here:
+  dat$PRO.score <- apply(dat[, grep('Item', colnames(dat))], 1, sum)
+  
+# Create the same PRO score, but with MAR drop-out:
+  dat$PRO.score_mar <- dat$PRO.score
+  dat$PRO.score_mar[is.na(dat$Y_mar)] <- NA
+# Note that you've just set the PRO score to missing wherever the Y_mar variable is missing
+  
+# Now for the other missing types:
+    dat$PRO.score_mcar <- dat$PRO.score_mnar <- dat$PRO.score
+    dat$PRO.score_mcar[is.na(dat$Y_mcar)] <- NA
+    dat$PRO.score_mnar[is.na(dat$Y_mnar)] <- NA
+
+  aggregate(cbind(PRO.score, PRO.score_mcar, PRO.score_mar, PRO.score_mnar) ~ Time,
+                  function(x) mean(x, na.rm = T), 
+                  data = dat, 
+                  na.action = na.pass)
+```
+
+
+
+## Examples
+
+Two useful base R functions (actually in stats package) are `aggregate()` and `xtabs()`.
+
+### Item Response Distributions:
+```{r ird1}
+out1 <- do.call(data.frame, stats::aggregate(PRO.score_mar ~ Time,
+        FUN = function(x) c(sum(!is.na(x)),
+                            mean(x, na.rm = T),
+                            sd(x, na.rm = T),
+                            quantile(x, na.rm = T)),
+        data = dat, na.action = na.pass))
+# note: be careful of NA handling
+colnames(out1) <- c('Time', 'N', 'Mean', 'SD', '0%', '25%', '50%', '75%', '100%')
+
+R2Word::dump_df_mat_to_file(out = out1,
+                            decimals = c(0, 2, 3, 2, 2, 2, 2, 2), 
+                            table.title = 'Item Response Distribution - Vignette Illustration', 
+                            table.footnote = '**All data simulated',
+                            file.name = 'ird1', 
+                            print.dir = print.dir)
+```
+
+
+### Cross-Tabs:
+```{r ct}
+out2 <- stats::xtabs( ~  PGIS_delta + Time, data = dat)
+out2 <- addmargins(out2, margin = 1)
+df <- as.data.frame.matrix(out2)
+df <- cbind.data.frame('PGIS_delta' = rownames(out2), df)
+
+R2Word::dump_df_mat_to_file(out = df,
+                            decimals = 0,
+                            table.title = 'Cross-Table, Vignette Illustration',
+                            table.footnote = '**All data simulated',
+                            file.name = 'ct',
+                            print.dir = print.dir)
+```
+
+If you're using a loop, use as.formula() with paste0():
+```{r ct2}
+x <- 'PGIS_delta'
+y <- 'Time'
+stats::xtabs( as.formula(paste0('~ ',  x, ' + ', y)), data = dat)
+```
+
+
+### More examples...
+
+Additional examples available here: https://cjangelo.github.io/R2Word/articles/introduction.html
+
+
+A great library: `library(dplyr)`. Example:
+
+```{r eg1}
+library(dplyr)
+dplyr::count(dat, Time, PGIS_bl, PGIS_delta, .drop = F)
+```

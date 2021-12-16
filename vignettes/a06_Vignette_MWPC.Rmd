@@ -1,0 +1,374 @@
+---
+title: "MWPC Analysis with eCDF/ePDF"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette_MWPC}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+## MWPC Analysis: Thresholds, eCDFs, ePDFs, and Customization
+
+Output eCDFs and ePDFs in alignment with FDA Guidance 3. 
+
+
+```{r output_dir, echo = F}
+print.dir = "C:/Users/ciaconangelo/OneDrive - OPEN Health/Documents/misc_R_table_output"
+```
+
+## Required R packages
+```{r setup}
+
+library(COA34)
+# In addition, you'll need the following
+library(ggplot2)
+library(grid)
+library(gridExtra)
+
+```
+
+
+## Generate data
+```{r generate}
+
+  set.seed(12152021)
+
+  sim.out <- COA34::sim_pro_dat_v2(N=1000,
+                            number.timepoints = 3,
+                            Beta.PRO = NULL,
+                            number.of.anchor.groups = 5,
+                            polychor.value = 0.7,
+                            corr = 'ar1',
+                            cor.value = 0.8,
+                            #var.values = c(7.136))
+                            var.values = c(2))
+  dat <- sim.out$dat
+
+ 
+
+```
+
+
+
+## Implement drop-out
+
+```{r missing}
+
+dat <- COA34::dropout(dat = dat,
+               type_dropout  = c('mcar', 'mar', 'mnar'),
+               prop.miss = 0.5,
+               stochastic.component = 0.2)
+
+
+```
+
+
+## Simulate Items
+```{r generate items, eval=T}
+
+ # Simulate IRT items
+ # use the scores generated as the theta in the IRT model 
+  sim.out2 <- COA34::sim_irt_item(dat = dat, J = 5, K = 4, latent.variable = 'Y_comp')
+    str(sim.out2)
+    dat <- sim.out2$dat
+
+# Score the PRO - just take a simple sum score here:
+  dat$PRO.score <- apply(dat[, grep('Item', colnames(dat))], 1, sum)
+  
+# Create the same PRO score, but with MAR drop-out:
+  dat$PRO.score_mar <- dat$PRO.score
+  dat$PRO.score_mar[is.na(dat$Y_mar)] <- NA
+# Note that you've just set the PRO score to missing wherever the Y_mar variable is missing
+  
+# Now for the other missing types:
+    dat$PRO.score_mcar <- dat$PRO.score_mnar <- dat$PRO.score
+    dat$PRO.score_mcar[is.na(dat$Y_mcar)] <- NA
+    dat$PRO.score_mnar[is.na(dat$Y_mnar)] <- NA
+
+  aggregate(cbind(PRO.score, PRO.score_mcar, PRO.score_mar, PRO.score_mnar) ~ Time,
+                  function(x) mean(x, na.rm = T), 
+                  data = dat, 
+                  na.action = na.pass)
+
+
+```
+
+
+
+## Compute PGIS delta
+
+```{r pgis_delta}
+
+# You already have the PGIS_bl and PGIS_delta in the generated data,
+# you wouldn't have that in a real dataset, so drop that first
+dat <- dat[, !(colnames(dat) %in% c('PGIS_bl', 'PGIS_delta'))]
+# This makes this more realistic
+# use the function below:
+
+dat <- COA34::compute_anchor_delta(dat = dat,
+                                   subject.id = 'USUBJID',
+                                   time.var = 'Time',
+                                   anchor = 'PGIS')
+
+```
+
+
+## Compute PRO Score delta
+
+```{r score_delta}
+dat <- COA34::compute_change_score(dat = dat,
+                                   subject.id = 'USUBJID',
+                                   time.var = 'Time',
+                                   score = c('PRO.score', 'PRO.score_mcar', 
+                                             'PRO.score_mar', 'PRO.score_mnar'))
+
+# The function creates variables with the same name plus "_delta":
+str(dat)
+
+```
+
+## Compute anchor groups
+
+```{r anchor}
+dat <- COA34::compute_anchor_group(dat = dat,
+                                   anchor.variable = 'PGIS_delta')
+
+
+```
+
+
+## Compute Thresholds
+
+This functions computes a table of all of the meaningful change thresholds. 
+
+```{r thr}
+
+thr <- COA34::compute_thresholds(dat = dat,
+                                 anchor.group = 'anchor.groups',
+                                 time.var = 'Time',
+                                 change.score = 'PRO.score_delta')
+
+
+```
+
+
+Output the table to include in the report: 
+
+```{r thr_out, eval = T}
+library(R2Word)
+
+R2Word::dump_df_mat_to_file(out = thr,
+                            table.title = 'Anchor Group Thresholds',
+                            NA.string = '-',
+                            decimals = c(2, 2, 0, 1),
+                            file.name = 'thr', 
+                            print.dir = print.dir)
+
+
+
+```
+
+
+## Compute Proportion Surpassing Threshold
+
+NB, 12.16.21: Not run - not sure how useful this function is.
+
+
+This function computes the proportion of subjects surpassing a given threshold. So let's say you are looking to estimate meaningful improvement, using a 1-category change on the anchor as the criteria. In this case, you'd use the median PRO score of the anchor group "Improved 1 category" and compute the proportion of subjects with a PRO change score that was that or less (assuming that improvement is negative in PRO change scores).
+
+```{r cap, eval = F}
+
+cap <- COA34::compute_prop_surp(dat = dat,
+                                anchor.group = 'anchor.groups',
+                                time.var = 'Time',
+                                change.score = 'Y_comp_delta',
+                                threshold.label = 'Improved_1',
+                                mean.or.median = 'median')
+
+
+
+library(R2Word)
+
+R2Word::dump_df_mat_to_file(out = cap$anchor.table,
+                            table.title = paste0('Proportion Achieving Meaningful Improvement in ', cap$change.score),
+                            NA.string = '-',
+                            table.footnote = cap$footnote.anchor.table,
+                            decimals = c(0, 0, 1),
+                            file.name = 'cap', 
+                            print.dir = print.dir)
+
+
+```
+
+
+## Plot eCDFs and ePDFs
+We're going to do this two ways, first the easy way, with a function that automates it. Then we will go and do it by hand, to give you code to customize. 
+
+This way, if the function doesn't give you exactly what you need, you have something to modify and can quickly get what you need.
+
+### Easy Way - Use the function
+
+This is the most expedient approach. You can use this if you have 200 eCDF/ePDFs to compute. 
+
+NB, 12.16.21: function `ggplot2_eCDF` is deprecated, using `ggplot2_eCDF_v2` instead.
+
+```{r plot_funct_1, eval=T}
+
+ecdf <- COA34::ggplot2_eCDF_v2(dat = dat,
+                       anchor.group = 'anchor.groups',
+                       time.var = 'Time',
+                       change.score = 'PRO.score_delta')
+
+
+epdf <- COA34::ggplot2_ePDF(dat = dat,
+                       anchor.group = 'anchor.groups',
+                       time.var = 'Time',
+                       change.score = 'PRO.score_delta')
+
+# Let's look at them:
+plot(ecdf)
+plot(epdf)
+# Plot both:
+gridExtra::grid.arrange(ecdf, epdf, ncol = 1)
+
+
+
+```
+
+Note that you can chooose to compute the kernel density for the eCDF if you 
+want some smoothed eCDFs. These eCDFs will have lines that don't overlap as much
+so it's easier to review and interpret the eCDF. This kernel density is the same
+as the one used to plot the ePDFs. 
+
+The default is `smoothed.ecdf = FALSE`. Set it equal to `TRUE`.
+
+```{r plot_funct_2, eval=T}
+
+ecdf.smoothed <- COA34::ggplot2_eCDF_v2(dat = dat,
+                       smoothed.ecdf = TRUE,
+                       anchor.group = 'anchor.groups',
+                       time.var = 'Time',
+                       change.score = 'PRO.score_delta')
+
+# Compare the two:
+plot(ecdf)
+plot(ecdf.smoothed)
+
+```
+
+The plots do not render well in a browser. We should print them out to a file instead.
+
+
+### Print out the eCDFs
+
+Print out the ggplot2 plots to a .png file. You could do this in a loop if you 
+had many figures to print out. 
+
+```{r print_out_1, eval=T, results = 'hide'}
+
+#---------------------------------
+# Print out separately:
+
+file.name <- 'Example_eCDF'
+
+png(file = paste0(file.name, '.png'), units="in", width=11, height=8.5, res=300)
+
+  ecdf
+
+dev.off()
+
+#-------------------------------
+
+file.name <- 'Example_eCDF_smoothed'
+
+png(file = paste0(file.name, '.png'), units="in", width=11, height=8.5, res=300)
+
+  ecdf.smoothed
+
+dev.off()
+
+#-------------------------------
+
+  file.name <- 'Example_ePDF'
+
+png(file = paste0(file.name, '.png'), units="in", width=11, height=8.5, res=300)
+
+  epdf
+
+dev.off()
+# Note: you can use the paste0 function to use this in a loop
+# update anchor_name in the loop
+# file.name = paste0('eCDF_ePDF', anchor_name)
+
+
+#---------------------------------------------------
+# Print out together:
+  
+  file.name <- 'Example_stacked_eCDF_ePDF'
+
+png(file = paste0(file.name, '.png'), units="in", width=11, height=8.5, res=300)
+
+  gridExtra::grid.arrange(ecdf, epdf, ncol = 1)
+
+dev.off()
+
+
+```
+
+
+#### Shell Figures
+
+There's an option to return shell figures - this just means the sample sizes
+are xx-ed out. This is a nice option if you have to put together a proposal
+that contains shell figures and tables. 
+
+
+```{r plot_shell, eval = T}
+ecdf<- COA34::ggplot2_eCDF_v2(dat = dat,
+                       shell.table = TRUE,
+                       anchor.group = 'anchor.groups',
+                       time.var = 'Time',
+                       change.score = 'PRO.score_delta')
+
+
+plot(ecdf)
+
+```
+
+### Custom eCDF
+
+You may want to create a custom plot. There may be one or two scores that are the focus of your report, and for those, you need to make customized modifications.
+
+If you want, you can always pull the R code that is inside these COA34 functions
+and customize that code to make it look the way you want. 
+
+However, the nice thing about ggplot2 objects is how you can just add to it. Let's say you want to add a dashed line representing the threshold of deterioration to your eCDF.
+That is easy to do: 
+
+
+
+```{r plot_custom_ecdf_1, eval = T}
+
+p1 <- COA34::ggplot2_eCDF_v2(dat = dat,
+                       anchor.group = 'anchor.groups',
+                       time.var = 'Time',
+                       change.score = 'PRO.score_delta')
+
+
+p1 <- p1 +  geom_vline(
+  xintercept = thr$Median[thr$`Anchor Group` == 'Deteriorated, 1 category'],
+  linetype = 'dashed')
+
+plot(p1)
+
+```
+
+
