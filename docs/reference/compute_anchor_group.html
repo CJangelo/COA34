@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">COA34</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.0</span>
       </span>
     </div>
 
@@ -95,25 +95,25 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/Introduction.html">Introduction</a>
+      <a href="../articles/a01_Introduction.html">Introduction</a>
     </li>
     <li>
-      <a href="../articles/TRTR.html">Test-Retest Reliability</a>
+      <a href="../articles/a02_Vignette_Item_Resp_Dist.html">Item Response Distribution</a>
     </li>
     <li>
-      <a href="../articles/Vignette_eCDF_ePDF.html">Meaningful Change via eCDF and ePDF</a>
+      <a href="../articles/a03_Vignette_Test_Retest_Reliability.html">Test-Retest Reliability</a>
     </li>
     <li>
-      <a href="../articles/Vignette_Item_Resp_Dist.html">Item Response Distribution</a>
+      <a href="../articles/a04_Vignette_Concurrent_Validity.html">Concurrent Validity</a>
     </li>
     <li>
-      <a href="../articles/Vignette_Known_Groups.html">Known Groups Validity</a>
+      <a href="../articles/a05_Vignette_Known_Groups.html">Known Groups Validity</a>
     </li>
     <li>
-      <a href="../articles/Vignette_Scatterplots.html">Meaningful Change with Scatterplots</a>
+      <a href="../articles/a06_Vignette_MWPC.html">MWPC Analysis with eCDF/ePDF</a>
     </li>
     <li>
-      <a href="../articles/Vignette_Validity.html">Concurrent Validity</a>
+      <a href="../articles/a07_Vignette_Scatterplots.html">Meaningful Change with Scatterplots</a>
     </li>
   </ul>
 </li>
@@ -142,11 +142,7 @@
     <p>Compute the Anchor Group</p>
     </div>
 
-    <pre class="usage"><span class='fu'>compute_anchor_group</span><span class='op'>(</span>
-  <span class='va'>dat</span>,
-  anchor.variable <span class='op'>=</span> <span class='st'>"PGIS_delta"</span>,
-  number.of.anchor.groups <span class='op'>=</span> <span class='fl'>5</span>
-<span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>compute_anchor_group</span><span class='op'>(</span><span class='va'>dat</span>, anchor.variable <span class='op'>=</span> <span class='st'>"PGIS_delta"</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -158,12 +154,6 @@
     <tr>
       <th>anchor.variable</th>
       <td><p>numeric variable name that you want to use to create the anchor groups variable of the subject ID in the dataframe numeric; default is USUBJID</p></td>
-    </tr>
-    <tr>
-      <th>number.of.anchor.groups</th>
-      <td><p>numeric, 3 or 5. If it's 5, all subjects with a non-missing value in the anchor.variable
-will be assigned to: c('Improved_2+', 'Improved_1', 'Maintained', 'Deteriorated_1', 'Deteriorated_2+'). If number if 3,
-then only c( 'Improved_1', 'Maintained', 'Deteriorated_1') will be used, with others set to NA.</p></td>
     </tr>
     </table>
 

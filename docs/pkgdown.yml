@@ -2,12 +2,12 @@ pandoc: 2.11.4
 pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
-  Introduction: Introduction.html
-  TRTR: TRTR.html
-  Vignette_eCDF_ePDF: Vignette_eCDF_ePDF.html
-  Vignette_Item_Resp_Dist: Vignette_Item_Resp_Dist.html
-  Vignette_Known_Groups: Vignette_Known_Groups.html
-  Vignette_Scatterplots: Vignette_Scatterplots.html
-  Vignette_Validity: Vignette_Validity.html
-last_built: 2021-07-01T17:35Z
+  a01_Introduction: a01_Introduction.html
+  a02_Vignette_Item_Resp_Dist: a02_Vignette_Item_Resp_Dist.html
+  a03_Vignette_Test_Retest_Reliability: a03_Vignette_Test_Retest_Reliability.html
+  a04_Vignette_Concurrent_Validity: a04_Vignette_Concurrent_Validity.html
+  a05_Vignette_Known_Groups: a05_Vignette_Known_Groups.html
+  a06_Vignette_MWPC: a06_Vignette_MWPC.html
+  a07_Vignette_Scatterplots: a07_Vignette_Scatterplots.html
+last_built: 2021-12-16T20:18Z
 
