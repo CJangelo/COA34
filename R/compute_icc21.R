@@ -1,7 +1,9 @@
 #' Test-Retest Reliability
 #'
 #' Uses the `ICC()` function in the `psych` package to compute the ICC(2,1)
-#' on a stable subset of subjects.
+#' on a stable subset of subjects. Note that this is equivalent to the ICC(A,1)
+#' See Intraclass correlation – A discussion and demonstration of basic features
+#' by Liljequist et al 2019. Also see documentation of the `psych` package.
 #'
 #'
 #' @param dat dataframe with values
@@ -77,7 +79,7 @@ for (score in PRO.score) {
   icc <- psych::ICC(dat.icc[,c('Y1', 'Y2')], lmer = F)
   # documentation shows this aligns with Shrout & Fleiss 1979, but it's slow
   icc <- as.data.frame(icc$results)
-  icc <- data.frame(score, icc[icc$type == 'ICC2k', 'ICC'], N, anchor, stable.score)
+  icc <- data.frame(score, icc[icc$type == 'ICC2', 'ICC'], N, anchor, stable.score)
     colnames(icc) <- c('PRO Score', 'ICC(2,1)', 'N', 'Anchor', 'Stable Anchor Score')
 
   out <- rbind.data.frame(out, icc)
