@@ -2,8 +2,7 @@
 % Please edit documentation in R/sim_pro_dat_v2.R
 \name{sim_pro_dat_v2}
 \alias{sim_pro_dat_v2}
-\title{Simulate Longitudinal PRO Data with anchor and validator variables included
-This version 2 was updated based on MWPC MMRM simulations}
+\title{Simulate Longitudinal PRO Data with anchor and validator variables included}
 \usage{
 sim_pro_dat_v2(
   N = 1000,
@@ -61,6 +60,5 @@ numeric vector, the correlation between the PRO score and each of the \code{n.va
 returns a dataframe containing the simulated data
 }
 \description{
-Simulate Longitudinal PRO Data with anchor and validator variables included
 This version 2 was updated based on MWPC MMRM simulations
 }

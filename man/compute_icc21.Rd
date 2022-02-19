@@ -44,5 +44,7 @@ returns a table \code{icc.21} with the values
 }
 \description{
 Uses the \code{ICC()} function in the \code{psych} package to compute the ICC(2,1)
-on a stable subset of subjects.
+on a stable subset of subjects. Note that this is equivalent to the ICC(A,1)
+See Intraclass correlation – A discussion and demonstration of basic features
+by Liljequist et al 2019. Also see documentation of the \code{psych} package.
 }

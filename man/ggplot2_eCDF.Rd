@@ -2,7 +2,7 @@
 % Please edit documentation in R/ggplot2_eCDF.R
 \name{ggplot2_eCDF}
 \alias{ggplot2_eCDF}
-\title{Plot eCDF using \code{ggplot2}}
+\title{DEPRECATED: Plot eCDF using \code{ggplot2}}
 \usage{
 ggplot2_eCDF(
   dat = NULL,
