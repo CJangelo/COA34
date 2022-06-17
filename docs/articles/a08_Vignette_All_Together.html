@@ -180,12 +180,38 @@
 <span class="co"># Use dataframes only:</span>
 <span class="va">dat4</span> <span class="op">&lt;-</span> <span class="va">ir</span><span class="op">$</span><span class="va">dat</span>
 <span class="va">dat5</span> <span class="op">&lt;-</span> <span class="va">ir_NA</span><span class="op">$</span><span class="va">dat</span></code></pre></div>
+<p>The function <code><a href="../reference/sim_irt_item.html">sim_irt_item()</a></code> uses default item parameters. If you are familiar with IRT models and you want to use your own item parameters in item generation, you can do so by creating a matrix of the item parameters:</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="co"># Default item param:</span>
+<span class="va">ir</span><span class="op">$</span><span class="va">item.param</span>
+<span class="co">#&gt;        slope intercept_1 intercept_2 intercept_3 intercept_4</span>
+<span class="co">#&gt; Item_1     2          -2  -0.6666667   0.6666667           2</span>
+
+<span class="co"># Create new item parameters in a matrix:</span>
+<span class="va">new.item.param</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="op">-</span><span class="fl">2</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="va">j</span>,  ncol <span class="op">=</span> <span class="va">k</span>, byrow <span class="op">=</span> <span class="cn">T</span>,
+                         dimnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'Item_1'</span><span class="op">)</span>, 
+                                         <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'slope'</span>,  <span class="st">'intercept_1'</span>,  <span class="st">'intercept_2'</span>, <span class="st">'intercept_3'</span>,  <span class="st">'intercept_4'</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co"># Make sure you have them named 'slope' and 'intercept', the function uses</span>
+<span class="co"># those names to pull the values</span>
+
+<span class="va">ir.new</span> <span class="op">&lt;-</span> <span class="fu">COA34</span><span class="fu">::</span><span class="fu"><a href="../reference/sim_irt_item.html">sim_irt_item</a></span><span class="op">(</span>dat <span class="op">=</span> <span class="va">dat2</span>, 
+                              item.param <span class="op">=</span> <span class="va">new.item.param</span>,
+                              J <span class="op">=</span> <span class="va">j</span>, 
+                              K <span class="op">=</span> <span class="va">k</span>,
+                              latent.variable <span class="op">=</span> <span class="st">'Y_comp'</span>, 
+                              time.var <span class="op">=</span> <span class="st">'Time'</span><span class="op">)</span>
+
+<span class="va">ir.new</span><span class="op">$</span><span class="va">item.param</span>
+<span class="co">#&gt;        slope intercept_1 intercept_2 intercept_3 intercept_4</span>
+<span class="co">#&gt; Item_1     3          -2          -1           1           2</span></code></pre></div>
 </div>
 <div id="scoring-algorithm" class="section level3">
 <h3 class="hasAnchor">
 <a href="#scoring-algorithm" class="anchor"></a>Scoring Algorithm</h3>
 <p>Create the sum score for both dataframes - this will be your PRO score going forward. Of course it could be an average or whatever scoring algorithm is appropriate.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">dat4</span><span class="op">$</span><span class="va">sum_score</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">dat4</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">'Item_'</span>, <span class="fl">1</span><span class="op">:</span><span class="va">j</span><span class="op">)</span>, drop <span class="op">=</span> <span class="cn">F</span><span class="op">]</span>, <span class="fl">1</span>, <span class="va">sum</span><span class="op">)</span>
 <span class="va">dat5</span><span class="op">$</span><span class="va">sum_score</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">dat5</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">'Item_'</span>, <span class="fl">1</span><span class="op">:</span><span class="va">j</span><span class="op">)</span>, drop <span class="op">=</span> <span class="cn">F</span><span class="op">]</span>, <span class="fl">1</span>, <span class="va">sum</span><span class="op">)</span></code></pre></div>
 </div>
@@ -194,7 +220,7 @@
 <a href="#note-on-validator-variables-reference-measures" class="anchor"></a>Note on validator variables (reference measures)</h3>
 <p>NOTE: if you want the validator variables to have a specific correlation with the observed/calculated score (e.g., sum-score), you should simulate validator variables at this stage.</p>
 <p>Just change what is passed to <code>PRO.score</code>. Below is for illustration, but not run.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># NOT RUN</span>
 <span class="va">out</span> <span class="op">&lt;-</span> <span class="fu">COA34</span><span class="fu">::</span><span class="fu"><a href="../reference/sim_val_var_v2.html">sim_val_var_v2</a></span><span class="op">(</span>dat <span class="op">=</span> <span class="va">dat</span>, 
                              PRO.score <span class="op">=</span> <span class="st">'sum_score'</span>,
@@ -209,7 +235,7 @@
 <h3 class="hasAnchor">
 <a href="#write-out-data-file" class="anchor"></a>Write out data file</h3>
 <p>For SAS users: this seems to be the best way to write out data to a text file - seems to make it easiest to read it into SAS.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/write.table.html">write.table</a></span><span class="op">(</span><span class="va">dat4</span>, na <span class="op">=</span> <span class="st">'.'</span>, quote <span class="op">=</span> <span class="cn">F</span>, sep <span class="op">=</span> <span class="st">', '</span>, row.names <span class="op">=</span> <span class="cn">F</span>,
             file <span class="op">=</span> <span class="st">'sim_data_PRO_17June2022.txt'</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/write.table.html">write.table</a></span><span class="op">(</span><span class="va">dat5</span>, na <span class="op">=</span> <span class="st">'.'</span>, quote <span class="op">=</span> <span class="cn">F</span>, sep <span class="op">=</span> <span class="st">', '</span>, row.names <span class="op">=</span> <span class="cn">F</span>,
@@ -224,7 +250,7 @@
 <h3 class="hasAnchor">
 <a href="#compute-anchor-change-score" class="anchor"></a>Compute Anchor Change Score</h3>
 <p>This is for PGIS anchor - no need if you’re using PGIC because you already have your anchor change scores in the raw response.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Validator variable 1 (`Val_1`) is the anchor </span>
 <span class="va">dat6</span> <span class="op">&lt;-</span> <span class="fu">COA34</span><span class="fu">::</span><span class="fu"><a href="../reference/compute_anchor_delta.html">compute_anchor_delta</a></span><span class="op">(</span>dat <span class="op">=</span> <span class="va">dat4</span>,
                                    subject.id <span class="op">=</span> <span class="st">'USUBJID'</span>,
@@ -235,7 +261,7 @@
 <h3 class="hasAnchor">
 <a href="#compute-pro-change-score" class="anchor"></a>Compute PRO Change Score</h3>
 <p>Pretty much what it says. You can do this by hand, if you’d prefer. This function will use the first timepoint and final timepoint automatically. Assuming, of course, your <code>Time</code> variable is correctly ordered.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">dat7</span> <span class="op">&lt;-</span> <span class="fu">COA34</span><span class="fu">::</span><span class="fu"><a href="../reference/compute_change_score.html">compute_change_score</a></span><span class="op">(</span>dat <span class="op">=</span> <span class="va">dat6</span>,
                                     subject.id <span class="op">=</span> <span class="st">'USUBJID'</span>,
                                     time.var <span class="op">=</span> <span class="st">'Time'</span>,
@@ -246,7 +272,7 @@
 <a href="#ability-to-detect-change" class="anchor"></a>Ability to Detect Change</h3>
 <p>Use these anchor change scores in the ability to detect change analysis. You’ll compute correlations between this anchor change score and the PRO change score.</p>
 <p>For an anchor to be considered appropriate for use in estimation of MWPC thresholds, this correlation should be greater than 0.3 or 0.4.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">dat7</span><span class="op">$</span><span class="va">sum_score_delta</span>, <span class="va">dat7</span><span class="op">$</span><span class="va">Val_1_delta</span><span class="op">)</span>
 <span class="co">#&gt; [1] 0.4318808</span></code></pre></div>
@@ -255,7 +281,7 @@
 <h3 class="hasAnchor">
 <a href="#compute-anchor-groupcategory" class="anchor"></a>Compute Anchor Group/Category</h3>
 <p>From the anchor change score, consolidate into the anchor groups you’ll use. This function automatically converts into 5 anchor groups. Note: If you need a different definition of anchor groups/category, you’ll have to do it by hand.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">dat8</span> <span class="op">&lt;-</span> <span class="fu">COA34</span><span class="fu">::</span><span class="fu"><a href="../reference/compute_anchor_group.html">compute_anchor_group</a></span><span class="op">(</span>dat <span class="op">=</span> <span class="va">dat7</span>,
                                     anchor.variable <span class="op">=</span> <span class="st">'Val_1_delta'</span><span class="op">)</span></code></pre></div>
 </div>
@@ -263,7 +289,7 @@
 <h3 class="hasAnchor">
 <a href="#compute-mwpc-thresholds" class="anchor"></a>Compute MWPC Thresholds</h3>
 <p>Function computes a table of the MWPC threshold values.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">thr</span> <span class="op">&lt;-</span> <span class="fu">COA34</span><span class="fu">::</span><span class="fu"><a href="../reference/compute_thresholds_v2.html">compute_thresholds_v2</a></span><span class="op">(</span>dat <span class="op">=</span> <span class="va">dat8</span>,
                                     anchor.group <span class="op">=</span> <span class="st">'anchor.groups'</span>,
                                     time.var <span class="op">=</span> <span class="st">'Time'</span>,
@@ -273,7 +299,7 @@
 <h3 class="hasAnchor">
 <a href="#ecdf-and-epdf" class="anchor"></a>eCDF and ePDF</h3>
 <p>There are functions to output the eCDF and ePDF. More detail on these functions is available in other vignettes. Note that in the case of single-item endpoints, ePDF doesn’t make much sense, it really should be a barplot.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
 <span class="va">ecdf</span> <span class="op">&lt;-</span> <span class="fu">COA34</span><span class="fu">::</span><span class="fu"><a href="../reference/ggplot2_eCDF_v2.html">ggplot2_eCDF_v2</a></span><span class="op">(</span>dat <span class="op">=</span> <span class="va">dat8</span>,
                                anchor.group <span class="op">=</span> <span class="st">'anchor.groups'</span>,
@@ -295,7 +321,7 @@
 <h2 class="hasAnchor">
 <a href="#output-tables-and-figures" class="anchor"></a>Output Tables and Figures</h2>
 <p>Need to output tables and figures - figures is actually easiest. Adjust the width and height manually to make output look good. Start with the 8.5 and 5.5, that seems to fit well into most reports in MS Word.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#eCDF</span>
 <span class="fu"><a href="https://rdrr.io/r/grDevices/png.html">png</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">'Example_eCDF.png'</span>, units<span class="op">=</span><span class="st">"in"</span>, width<span class="op">=</span><span class="fl">8.5</span>, height<span class="op">=</span><span class="fl">5.5</span>, res<span class="op">=</span><span class="fl">300</span><span class="op">)</span>
 
@@ -320,7 +346,7 @@
 <li><p>The <code><a href="https://rdrr.io/pkg/R2Word/man/round_numbers.html">round_numbers()</a></code> function is what is useful here: <a href="https://github.com/CJangelo/R2Word/blob/main/R/round_numbers.R" class="uri">https://github.com/CJangelo/R2Word/blob/main/R/round_numbers.R</a></p></li>
 <li><p>Then the rest is just using the <code>flextable</code> R package to finalize formatting and output the table to MS Word.</p></li>
 </ul>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">R2Word</span><span class="op">)</span>
 
 <span class="fu">R2Word</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/R2Word/man/dump_df_mat_to_file.html">dump_df_mat_to_file</a></span><span class="op">(</span>out <span class="op">=</span> <span class="va">thr</span>,
