@@ -53,10 +53,10 @@ ggplot2_eCDF_v2 <- function(
 
 #------------------------------------------------
   # Thresholds
-  thr <- COA34::compute_thresholds(dat = dat,
-                                   anchor.group = anchor.group,
-                                   time.var = time.var,
-                                   change.score = change.score)
+  thr <- COA34::compute_thresholds_v2(dat = dat,
+                                      anchor.group = anchor.group,
+                                      time.var = time.var,
+                                      change.score = change.score)
 
   thr$legend.label <- paste0(thr$`Anchor Group`, " (N=",thr$N,")")
 
