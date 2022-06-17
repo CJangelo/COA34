@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Compute the PRO Change Score — compute_change_score • COA34</title>
+<title>Simulate Longitudinal Continuous Data — sim_dat • COA34</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Compute the PRO Change Score — compute_change_score" />
-<meta property="og:description" content="Compute the PRO Change Score" />
+<meta property="og:title" content="Simulate Longitudinal Continuous Data — sim_dat" />
+<meta property="og:description" content="This is from the SPR package" />
 
 
 
@@ -136,46 +136,70 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Compute the PRO Change Score</h1>
+    <h1>Simulate Longitudinal Continuous Data</h1>
     
-    <div class="hidden name"><code>compute_change_score.Rd</code></div>
+    <div class="hidden name"><code>sim_dat.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Compute the PRO Change Score</p>
+    <p>This is from the SPR package</p>
     </div>
 
-    <pre class="usage"><span class='fu'>compute_change_score</span><span class='op'>(</span>
-  dat <span class='op'>=</span> <span class='cn'>NULL</span>,
-  subject.id <span class='op'>=</span> <span class='cn'>NULL</span>,
-  time.var <span class='op'>=</span> <span class='cn'>NULL</span>,
-  score <span class='op'>=</span> <span class='cn'>NULL</span>
+    <pre class="usage"><span class='fu'>sim_dat</span><span class='op'>(</span>
+  N <span class='op'>=</span> <span class='fl'>100</span>,
+  number.groups <span class='op'>=</span> <span class='fl'>2</span>,
+  number.timepoints <span class='op'>=</span> <span class='fl'>4</span>,
+  reg.formula <span class='op'>=</span> <span class='cn'>NULL</span>,
+  Beta <span class='op'>=</span> <span class='fl'>0</span>,
+  corr <span class='op'>=</span> <span class='st'>"ar1"</span>,
+  cor.value <span class='op'>=</span> <span class='cn'>NULL</span>,
+  var.values <span class='op'>=</span> <span class='fl'>2</span>,
+  cond.mcar <span class='op'>=</span> <span class='cn'>F</span>,
+  Covariate <span class='op'>=</span> <span class='cn'>F</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>dat</th>
-      <td><p>pass the dataframe</p></td>
+      <th>reg.formula</th>
+      <td><p>this is a regression formula to pass to the data generation; null is
+formula(~ Group + Time + Time*Group),</p></td>
     </tr>
     <tr>
-      <th>subject.id</th>
-      <td><p>variable of the subject ID in the dataframe numeric; default is USUBJID</p></td>
+      <th>Beta</th>
+      <td><p>this is the Beta for the regression equation; numeric matrix of Beta values OR a scalar value != 0
+that will be the final value of the interaction parameters, default is all(Beta == 0) for Type I error simulations</p></td>
     </tr>
     <tr>
-      <th>time.var</th>
-      <td><p>variable of the Time in the dataframe - PLEASE CHECK THAT THIS IS CORRECTLY ORDERED, default is Time</p></td>
+      <th>corr</th>
+      <td><p>options for correlation structure  c('ind', 'ar1', 'cs'), default is 'ar1'</p></td>
     </tr>
     <tr>
-      <th>score</th>
-      <td><p>numeric PRO score variable, default is Y_comp</p></td>
+      <th>cor.value</th>
+      <td><p>numeric, the first corr in ar1, the corr in cs option</p></td>
+    </tr>
+    <tr>
+      <th>var.values</th>
+      <td><p>numeric vector of variances, Default variance value at last timepoint is 2.
+Can either adjust that last value (rest will be filled in automatically) OR you can pass the full vector</p></td>
+    </tr>
+    <tr>
+      <th>cond.mcar</th>
+      <td><p>logical; do you want a conditional MCAR data generation</p></td>
+    </tr>
+    <tr>
+      <th>Covariate</th>
+      <td><p>logical; do you want a random simulated covariate?</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>returns a dataframe with two additional variables, PRO score at baseline and PRO change score</p>
+    <p>returns a dataframe containing the simulated data</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Requires MASS R package</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

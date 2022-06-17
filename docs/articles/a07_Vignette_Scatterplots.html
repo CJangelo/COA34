@@ -74,6 +74,9 @@
     <li>
       <a href="../articles/a07_Vignette_Scatterplots.html">Meaningful Change with Scatterplots</a>
     </li>
+    <li>
+      <a href="../articles/a08_Vignette_All_Together.html">Simulate Item Level Data and Estimate MWPC Thresholds</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -223,8 +226,8 @@
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">dat.plot</span><span class="op">$</span><span class="va">anchor.groups</span><span class="op">)</span>
 <span class="co">#&gt; [1] Maintained                         Deteriorated, 1 category          </span>
-<span class="co">#&gt; [3] Improved, 2 or more categories     Improved, 1 category              </span>
-<span class="co">#&gt; [5] Deteriorated, 2 or more categories</span>
+<span class="co">#&gt; [3] Deteriorated, 2 or more categories Improved, 1 category              </span>
+<span class="co">#&gt; [5] Improved, 2 or more categories    </span>
 <span class="co">#&gt; 5 Levels: Improved, 2 or more categories Improved, 1 category ... Deteriorated, 2 or more categories</span>
 <span class="va">ag.cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'Deteriorated_2+'</span> <span class="op">=</span> <span class="st">"darkred"</span>,
              <span class="st">"Deteriorated_1"</span> <span class="op">=</span> <span class="st">"red"</span>,

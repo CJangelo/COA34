@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Compute the PRO Change Score — compute_change_score • COA34</title>
+<title>Simulate Longitudinal Ordinal Data — sim_val_var_v2 • COA34</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Compute the PRO Change Score — compute_change_score" />
-<meta property="og:description" content="Compute the PRO Change Score" />
+<meta property="og:title" content="Simulate Longitudinal Ordinal Data — sim_val_var_v2" />
+<meta property="og:description" content="Simulate Longitudinal Ordinal Data" />
 
 
 
@@ -136,20 +136,21 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Compute the PRO Change Score</h1>
+    <h1>Simulate Longitudinal Ordinal Data</h1>
     
-    <div class="hidden name"><code>compute_change_score.Rd</code></div>
+    <div class="hidden name"><code>sim_val_var_v2.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Compute the PRO Change Score</p>
+    <p>Simulate Longitudinal Ordinal Data</p>
     </div>
 
-    <pre class="usage"><span class='fu'>compute_change_score</span><span class='op'>(</span>
-  dat <span class='op'>=</span> <span class='cn'>NULL</span>,
-  subject.id <span class='op'>=</span> <span class='cn'>NULL</span>,
-  time.var <span class='op'>=</span> <span class='cn'>NULL</span>,
-  score <span class='op'>=</span> <span class='cn'>NULL</span>
+    <pre class="usage"><span class='fu'>sim_val_var_v2</span><span class='op'>(</span>
+  <span class='va'>dat</span>,
+  PRO.score <span class='op'>=</span> <span class='st'>"Y_comp"</span>,
+  n.val <span class='op'>=</span> <span class='fl'>5</span>,
+  n.cat <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span>, <span class='cn'>NA</span>, <span class='cn'>NA</span>, <span class='cn'>NA</span>, <span class='fl'>5</span><span class='op'>)</span>,
+  cor.val.ref <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.5</span>, <span class='fl'>0.6</span>, <span class='fl'>0.8</span>, <span class='fl'>0.2</span>, <span class='fl'>0.3</span><span class='op'>)</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -160,22 +161,22 @@
       <td><p>pass the dataframe</p></td>
     </tr>
     <tr>
-      <th>subject.id</th>
-      <td><p>variable of the subject ID in the dataframe numeric; default is USUBJID</p></td>
+      <th>n.val</th>
+      <td><p>numeric,  number of validators</p></td>
     </tr>
     <tr>
-      <th>time.var</th>
-      <td><p>variable of the Time in the dataframe - PLEASE CHECK THAT THIS IS CORRECTLY ORDERED, default is Time</p></td>
+      <th>n.cat</th>
+      <td><p>numeric vector,  number of categories in each validator, NA for continuous validator variables</p></td>
     </tr>
     <tr>
-      <th>score</th>
-      <td><p>numeric PRO score variable, default is Y_comp</p></td>
+      <th>cor.val.ref</th>
+      <td><p>Reference Measure generation, numeric vector, the correlation between the PRO score and each of the <code>n.val</code> validators</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>returns a dataframe with two additional variables, PRO score at baseline and PRO change score</p>
+    <p>returns a dataframe containing the simulated data</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

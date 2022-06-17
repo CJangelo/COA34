@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Compute the PRO Change Score — compute_change_score • COA34</title>
+<title>Compute Thresholds — compute_thresholds_v2 • COA34</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,10 @@
 
 
 
-<meta property="og:title" content="Compute the PRO Change Score — compute_change_score" />
-<meta property="og:description" content="Compute the PRO Change Score" />
+<meta property="og:title" content="Compute Thresholds — compute_thresholds_v2" />
+<meta property="og:description" content="Note that this computes quantiles using the quantile() function in R.
+In order to align with SAS, the type 2 definition is used
+Refer to https://blogs.sas.com/content/iml/2017/05/24/definitions-sample-quantiles.html" />
 
 
 
@@ -136,20 +138,24 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Compute the PRO Change Score</h1>
+    <h1>Compute Thresholds</h1>
     
-    <div class="hidden name"><code>compute_change_score.Rd</code></div>
+    <div class="hidden name"><code>compute_thresholds_v2.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Compute the PRO Change Score</p>
+    <p>Note that this computes quantiles using the <code><a href='https://rdrr.io/r/stats/quantile.html'>quantile()</a></code> function in R.
+In order to align with SAS, the type 2 definition is used
+Refer to https://blogs.sas.com/content/iml/2017/05/24/definitions-sample-quantiles.html</p>
     </div>
 
-    <pre class="usage"><span class='fu'>compute_change_score</span><span class='op'>(</span>
+    <pre class="usage"><span class='fu'>compute_thresholds_v2</span><span class='op'>(</span>
   dat <span class='op'>=</span> <span class='cn'>NULL</span>,
-  subject.id <span class='op'>=</span> <span class='cn'>NULL</span>,
+  anchor.group <span class='op'>=</span> <span class='cn'>NULL</span>,
   time.var <span class='op'>=</span> <span class='cn'>NULL</span>,
-  score <span class='op'>=</span> <span class='cn'>NULL</span>
+  timepoint <span class='op'>=</span> <span class='cn'>NULL</span>,
+  change.score <span class='op'>=</span> <span class='cn'>NULL</span>,
+  subject.id <span class='op'>=</span> <span class='st'>"USUBJID"</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -160,16 +166,21 @@
       <td><p>pass the dataframe</p></td>
     </tr>
     <tr>
-      <th>subject.id</th>
-      <td><p>variable of the subject ID in the dataframe numeric; default is USUBJID</p></td>
+      <th>anchor.group</th>
+      <td><p>variable of the anchor group you want used here</p></td>
     </tr>
     <tr>
       <th>time.var</th>
       <td><p>variable of the Time in the dataframe - PLEASE CHECK THAT THIS IS CORRECTLY ORDERED, default is Time</p></td>
     </tr>
     <tr>
-      <th>score</th>
-      <td><p>numeric PRO score variable, default is Y_comp</p></td>
+      <th>timepoint</th>
+      <td><p>default here is to just use the final timepoint, e.g., "Time_4". Please be sure to have
+ordered your time variable correctly.</p></td>
+    </tr>
+    <tr>
+      <th>change.score</th>
+      <td><p>the PRO change score you want the threshold computed on</p></td>
     </tr>
     </table>
 
