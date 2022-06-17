@@ -109,6 +109,33 @@ dat5 <- ir_NA$dat
 
 ```
 
+The function `sim_irt_item()` uses default item parameters. If you are familiar with IRT models and you want to use your own item parameters in item generation, you can do so by creating a matrix of the item parameters:
+
+```{r IRTparam}
+
+# Default item param:
+ir$item.param
+
+# Create new item parameters in a matrix:
+new.item.param <- matrix(c(3, -2, -1, 1, 2), nrow = j,  ncol = k, byrow = T,
+                         dimnames = list(c('Item_1'), 
+                                         c('slope',  'intercept_1',  'intercept_2', 'intercept_3',  'intercept_4')))
+
+# Make sure you have them named 'slope' and 'intercept', the function uses
+# those names to pull the values
+
+ir.new <- COA34::sim_irt_item(dat = dat2, 
+                              item.param = new.item.param,
+                              J = j, 
+                              K = k,
+                              latent.variable = 'Y_comp', 
+                              time.var = 'Time')
+
+ir.new$item.param
+
+```
+
+
 ### Scoring Algorithm
 Create the sum score for both dataframes - this will be your PRO score going forward. Of course it could be an average or whatever scoring algorithm is appropriate. 
 
