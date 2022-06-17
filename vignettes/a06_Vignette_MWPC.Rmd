@@ -272,14 +272,15 @@ The plots do not render well in a browser. We should print them out to a file in
 Print out the ggplot2 plots to a .png file. You could do this in a loop if you 
 had many figures to print out. 
 
-```{r print_out_1, eval=T, results = 'hide'}
+```{r print_out_1, eval=F, results = 'hide'}
 
 #---------------------------------
 # Print out separately:
 
 file.name <- 'Example_eCDF'
 
-png(file = paste0(file.name, '.png'), units="in", width=11, height=8.5, res=300)
+# png(file = paste0(file.name, '.png'), units="in", width=11, height=8.5, res=300)
+png(file = paste0(file.name, '.png'), units="in", width=8.5, height=5.5, res=300)
 
   ecdf
 
@@ -289,7 +290,8 @@ dev.off()
 
 file.name <- 'Example_eCDF_smoothed'
 
-png(file = paste0(file.name, '.png'), units="in", width=11, height=8.5, res=300)
+#png(file = paste0(file.name, '.png'), units="in", width=11, height=8.5, res=300)
+png(file = paste0(file.name, '.png'), units="in", width=8.5, height=5.5, res=300)
 
   ecdf.smoothed
 
@@ -299,7 +301,8 @@ dev.off()
 
   file.name <- 'Example_ePDF'
 
-png(file = paste0(file.name, '.png'), units="in", width=11, height=8.5, res=300)
+#png(file = paste0(file.name, '.png'), units="in", width=11, height=8.5, res=300)
+png(file = paste0(file.name, '.png'), units="in", width=8.5, height=5.5, res=300)
 
   epdf
 
@@ -314,7 +317,8 @@ dev.off()
   
   file.name <- 'Example_stacked_eCDF_ePDF'
 
-png(file = paste0(file.name, '.png'), units="in", width=11, height=8.5, res=300)
+#png(file = paste0(file.name, '.png'), units="in", width=11, height=8.5, res=300)
+png(file = paste0(file.name, '.png'), units="in", width=8.5, height=5.5, res=300)
 
   gridExtra::grid.arrange(ecdf, epdf, ncol = 1)
 
